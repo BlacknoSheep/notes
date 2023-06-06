@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子的轮廓阴影和圆角</title>
+
+    <style>
+        .dividing{
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            margin: 0 auto;
+        }
+
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+        }
+        /*
+        outline 用来设置元素的轮廓线，用法和border一样
+            - 直接描边，不会影响页面布局（不会挤压其他元素）
+        */
+        .box1:hover{
+            outline: 10px red solid;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            border: 10px #333 solid;
+            margin: 0 auto;
+        }
+
+        /*
+        box-shadow 用来设置元素的阴影效果
+            - 不会影响页面布局
+            - 第一个值：水平偏移量，正右移，负左移
+            - 第二个值：垂直偏移量，正下移，负上移
+            - 第三个值：阴影的模糊半径
+            - 第四个值：阴影的颜色
+        */
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+
+            box-shadow: 0px -10px 20px rgba(0,0,0,0.5)
+        }
+
+        /*
+        border-radius 设置圆角
+            - border-top-left-radius
+            - border-top-right-radius
+            - border-bottom-left-radius
+            - border-bottom-right-radius
+            - 两个参数：水平半径 垂直半径
+        */
+        .box4{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+
+            border-top-left-radius: 50px 100px;
+        }
+        .box5{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+
+            /* 椭圆角 */
+            border-radius: 10px / 30px;
+        }
+        .box6{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+
+            /* 圆形 */
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class>
+        <div class="box1"></div>
+        <div class="dividing">
+            <span>分界线</span>
+        </div>
+        <div class="box2"></div>
+        <div class="dividing">
+            <span>分界线</span>
+        </div>
+        <div class="box3"></div>
+        <div class="dividing">
+            <span>分界线</span>
+        </div>
+        <div class="box4"></div>
+        <div class="dividing">
+            <span>分界线</span>
+        </div>
+        <div class="box5"></div>
+        <div class="dividing">
+            <span>分界线</span>
+        </div>
+        <div class="box6"></div>
+    </div>
+    
+</body>
+</html>

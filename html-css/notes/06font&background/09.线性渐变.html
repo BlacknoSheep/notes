@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渐变</title>
+
+    <style>
+        /*
+        渐变
+            ！！！渐变是图片，需要通过background-image来设置
+        
+        线性渐变：颜色沿着一条直线进行变化
+            linear-gradient()
+            linear-gradient(red,yellow)红色开头，黄色结尾，中间过渡
+            - 可以同时指定多个颜色
+                默认平均分布
+                也可以手动指定渐变的分布情况（各个颜色的起始位置）
+            
+            - 线性渐变的开头可以指定渐变方向
+                to left
+                to right
+                to bottom
+                to top
+                xxxdeg  （deg表示度数）
+                xxxturn （turn表示圈，如0.5圈）
+        */
+        .box1{
+            width: 200px;
+            height: 400px;
+            /* background-color: #bfa; */
+            /* background-image: linear-gradient(to right,red,yellow,#bfa); */
+            background-image: linear-gradient(red 100px,blue 200px);
+        }
+
+        /*
+        background-image: repeating-linear-gradient()
+        可以平铺的线性渐变
+        */
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-image: repeating-linear-gradient(red 50px,#bfa 100px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <br />
+    <div class="box2"></div>
+</body>
+</html>

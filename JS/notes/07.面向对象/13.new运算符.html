@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new运算符</title>
+    <script>
+        /*
+            new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。
+                语法：new constructor[([arguments])]
+                    constructor
+                        一个指定对象实例的类型的类或函数。
+                    arguments
+                        一个用于被 constructor 调用的参数列表。
+            
+            new关键字会进行如下操作：
+                1.创建一个空的简单 JavaScript 对象（即 {}）（不妨称为 newInstance）；
+                2.将构造函数的prototype属性设置为 newInstance 的原型；
+                3.使用实参来执行构造函数，并将 newInstance 设置为函数中的this；
+                4.若构造函数的返回值是一个非原始值，则该值会作为new运算的返回值返回，（千万不要这么做）
+                    若构造函数的返回值是一个原始值或无返回值，则会返回 newInstance。
+                    通常不会为构造函数指定返回值。
+        */
+        class Person{
+            name;
+
+            constructor(name){
+                this.name = name;
+                // 通常不指定返回值
+                // return {};
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

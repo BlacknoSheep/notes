@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性节点</title>
+</head>
+<body>
+    <input disabled="disabled" type="text" name="username" value="admin" class="c">
+
+    <script>
+        /*
+            属性节点（Attr）
+                - 在DOM中也是一个对象，通常不需要获取，而是直接通过元素对其进行操作
+                - 如何操作属性节点
+                    方式一：
+                        读取：元素.属性名
+                            - 注意：class属性需要用className来读取（一般也不会用这种方式读取class名）
+                            - 读取一个布尔值（如disabled）时，会返回true或false
+                        修改：元素.属性名 = 属性值
+
+                    方式二：
+                        读取：元素.getAttribute(属性名)
+                            - 读取class时可直接使用"class"
+                        修改：元素.setAttribute(属性名, 属性值)
+                            - 注意：使用 setAttribute() 修改某些属性值时，尤其是 XUL 中的 value，可能得不到期望结果。
+                                    此时应该使用方法一进行修改
+                        删除：元素.removeAttribute(属性名)
+        */
+        // const input = document.getElementsByName("username")[0];
+        const input = document.querySelector("[name=username]");  // 使用属性选择器
+        console.log(input);
+
+        console.log(input.type);  // "text"
+        console.log(input.className);  // "c"
+        console.log(input.disabled);  // true
+
+        // 修改
+        input.value = "Taffy";
+        input.disabled = false;  // 会被自动转为布尔值
+
+        // getAttribute()
+        console.log(input.getAttribute("class"));  // "c"
+        console.log(input.getAttribute("disabled"));  // null（未设置）
+
+        // 修改
+        input.setAttribute("value", "永雏塔菲");  // 无效果
+        input.setAttribute("disabled", "disabled");  // 文本框变得不可用
+
+        // 删除
+        input.removeAttribute("disabled");  // 文本框恢复可用
+    </script>
+</body>
+</html>

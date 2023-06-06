@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css复合选择器</title>
+
+    <style>
+        /*
+        交集选择器：
+            - 作用：选中符合多个条件的元素
+            - 语法：选择器1选择器2...选择器n{}
+            - 注意点：
+                交集选择器中如果有元素选择器，需要以元素选择器开头 
+         */
+        div.red{
+            color: red;
+            font-style: italic;
+        }
+    
+        .red.a{
+            color: red;
+            font-size: 30px;
+        }
+    
+        /*
+        并集选择器：
+            - 作用：同时选中多个选择器对应的元素
+            - 语法：选择器1,选择器2,...选择器3
+            - 交集选择器和并集选择器可以自由组合
+         */
+        .u1,.u2,.u3{
+            color: aqua;
+            font-style: italic;
+        }
+    
+    
+    </style>
+</head>
+
+<body>
+    <p class="red">我是p</p>
+    <div class="red">我是div</div>
+    <p class="red a b c">交集选择器</p>
+    <p class="u1">并集选择器1</p>
+    <p class="u2">并集选择器2</p>
+    <p class="u3">并集选择器3</p>
+</body>
+</html>

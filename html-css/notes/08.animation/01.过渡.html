@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box1{
+            width: 700px;
+            height: 700px;
+            margin: 0 auto;
+            background-color: silver;
+            /* 解决外边距重叠的问题 */
+            overflow: hidden;
+        }
+
+        .box1 .sub_box{
+            width: 100px;
+            height: 100px;
+        }
+
+        /*
+        过渡（transition）
+
+        - transition-property
+            指定要执行过渡的属性
+                - 大部分数值属性都可以过渡
+                - 可同时指定多个，用,隔开
+                - 注意：必须是从一个有效值向另一个有效值过渡
+
+        - transition-duration
+            指定过渡的持续时间
+                - 多个属性间使用,隔开
+                - all关键字 表示所有属性
+                - 单位：s ms
+                - 可对不同属性分别指定时间
+
+        - transition-timing-function
+            过渡的时序函数（贝塞尔曲线）
+                - ease 默认值,先加速，再减速
+                    初速比ease-in-out块
+                - linear 匀速
+                - ease-in 加速
+                - ease-out  减速
+                - ease-in-out 先加速，后减速
+                - cubic-bezier() 
+                - steps() 分步过渡
+                    步数[,起始时间]
+                        起始时间：start 时间段开始时跳跃
+                                  end 时间段结束时跳跃
+
+        - transition-delay
+            过渡效果的延迟
+
+        - transition 可一次设置所有效果
+            - 第一个时间是持续时间，第二个时间是延迟
+            - 但是只能指定一个属性（或all）
+        */
+        .box2{
+            margin-top: 50px;
+            background-color: #bfa;
+            margin-left: 0px;
+            transition-property: all;
+            transition-duration: 2s;
+            transition-timing-function: ease;
+        }
+
+        .box1:hover .box2,
+        .box1:hover .box3,
+        .box1:hover .box4,
+        .box1:hover .box5{
+            /* width: 200px; */
+            /* height: 200px; */
+            /* background-color: pink; */
+            margin-left: 600px;
+        }
+
+        .box3{
+            margin-top: 50px;
+            background-color: pink;
+            margin-left: 0px;
+            transition-property: all;
+            transition-duration: 2s;
+            transition-timing-function: cubic-bezier(.04,.72,.91,-0.83);
+        }
+
+        .box4{
+            margin-top: 50px;
+            background-color: aqua;
+            margin-left: 0px;
+            transition-property: all;
+            transition-duration: 2s;
+            transition-timing-function: steps(2,start);
+        }
+
+        .box5{
+            margin-top: 50px;
+            background-color: purple;
+            margin-left: 0px;
+            /* transition-property: all;
+            transition-duration: 2s;
+            transition-timing-function: ease;
+            transition-delay: 1s; */
+
+            transition: all 2s ease 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2 sub_box"></div>
+        <div class="box3 sub_box"></div>
+        <div class="box4 sub_box"></div>
+        <div class="box5 sub_box"></div>
+    </div>
+</body>
+</html>

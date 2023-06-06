@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind方法</title>
+    <script>
+        /*
+            bind()是函数的方法，可以用来创建一个新的函数
+                - bind()可以为新函数绑定this（绑定后this固定，无法修改）
+                - 也可以为新函数绑定参数（绑定后前n个参数固定，无法修改）
+        */
+        function fn(){
+            console.log("我是fn", this);
+        }
+        fn();  // "我是fn" window
+
+        console.log("------bind()------");
+        const newFn = fn.bind();
+        newFn();  // "我是fn" window
+
+        console.log("------bind(obj)------");
+        const obj = {name:"obj"};
+        const newNewFn = fn.bind(obj);
+        newNewFn();  // 我是fn {name: 'obj'}
+
+
+        console.log("------bind(obj, arg1, arg2, ...)------")
+        function fn2(...args){
+            console.log(args, this);
+        }
+        fn2("a","b");  // ['a', 'b'] window
+        const obj2 = {name:"obj2"};
+        const newFn2 = fn2.bind(obj2, "fixed1");
+        newFn2(1, 2);  // ['fixed1'] {name: 'obj2'}
+
+
+        /*
+            箭头函数没有自己的this，始终使用其外层作用域的this，所以无法修改
+            箭头函数没有arguments
+        */
+        console.log("------箭头函数------");
+        const arrowFn = () => {
+            console.log(this);
+        }
+        arrowFn();  // window
+
+        const newArrowFn = arrowFn.bind(obj);
+        newArrowFn();  // window
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

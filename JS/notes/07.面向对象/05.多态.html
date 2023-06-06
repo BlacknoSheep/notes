@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多态</title>
+    <script>
+        "use strict";
+        /*
+            多态
+        */
+        class Person{
+            name;
+
+            constructor(name){
+                this.name = name;
+            }
+        }
+
+        class Dog{
+            name;
+
+            constructor(name){
+                this.name = name;
+            }
+        }
+
+        const Fans = new Dog("雏草姬");
+        const Taffy = new Person("永雏塔菲");
+
+        console.log(Fans);
+        console.log(Taffy);
+
+
+        /*
+            多态
+                - 在JS中不会检查参数的类型，所以这意味着任何数据都可以作为参数传递
+                - 函数参数不需要指定类型，只需要满足特点条件即可
+                - 多态为我们提供了灵活性
+        */
+        function sayHello(obj){
+            if(obj.name){
+                console.log("Hello, "+obj.name+"");
+            }
+            else{
+                console.log("该对象没有name属性！");
+            }
+        }
+
+        sayHello(Taffy);  // "Hello, 永雏塔菲!"
+
+        let objTest = {};
+        sayHello(objTest);  // "该对象没有name属性！"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

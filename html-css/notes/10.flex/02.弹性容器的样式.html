@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性容器的样式</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .list1{
+            width: 600px;
+            border: 5px red solid;
+            /* 设置为弹性容器 */
+            display: flex;
+
+            /*
+            flex-wrap 设置弹性元素是否在弹性容器中自动换行
+            可选值：
+                nowrap 默认值，元素不会自动换行
+                wrap 元素沿着辅轴方向自动换行
+                wrap-reverse 元素沿着辅轴反方向换行
+            */
+            /* flex-wrap: wrap; */
+
+            /*
+            flex-flow 同时设置wrap和direction
+            */
+            /* flex-flow: row-reverse wrap; */
+
+            /*
+            justify-content
+                如何分配主轴上的空白空间
+                flex-start 默认值，元素沿着主轴起边排列，空白全部位于另一侧
+                flex-end 元素沿着主轴终边排列，空白全部位于另一侧
+                center 元素居中排列
+                space-around 空白分布到每个元素两侧，元素间空白的宽度是边缘空白的两倍
+                space-between 空白均匀分布到元素间，边缘无空白
+                space-evenly 空白分布到元素的单侧，元素间空白和边缘空白宽度相等
+            */
+            justify-content: space-evenly;
+        }
+
+        .list1 > li{
+            width: 150px;
+            height: 100px;
+            /* flex-shrink: 0; */
+        }
+
+        .list1 > li:nth-child(1){
+            background-color: #bfa;
+        }
+
+        .list1 > li:nth-child(2){
+            background-color: pink;
+        }
+
+        .list1 > li:nth-child(3){
+            background-color: orange;
+        }
+
+        .list2{
+            width: 600px;
+            height: 600px;
+            border: 5px red solid;
+
+            display: flex;
+            flex-wrap: wrap;
+            /*
+            align-items 元素在辅轴上如何对齐
+            可选值：
+                stretch 默认值，将每一行元素的长度设置为相同值
+                    （不同行长度可以不一样）
+                flex-start 元素不会拉伸，沿着辅轴起边对齐
+                flex-end 元素不会拉伸，沿着辅轴终边对齐
+                center 居中对齐
+                baseline 基线对齐
+            */
+            align-items: flex-start;
+
+            /*
+            align-content 辅轴空白空间的分布
+            可选值（同justify-content）
+                flex-start 空白全部位于下方
+                flex-end 空白全部位于上方
+                center
+                space-around
+                space-between
+                space-evenly
+            */
+            align-content: center;
+        }
+
+        .list2 > li{
+            width: 200px;
+            flex-shrink: 0;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        .list2 > li:nth-child(1){
+            background-color: #bfa;
+            /* align-self 可以覆盖align-items的值 */
+            align-self: stretch;
+        }
+
+        .list2 > li:nth-child(2){
+            background-color: pink;
+        }
+
+        .list2 > li:nth-child(3){
+            background-color: orange;
+        }
+
+        .list2 > li:nth-child(4){
+            background-color: aqua;
+        }
+
+        .list2 > li:nth-child(5){
+            background-color: silver;
+        }
+    </style>
+</head>
+<body>
+    <ul class="list1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <br />
+    
+    <ul class="list2">
+        <li>
+            <div>1</div>
+        </li>
+        <li>
+            <div>2</div>
+            <div>2</div>
+        </li>
+        <li>
+            <div>3</div>
+            <div>3</div>
+            <div>3</div>
+        </li>
+        <li>
+            <div>1</div>
+        </li>
+        <li>
+            <div>2</div>
+            <div>2</div>
+        </li>
+    </ul>
+</body>
+</html>

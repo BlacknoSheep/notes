@@ -1,0 +1,152 @@
+a{
+    // 去除超链接下划线
+    text-decoration: none;
+    color: #fff;
+}
+
+.top_bar_wrapper{
+    width: 100%;
+    background-color: #000;
+}
+
+.top_bar{
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 48px;
+    padding: 0 14px;
+    background-color: #000;
+    // 设置为弹性容器
+    display: flex;
+    // 垂直居中
+    align-items: center;
+    // 水平分布
+    justify-content: space-between;
+
+    // 左侧菜单
+    .left_menu{
+        // background-color: #bfa;
+
+        // 不相对于菜单，而是相对于html进行定位，保证auto能自动填满整个页面
+        // position: relative;
+
+        // 菜单图标
+        .menu_icon{
+            width: 18px;
+            height: 48px;
+
+            li{
+                width: 18px;
+                height: 1px;
+                background-color: #fff;
+                // 开启绝对定位
+                position: absolute;
+
+                transition: transform 0.1s;
+            }
+
+            li:nth-child(1){
+                top: 18px;
+            }
+    
+            li:nth-child(2){
+                top: 24px;
+            }
+    
+            li:nth-child(3){
+                top: 30px;
+            }
+
+            // 鼠标移入的效果
+            &:hover{
+                li:nth-child(1){
+                    // 变形
+                    transform-origin: 0 0;
+                    transform: rotateZ(40deg);
+                }
+        
+                li:nth-child(2){
+                    // 隐藏，用opacity实现淡入淡出效果
+                    opacity: 0;
+                }
+        
+                li:nth-child(3){
+                    // 变形
+                    transform-origin: 0 0;
+                    transform: rotateZ(-40deg);
+                }
+
+                // 展开弹出菜单
+                & + .pop_menu{
+                    display: block;
+                }
+            }
+        }
+        
+        // 弹出菜单
+        .pop_menu{
+            padding-top: 50px;
+            position: absolute;
+            top: 48px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            
+            background-color: #000;
+            // 文本颜色
+            color: #fff;
+
+            a{
+                margin-right: 6px;
+                &:hover{
+                    color: #b3b0b0;
+                }
+            }
+
+            li{
+                width: 80%;
+                margin: 0 auto;
+                border-bottom: 1px #4e4e4e solid;
+                height: 44px;
+                line-height: 44px;
+            }
+            
+            display: none;
+        }
+    }
+    
+}
+
+// 响应式布局
+@media only screen {
+    @media (min-width:768px) {
+        .top_bar{
+            .left_menu{
+                // 自动扩展
+                flex: auto;
+                order: 2;
+                .menu_icon{
+                    display: none;
+                }
+        
+                .pop_menu{
+                    display: block;
+                    // 关闭定位
+                    position: static;
+                    // 横向排列
+                    display: flex;
+                    // 去除多余间距
+                    margin: 0px;
+                    padding: 0px;
+                }
+            }
+        
+            .logo{
+                order: 1;
+            }
+        
+            .user_info{
+                order: 3;
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性值</title>
+    <style>
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            attr()
+            prop()
+                - 用来读取或设置属性（多个元素则只会读取第一个）
+                - 读取布尔值属性时，二值会返回不同值
+                    attr() 返回实际属性值
+                    prop() 返回布尔值（true,false）
+                
+            val()
+                - 用来读取或设置value属性
+        */
+        $(function () {
+            console.log($("input[type=text]").attr("value"));  // "姓名"
+            console.log($("input[type=radio]").attr("checked"));  // "checked"
+            console.log($("input[type=radio]").prop("checked"));  // "true"
+            console.log($("input[type=radio]").val());  // "male"
+
+            $("#btn").click(function () {
+                $("input[type=text]").prop("value", "修改属性值");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <hr>
+    <input type="radio" name="gender" value="male" checked="checked">男
+    <input type="radio" name="gender" value="femali">女
+    <hr>
+    <input type="text" name="name" value="姓名">
+</body>
+
+</html>

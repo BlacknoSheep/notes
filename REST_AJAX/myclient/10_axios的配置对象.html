@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios配置对象</title>
+    <!-- 引入axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <button id="btn1">发送POST请求</button>
+    </div>
+
+    <script>
+      document.getElementById("btn1").onclick = () => {
+        // 调用 axios发送请求
+        axios({
+          // 请求方法，默认GET
+          method: "POST",
+
+          // baseURL 指定url前缀
+          baseURL: "http://localhost:3000",
+
+          // 请求地址，必填
+          // url: "http://localhost:3000/students",
+          url: "students",
+
+          // 设置请求头，默认
+          // headers: { "Content-Type": "application/json" },  // POST默认json
+
+          // 请求体
+          // data: "name=Taffy&age=17",
+          data: {
+            name: "Taffy",
+            age: 17,
+            gender: "女",
+            address: "bilibili",
+          },
+
+          // 设置查询字符串
+          params: {
+            id: 10,
+            name: "Taffy",
+          },
+
+          // 设置请求超时时间，单位：ms
+          // timeout: 1000,
+
+          // signal 用来终止请求
+          // signal:
+
+          /*
+            transformRequest 用来处理请求数据
+            以一个包含一组函数的数组作为参数，函数会依序执行
+            函数有两个参数：data, headers
+              可以在函数中对 data 和 headers 进行修改
+          */
+          transformRequest: [
+            function (data, headers) {
+              console.log("transformRequest1");
+              console.log("data: ", data);
+              console.log("headers: ", headers);
+
+              // 使用transformRequest后，headers中会自动设置 Content-Type:"application/x-www-form-urlencoded"
+              //  需要修改为 "application/json"
+              headers["Content-Type"] = "application/json";
+
+              // 修改
+              data.name = "永雏塔菲";
+              // data 需要返回才能传递给下一个函数
+              return data;
+            },
+            function (data, headers) {
+              console.log("transformRequest2");
+              console.log("data: ", data);
+              console.log("headers: ", headers);
+              // 最后一个函数必须返回字符串（或其他特定类型），不能返回对象
+              return JSON.stringify(data);
+            },
+          ],
+
+          // transformResponse 用法同 transformRequest，用于处理响应
+        })
+          .then((res) => {
+            console.log("响应：", res.data);
+          })
+          .catch((err) => {
+            console.log("出错了！", err);
+          });
+      };
+    </script>
+  </body>
+</html>

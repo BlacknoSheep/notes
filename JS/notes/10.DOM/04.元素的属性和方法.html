@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的属性和方法</title>
+</head>
+<body>
+    <div id="box1">
+        我是box1
+        <span class="s1">box1内的s1</span>
+        <span class="s1 s2">box1内的s1</span><span></span>
+    </div>
+    <span class="s1 s3">外面的s1</span>
+
+    <script>
+        /*
+            通过元素节点对象获取其他节点对象的方法
+        */
+        const box1 = document.getElementById("box1");
+        const spansAll = document.getElementsByClassName("s1");
+        console.log(spansAll.length);  // 3
+        console.log(box1.getElementsByTagName("span").length);  // 2
+        console.log(box1.getElementsByClassName("s1").length);  // 2
+
+
+        /*
+            element.childNodes
+                - 获取当前元素的子节点（包括空白子节点）
+            element.children
+                - 获取当前元素的子元素
+            element.firstChild
+                - 获取当前元素的第一个子节点
+            element.firstElementChild
+                - 获取当前元素的第一个子元素
+            element.lastElementChild
+                - 获取当前元素的最后一个子元素
+            element.nextElementSibling
+                - 获取当前元素的下一个兄弟元素
+            element.previousElementSibling
+                - 获取当前元素的前一个兄弟元素
+            element.parentNode
+                - 获取当前元素的父节点
+            element.parentElement
+                - 获取当前元素的父元素（document是节点但不是元素）
+            element.tagName
+                - 获取当前元素的标签名
+        */
+        // 标签之间的空白也被认为是text节点，标签紧挨则无text节点
+        console.log(box1.childNodes);  // [text, span.s1, text, span.s1.s2, span, text]
+        console.log(box1.children);  // [text, span.s1, text, span.s1.s2, span, text]
+        console.log(box1.firstChild);  // #text
+        console.log(box1.firstElementChild);  // span.s1
+        console.log(box1.lastElementChild);  // span
+        
+        const html = document.querySelector("html");
+        console.log(html.parentNode);  // #document
+        console.log(html.parentElement);  // null
+
+        console.log(html.tagName);  // "HTML"
+    </script>
+</body>
+</html>

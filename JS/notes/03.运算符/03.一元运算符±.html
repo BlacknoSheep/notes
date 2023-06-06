@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一元±</title>
+    <script>
+        /*
+            一元 + -
+                当对非数值类型进行正负运算时，会先将其转换为数值然后再运算
+        */
+        let a = 1;
+        a = -a;
+        console.log(typeof a, a);
+
+        a = "12.34";
+        a = +a;
+        console.log(typeof a, a);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

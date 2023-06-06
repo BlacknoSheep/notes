@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行高</title>
+
+    <style>
+        /*
+        行高（line-height）
+            - 行高指的是文字占有的实际高度
+            - 通过line-height来进行设置
+                - 指定大小（px, em）
+                - 也可以直接为行高设定一个实数n，
+                    则行高为字体的n倍
+        
+        字体框
+            - 字体框即字体存在的格子，设置font-size实际上是在设置字体框高度
+
+        - 行高会在字体框的上下平均分配（字体框在行高中间）
+            - 令line-height=height，可以使得单行的文字垂直居中
+            - 行高还经常用于设置行间距
+        */
+        .text1{
+            /* 显示行高 */
+            border: 1px red solid;
+
+            line-height: 100px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <p class="text1">床前明月光</p>
+    </div>
+</body>
+</html>

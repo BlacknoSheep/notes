@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            /* 统一设置盒子格式，便于显示 */
+            width: 64px;
+            height: 64px;
+            background-color: #bfa;
+            margin-right: 10px;
+            float: left;
+        }
+
+        /* -------------------------透明------------------------- */
+        #transparent {
+            background-color: #bfa;
+        }
+
+        #transparent>.box:nth-of-type(1) {
+            /* 兼容不支持rgba的浏览器 */
+            background-color: rgb(219, 13, 20);
+            background-color: rgba(219, 13, 20, 0.5);
+        }
+
+        #transparent>.box:nth-of-type(2) {
+            background-color: rgb(33, 15, 152);
+            opacity: 0.5;
+        }
+
+        /* ------------------------圆角-------------------------- */
+        #radius>.box:nth-of-type(1) {
+            border-radius: 50%
+        }
+
+        #radius>.box:nth-of-type(2) {
+            width: 96px;
+            border-top-left-radius: 48px 32px;
+            border-top-right-radius: 48px 32px;
+            border-bottom-left-radius: 48px 32px;
+            border-bottom-right-radius: 48px 32px;
+        }
+
+        /* ------------------------背景--------------------------- */
+        #background>.box {
+            width: 200px;
+            height: 100px;
+            background-image: url("./imgs/bilibili.png"), url("./imgs/bilibili.png");
+            background-size: 60px;
+            background-position: left top, right bottom;
+            background-repeat: no-repeat, no-repeat;
+
+        }
+
+        /* ---------------------滑动门----------------------- */
+        #slide_door ul {
+            background-color: #bfa;
+            float: left;
+        }
+
+        #slide_door li {
+            color: #fff;
+            list-style: none;
+            float: left;
+            margin: 0 10px;
+            height: 33px;
+            line-height: 33px;
+            background-image: url("./imgs/left.png"), url("./imgs/right.png");
+            background-position: left, right;
+            background-repeat: no-repeat, no-repeat;
+            background-size: 15px 33px, 15px 33px;
+            /* 留5px的空间用于重合，防止出现空隙 */
+            padding: 0 10px;
+        }
+
+        #slide_door li span {
+            display: block;
+            height: 33px;
+            background-image: url("./imgs/middle.png");
+            background-repeat: repeat-x;
+            background-size: 10px 33px;
+        }
+
+        /* --------------------------阴影----------------------------- */
+        #shadow .box {
+            margin-right: 100px;
+        }
+
+        #shadow .box:nth-of-type(1) {
+            box-shadow: 4px 8px 12px gray;
+        }
+
+        #shadow .box:nth-of-type(2) {
+            box-shadow: 4px 8px 12px gray inset;
+        }
+
+        #shadow .box:nth-of-type(3) {
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 5px 10px 5px gray;
+        }
+
+        /* -----------------------渐变-------------------- */
+        #gradient .box:nth-of-type(1) {
+            background: linear-gradient(white, black);
+            /* 默认方向为 to bottom */
+            /* background: linear-gradient(to bottom, white, black); */
+        }
+
+        #gradient .box:nth-of-type(2) {
+            background: linear-gradient(to left top, white, red, black);
+        }
+    </style>
+</head>
+
+<body>
+    <form action="javascript:;">
+        <fieldset id="transparent">
+            <legend>透明</legend>
+            <!--
+                1.rgba，一般用于设置背景的不透明度
+                2.opacity属性，设置元素的不透明度（多数情况下使用这个较好）
+            -->
+            <div class="box"></div>
+            <div class="box"></div>
+        </fieldset>
+
+        <fieldset id="radius">
+            <legend>圆角</legend>
+            <div class="box"></div>
+            <div class="box"></div>
+        </fieldset>
+
+        <fieldset id="background">
+            <legend>背景</legend>
+            <!-- 可以设置多背景 -->
+            <div class="box"></div>
+        </fieldset>
+
+        <fieldset id="slide_door">
+            <legend>滑动门</legend>
+            <ul>
+                <li>
+                    <span>11111</span>
+                </li>
+                <li>
+                    <span>222255555555555522222222</span>
+                </li>
+                <li>
+                    <span>33333</span>
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset id="shadow">
+            <legend>阴影</legend>
+            <div class="box">盒子阴影</div>
+            <div class="box">盒子阴影（内部）</div>
+            <div class="box">文字阴影</div>
+        </fieldset>
+
+        <fieldset id="gradient">
+            <legend>渐变</legend>
+            <!--
+                线性渐变
+            -->
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </fieldset>
+    </form>
+</body>
+
+</html>

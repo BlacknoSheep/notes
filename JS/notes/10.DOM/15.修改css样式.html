@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改css样式</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="btn1">修改</button>
+
+    <hr>
+
+    <div class="box1"></div>
+
+    <script>
+        /*
+            修改元素样式的方式：
+                - 元素.style.样式名 = 样式值
+                    - 若样式名中有 - ，则要使用驼峰命名法
+                    - 修改的是内联样式
+        */
+        const btn1 = document.getElementById("btn1");
+        const box1 = document.getElementsByClassName("box1")[0];
+        console.log(box1);
+        btn1.onclick = function () {
+            // 修改box1的样式
+            box1.style.width = "400px";
+            box1.style.backgroundColor = "silver";
+        }
+    </script>
+</body>
+
+</html>

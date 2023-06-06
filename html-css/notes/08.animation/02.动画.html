@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+
+    <style>
+        .box1{
+            width: 700px;
+            height: 700px;
+            background-color: silver;
+            margin: 0   auto;
+            overflow: hidden;
+        }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            margin-top: 50px;
+            background-color: #bfa;
+
+            /* 设置动画 */
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            /* 指定动画 */
+            animation-name: test1;
+            /* 持续时间 */
+            animation-duration: 2s;
+            /* 延时 */
+            animation-delay: 1s;
+            /* 时序函数 */
+            animation-timing-function: ease-in-out;
+            /* 
+            执行次数
+                infinite 无限执行
+             */
+            animation-iteration-count: 2;
+            /*
+            运行方向
+                normal 默认值，从from向to
+                reverse 反向，从to向from
+                alternate 交替，从from开始，重复时方向改变
+                alternate-reverse 交替，从to开始，重复时方向改变
+            */
+            animation-direction: alternate-reverse;
+            /*
+            动画的执行状态
+                running 运行
+                paused 暂停
+            */
+            /* animation-play-state: paused; */
+            /*
+            填充模式
+                none 默认值，动画执行完毕，元素回到初始位置
+                forwards 动画执行完毕，元素停在结束位置
+                backwards 延时等待时，一开始就在动画开始位置（及状态）等待
+                both forwards+backwards
+            */
+            animation-fill-mode: both;
+        }
+
+        .box2:hover{
+            animation-play-state: paused;
+        }
+
+        /* 
+        动画
+            过渡需要在某个属性发生变化时才能触发，
+            动画则是可以自动触发
+
+            设置动画效果，必须要先设置一个关键帧
+
+         */
+         @keyframes test1 {
+            /* from{}表示动画的开始位置 */
+            from{
+                margin-left: 0;
+                background-color: orange;
+            }
+
+            /* 也可以设置百分比中间帧 */
+            /* 50%{
+
+            } */
+
+            /* to{}动画的结束位置 */
+            to{
+                margin-left: 600px;
+                background-color: pink;
+            }
+         }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系运算符</title>
+    <script>
+        /*
+            关系运算符
+                - 用来检查两个值之间的关系是否成立
+                    成立返回true，不成立返回false
+                >
+                <
+
+                >=
+                <=
+                    null会发生自动转换变为0
+                    undefined会自动转换为NaN
+                    而对于==运算符，null和undefined不会发生自动转换
+            
+            注意：
+                1.对非数值使用关系运算符时，会先转换为数值再进行比较
+                    NaN参与运算时永远返回false
+                2.当两侧都是字符串时，不会转换为数值，
+                    而是逐位比较字符的Unicode编码。
+                    因此，比较两个字符串格式的数字时，一定要先进行显式类型转换
+        */
+        console.log("12" > 10);  // true
+        console.log(NaN <= NaN);  // false
+        console.log("abc" > "aaaaa");  // true
+        console.log("aaa" > "aa");  // true
+        console.log("12" > "2");  // false
+        console.log(+"12" > "2");  // true
+
+        /*
+            == 相等运算符
+                - 使用相等运算符比较两个不同类型的值时，
+                    会先将其转换为相同的类型（通常转换为数值），然后再进行比较
+        */
+        console.log(true == "1");  // true（均先转换成数值再运算）
+
+        // 特例1：null和undefined在 == 时不会发生类型转换，
+        // 且 null == undefined 返回true
+        console.log(null == 0);  // false
+        console.log(null == undefined);  // true
+        console.log(null == null);  // true
+        console.log(undefined == undefined);  // true
+        console.log(undefined <= undefined);  // false  发生了类型转换，undefined被转换为NaN，返回false
+
+        // 特例2：NaN不和任何数值相等，包括它自身
+        console.log(NaN == NaN);  // false
+
+        /*
+            === 全等运算符
+                - 不会进行自动类型转换，
+                    类型不同直接返回false
+        */
+        console.log(true === "1");  // false
+        console.log(null === undefined);  // false
+        console.log(NaN === NaN);  // false
+
+        /*
+            != 不等运算符
+                - 特点同 ==
+                - 会进行自动类型转换
+        */
+
+        /*
+            !== 不全等运算符
+                - 特点同 ===
+                - 不会进行自动类型转换
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

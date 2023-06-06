@@ -1,0 +1,1 @@
+document.write("<hr>写在外部js文件中")

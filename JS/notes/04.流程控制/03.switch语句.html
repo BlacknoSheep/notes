@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch语句</title>
+    <script>
+        /*
+            switch语句
+                - 语法（同C++）：
+                    switch(表达式){
+                        case 表达式:
+                            代码...
+                        case 表达式:
+                            代码
+                    }
+            
+                - 执行的流程
+                    switch语句在执行时，会依次将switch后的表达式与case后的表达式进行全等比较
+                        若结果为true，则自当前case处开始向下顺序执行
+                        若为false，则继续比较其他case后的表达式
+                        可以使用break语句直接跳出switch语句
+                        default表示其他情况，可以放在任何位置，始终最后判断
+                            若判断为true，则从default位置开始向下执行
+                            故default里最好也加上break语句
+
+                        注意：使用的是 全等 ===
+        */
+        let input = +prompt("请输入一个数字");
+        switch(input){
+            case 1:
+                alert("壹");
+                break;
+            case 2:
+                alert("贰");
+                break;
+            default:
+                alert("其他输入");
+                break;
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

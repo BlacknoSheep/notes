@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相对定位</title>
+
+    <style>
+        body{
+            font-size: 25px;
+        }
+        /*
+        定位（position）
+            - 可以将元素摆放到页面的任意位置
+            - 使用position属性来设置定位
+              可选值：
+                static 默认值，没有开启定位
+                relative 开启元素的相对定位
+                absolute 开启元素的相对定位
+                fixed 开启元素的固定定位
+                sticky 开启元素的粘滞定位
+            
+            - 偏移量（offset）
+                top, right, bottom, left
+
+            - position: relative
+                元素开启相对定位后
+                1.如果不设置偏移量，元素不会发生任何变化
+                2.偏移后不会挤压其他元素
+                3.相对定位会提升元素的层级（覆盖低层的）
+                4.相对定位不会使元素脱离文档流
+                5.相对定位不会改变元素的性质（块、行内）
+                    元素仍占据原来的位置，下面的元素不会上升
+                6.相对定位是相对于元素原位置
+
+            
+        */
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+
+            position: relative;
+            left: 100px;
+            top: -100px;
+        }
+
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</body>
+</html>

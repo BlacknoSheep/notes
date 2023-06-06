@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array的方法（非破坏性）</title>
+    <script>
+        /*
+        https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+            Array.isArray()
+                - 用来检查一个对象是否是数组
+            
+            at(index)
+                - 返回指定索引的元素
+                - 参数可以是负值，表示倒数
+            
+            concat(arr1[,arr2,...])
+                - 用来连接两个数组
+                - 非破坏性，不改变原数组，返回一个新数组
+
+            includes(substr[, 起始位置])
+                - 用来查询字符串中是否含有某个子串
+        */
+        console.log(Array.isArray(Array()));  // true
+        console.log(Array.isArray(Object()));  // false
+
+        const arr1 = ["甘","文","崔"];
+
+        console.log("arr1[0]:",arr1.at(0));  // 甘"
+        console.log("arr1[-1]:",arr1.at(-1));  // "崔"
+
+        const arr2 = ["孙","笑","川"];
+        console.log("arr1.concat(arr2):",arr1.concat(arr2));  // ['甘', '文', '崔', '孙', '笑', '川']
+        // 不会破坏原数组
+        console.log("arr1:",arr1);  // ['甘', '文', '崔']
+        console.log("arr2:",arr2);  // ['孙', '笑', '川']
+
+        /*
+            indexOf()
+                - 获取元素在数组中第一次出现的索引（从前往后找）
+                - 参数：
+                    (要查询的元素)
+                    (要查询的元素, 查询的起始位置)
+                        起始位置可以是负值，表示从倒数第n个数开始
+                - 未找到则返回-1
+            
+            lastIndexOf()
+                - 获取元素在数组中最后一次出现的位置（从后往前找）
+                - 参数：
+                    (要查询的元素)
+                    (要查询的元素, 查询的起始位置)
+                        起始位置可以是负值，表示从倒数第n个数开始
+                - 未找到则返回-1
+        */
+        const arr3 = [1,1,4,5,1,4];
+        console.log(arr3.indexOf(4));  // 2
+        console.log(arr3.indexOf(4,3));  // 5
+
+        console.log(arr3.lastIndexOf(1));  // 4
+        console.log(arr3.lastIndexOf(1,3));  // 1
+
+
+        /*
+            join()
+                - 将数组中的所有元素拼接成一个字符串
+                - 非破坏性，返回拼接后的结果
+                - 参数：
+                    (连接符)    默认 ","
+        */
+        console.log(arr3.join());  // "1,1,4,5,1,4"
+        console.log(arr3.join("-^-"));  // "1-^-1-^-4-^-5-^-1-^-4"
+        console.log(arr3.join(""));  // "114514"
+
+
+        /*
+            slice()
+                - 返回数组的切片（非破坏性）
+                - 参数：
+                    (起始位置, 结束位置)    范围：[start,end)
+                        省略结束位置则默认截取至末尾
+                        若两个参数都省略，则可以对数组进行浅拷贝
+        */
+        console.log(arr3.slice(0,3));  // [1, 1, 4]
+        console.log(arr3.slice(3));  // [5, 1, 4]
+        console.log(arr3.slice());  // [1, 1, 4, 5, 1, 4]
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

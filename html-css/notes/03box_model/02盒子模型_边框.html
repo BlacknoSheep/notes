@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型</title>
+
+    <style>
+        .box1{
+            /*
+            内容区：元素中的所有子元素和文本内容都在内容区中排列
+                - width，height
+            */
+            width: 200px;
+            height: 200px;
+            background-color: red;
+
+            /*
+            边框：属于盒子边缘，边框里属于盒子内部，边框外属于盒子外部
+                边框大小会影响到盒子大小（即边框是向外扩展的）
+            要设置边框，至少要设置三个样式：
+                - 宽度：border-width
+                - 颜色：border-color
+                - 样式：border-style
+            */
+            /*
+            border-width
+            有默认值，一般为3px
+                - 可以指定四个方向的边框宽度
+                    四个值：上 右 下 左
+                    三个值：上 左右 下
+                    两个值：上下 左右
+                    一个值：上下左右
+                - border-xxx-width（top, right, bottom, left）
+                    用来单独指定某一个边框的宽度
+            */
+            border-width: 10px 20px 30px 40px;
+
+            /*
+            border-color
+            默认值为color（前景色：字体颜色等，默认黑色）
+                - 与border-width一样，可以分别指定四个方向的边框颜色
+            */
+            border-color: #00ff00 #009900 #006600 #003300;
+
+            /*
+            border-style
+            默认为无边框（none）
+                - 与border-style一样，可以分别指定四个方向的边框类型
+            */
+            border-style: solid dotted dashed double;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+
+            border-width: 10px;
+            border-color: pink;
+            border-style: solid;
+        }
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+
+            /*
+            可以一次设置所有border属性
+                宽度 颜色 类型
+            */
+            border:10px red solid;
+            border-right: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        盒子模型（box model）
+            - css将页面中的所有元素都设置为一个矩形的盒子
+            - 页面布局可以通过摆放盒子实现
+            - 每一个盒子的组成部分
+                - 内容区（content）
+                - 内边距（padding）
+                - 边框（border）
+                - 外边距（margin）
+     -->
+     <div class="box1"></div>
+     <br />
+     <div class="box2"></div>
+     <br />
+     <div class="box3"></div>
+</body>
+</html>

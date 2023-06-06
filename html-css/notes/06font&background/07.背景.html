@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背景</title>
+
+    <style>
+        /*
+        background-color 设置背景颜色
+        background-image 设置背景图片
+            - 可同时设置，此时背景颜色会成为图片的背景
+            - 若背景图片尺寸小于元素，则会平铺
+            - 若背景图片大于元素，则无法完全显示
+
+        background-repeat 设置背景的重复方式
+            - repeat 默认值，背景会沿着x轴、y轴双方向重复
+            - repeat-x
+            - repeat-y
+            - no-repeat
+        
+        background-position 设置背景图片位置
+            1.通过top left right bottom center来进行设置
+                需要同时指定两个值（九宫格定位）
+                若只写一个，第二个值默认为center
+            
+            2.通过偏移量来设置背景图片的位置
+                水平偏移 垂直偏移
+        */
+        .box1{
+            width: 400px;
+            height: 400px;
+            background-color: #bfa;
+            background-image: url("./resource/002.png");
+            background-repeat: no-repeat;
+            /* background-position: center center; */
+            background-position: -50px 160px;
+        }
+
+        /*
+        设置背景的范围
+            background-clip 背景显示范围
+            可选值：
+                border-box 默认值，背景会出现在边框和padding中
+                padding-box 背景不会出现在边框中，会出现在padding中
+                content-box 背景只会出现在内容区
+        
+            background-origin 背景图片的原点
+                padding-box 默认值，从内边距处开始计算
+                border-box 从边框处开始计算
+                content-box 从内容区处开始计算
+        */
+        .box2{
+            width: 400px;
+            height: 400px;
+            background-color: #bfa;
+            background-image: url("./resource/002@0,33x.png");
+            /* background-repeat: no-repeat; */
+
+            border: 20px red double;
+            padding: 20px;
+            background-clip: content-box;
+            background-origin: content-box;
+        }
+
+        /*
+        background-size 背景图片的尺寸
+            - 宽度 高度
+                若只设置一个值，则另一个值默认是auto
+            - cover
+                图片比例不变，将元素铺满
+            - contain
+                图片比例不变，将图片完整显示
+        */
+        .box3{
+            width: 400px;
+            height: 400px;
+            background-color: #bfa;
+            background-image: url(./resource/002.png);
+            background-size: auto 100%;
+            overflow: auto;
+        }
+
+        /*
+        background-attachment 背景图片是否跟随元素移动
+        可选值：
+            - scroll 跟随滚动
+            - fixed 不跟随滚动
+        */
+        .box4{
+            width: 400px;
+            height: 1000px;
+            background-image: url(./resource/002@0\,33x.png);
+            /* background-repeat: no-repeat; */
+            background-attachment: fixed;
+
+        }
+
+        /*
+        可以直接通过background一次性设置所有属性
+            没有顺序要求，且没有哪个是必须写的
+            注意：
+                1.background-size必须写在background-position的后面，并且使用/隔开
+                    background-position/background-size
+                2.background-orign必须在background-clip前面
+        */
+        .box5{
+            width: 400px;
+            height: 400px;
+            background: #bfa url(./resource/002@0\,33x.png) no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <br />
+    <div class="box2"></div>
+    <br />
+    <div class="box3">
+        <div class="box4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque excepturi tempora magnam dicta nobis nulla ipsum ratione sed dignissimos aperiam nam vel similique, beatae animi in illum dolorem enim eaque.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut enim fuga dolore voluptatem labore animi deleniti, obcaecati numquam. Obcaecati asperiores inventore molestiae! Facilis, eos obcaecati unde reprehenderit harum voluptas.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora error numquam harum, mollitia fuga at pariatur illo, eveniet alias cumque ut quaerat dicta. Quaerat rem amet molestiae consequatur soluta nulla!
+            !!!
+        </div>
+    </div> 
+    <br />
+    <div class="box5"></div>
+</body>
+</html>

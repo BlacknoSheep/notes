@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高度塌陷的最终解决方案</title>
+
+    <style>
+        .box1, .box4{
+            border: 5px red solid;
+            /* overflow: hidden; */
+        }
+        .box2, .box5{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+        .box3{
+            /*用box3撑开box1，解决高度塌陷问题
+                clear后box3被调整到box2下面（相当于加了margin-top）
+            */
+            clear: both;
+        }
+
+        .box4::after{
+            /*
+            通过伪元素来撑开box
+                - 只需才css中设置，一般采用这种方案
+                - after为行内元素，本来就不受float影响，所以需要设置为block
+            */
+            display: block;
+            content: "111";
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"> </div>
+        <div class="box3">ss</div>
+    </div>
+    <br />
+    <div class="box4">
+        <div class="box5"></div>
+    </div>
+</body>
+</html>

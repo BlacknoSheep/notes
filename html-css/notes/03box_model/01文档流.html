@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档流</title>
+
+    <style>
+        /* 给span加上float可以消除span之间因换行产生的的空格 */
+        span{
+            background-color: green;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        文档流（normal flow）
+            - 网页是一个多层的结构
+            - 通过css可以分别为每一层设置样式
+            - 用户只能看到最顶上一层
+            - 最底下的一层称为文档流，文档流是网页的基础
+                我们所创建的元素默认都是在文档流中进行排列的
+            - 对于我们来说，元素主要有两个状态
+                - 在文档流中
+                - 不在文档流中（脱离文档流）
+            
+            - 元素在文档流中的特点：
+                - 块元素
+                    - 永远独占一行
+                    - 默认宽度是父元素的全部（会把父元素撑满）
+                    - 默认高度取决于内容（撑满）
+
+                - 行内元素
+                    - 不独占一行，只占自身大小
+                    - 在页面中从左向右水平排列
+                    - 如果一行容纳不下，会自动换行
+     -->
+     <span>我是span</span>
+     <span>我是span</span>
+     <span>我是span</span>
+     <span>我是span</span>
+
+</body>
+</html>

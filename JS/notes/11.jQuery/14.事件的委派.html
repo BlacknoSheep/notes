@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的委派</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+            margin: 10px;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            on()中可直接设置委派
+                第二个参数用于指定事件是由谁委派的
+        */
+
+        $(function () {
+            $("#btn1").click(function () {
+                $(document.body).append("<div class='box'/>");
+            });
+
+            $(document).on("click", ".box", function () {
+                alert("box！");
+            });
+
+            /*
+                one()
+                    - 用来绑定一个一次性的事件（触发一次后就失效）
+            */
+            $("#btn2").one("click", function () {
+                alert("一次性事件");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn1" type="button">添加一块</button>
+    <button id="btn2" type="button">只触发一次</button>
+    <hr>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米兔动画</title>
+
+    <style>
+        /* -------------------------过渡效果------------------------- */
+        .mirabbit{
+            width: 132px;
+            height: 271px;
+            margin: 10px auto;
+            background-image: url("./imgs/bigtap-mitu-queue-big.png");
+            background-position: 0px 0px;
+            transition: background-position 0.3s steps(3,start) 0.2s;
+        }
+
+        .mirabbit:hover{
+            background-position: 396px 0px;
+        }
+
+
+        /* -------------------------动画效果------------------------- */
+        /* ------米兔------ */
+        .mirabbit2{
+            width: 132px;
+            height: 271px;
+            margin: 10px auto;
+            background-image: url("./imgs/bigtap-mitu-queue-big.png");
+            background-position: 0px 0px;
+            /* 动画效果 */
+            animation: mirabbit 0.5s steps(4) infinite;
+        }
+
+        @keyframes mirabbit {
+            from{
+                background-position: 0px 0px;
+            }
+            to{
+                background-position: -528px 0px;
+            }
+        }
+
+        /* ------跑步的人------ */
+        .runner{
+            width: 256px;
+            height: 256px;
+            margin: 10px auto;
+            background-image: url(./imgs/runner.png);
+            background-position: 0px 0px;
+            animation: runner 0.8s steps(6) infinite;
+        }
+
+        @keyframes runner {
+            from{
+                background-position: 0px 0px;
+            }
+            to{
+                /* 由于背景图片默认重复，所以定位可以溢出，注意steps也要相应改变 */
+                background-position: -1536px 0px;
+            }
+        }
+
+        /* ------trump------ */
+        .trump{
+            width: 100px;
+            height: 400px;
+            margin: 10px auto;
+            background-image: url(./imgs/trump_run.png);
+            background-position: 0px 0px;
+            animation: trump 0.5s steps(6) infinite;
+        }
+
+        @keyframes trump {
+            from{
+                background-position: 0px 0px;
+            }
+            to{
+                background-position: -600px 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mirabbit"></div>
+    <div class="mirabbit2"></div>
+    <div class="runner"></div>
+    <div class="trump"></div>
+</body>
+</html>

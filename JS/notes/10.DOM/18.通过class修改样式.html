@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过class修改样式</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 50px;
+            background-color: red;
+            border: 10px blue solid;
+        }
+
+        .box3 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="btn">按钮</button>
+
+    <hr>
+
+    <div class="box1"></div>
+
+    <hr>
+
+    <div class="box2"></div>
+
+    <hr>
+
+    <div class="box3 b3"></div>
+    <script>
+        const btn = document.getElementById("btn");
+        const box1 = document.querySelector(".box1");
+        const box2 = document.querySelector(".box2");
+        const box3 = document.querySelector(".box3");
+        btn.onclick = function () {
+            /*
+                除了直接修改样式以外，也可以通过修改class属性来间接修改样式
+                通过class修改样式的好处
+                    1.可以一次性修改多个样式
+                    2.对JS和CSS进行解耦
+                缺点：不够灵活
+            */
+
+            if (box1.className === "box1") {
+                box1.className += " box2";
+            }
+            else {
+                box1.className = "box1";
+            }
+
+
+            /*
+                element.classList
+                    - 是一个对象，提供了对当前元素的类的各种操作方法
+                    - 方法：
+                        element.classList.add()
+                            - 向元素中添加一个或多个class
+                            - 重复class的不会被添加
+
+                        element.classList.remove()
+                            - 删除元素的一个或多个class
+                            - 删除不存在的class不会报错
+
+                        element.classList.toggle()
+                            - 切换元素中的一个class（有则删除，无则添加）
+
+                        element.classList.replace()
+                            - 替换元素中的一个类
+                            - 若被被替换的类不存在，则无事发生
+                        
+                        element.classList.contains()
+                            - 检查元素中是否含有某个类
+            */
+            // box3.classList.add("s1", "s3", "box3");
+            // box3.classList.remove("b3", "b4");
+            // box3.classList.toggle("box2");
+            // box3.classList.replace("box3", "box2");
+
+            console.log(box1.classList.contains("box1"));  // true
+            console.log(box1.classList.contains("box10"));  // false
+        }
+    </script>
+</body>
+
+</html>

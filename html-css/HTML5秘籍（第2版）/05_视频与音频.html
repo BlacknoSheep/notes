@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>视频与音频</title>
+
+    <link rel="stylesheet" href="./fontawesome//css/all.min.css" />
+  </head>
+
+  <body>
+    <form action="javascript:;">
+      <fieldset>
+        <legend>音频</legend>
+        <!-- 
+                1.controls属性
+                    告诉浏览器要包含基本的播放控件
+                2.preload属性
+                    auto：多数浏览器的默认值，后台下载整个文件
+                    metadata：先获取音频文件开头的数据块以获取时长等基本信息（单击播放按钮后才下载完整文件）
+                    none：不进行预下载（单击播放按钮后才下载完整文件）
+                3.autoplay属性
+                    自动开始播放
+                4.loop属性
+                    循环播放
+                5.muted属性
+                    静音
+             -->
+        <p><cite>alarm</cite></p>
+        <audio src="./audio/alarm.mp3" controls loop muted></audio>
+      </fieldset>
+
+      <br />
+      <fieldset>
+        <legend>视频</legend>
+        <!-- 
+                1.与音频具有相同的src、controls、preload、autoplay、loop、muted属性
+                2.height与width属性
+                    设置视频窗口的大小（像素）
+                    注意：设置的是视频容器的尺寸，视频本身的比例不会改变
+                3.poster属性
+                    设置用于替换视频的图片。浏览器会在以下情况使用这个图片：
+                        （1）视频第一帧未加载完毕（点击播放按钮前）
+                        （2）preload属性设置为none
+                        （3）没有找到指定的视频文件
+             -->
+        <p>视频1</p>
+        <video src="./video/video1.mp4" controls width="360" height="240" poster="./imgs/01.jpg" id="video1"></video>
+      </fieldset>
+
+      <br />
+      <fieldset>
+        <legend>支持多种格式</legend>
+        <!-- 浏览器会选择第一个支持的格式的文件 -->
+        <audio controls id="audio1">
+          <source src="./audio/rain-5s.wav" type="audio/wav" />
+          <source src="./audio/rain-5s.mp3" type="audio/mp3" />
+        </audio>
+      </fieldset>
+
+      <br />
+      <fieldset>
+        <legend>使用JS控制播放器</legend>
+        <div class="controls">
+          <i class="fa fa-play" id="play"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fa fa-undo" id="undo"></i>
+        </div>
+      </fieldset>
+    </form>
+
+    <script>
+      let video1 = document.getElementById("video1");
+      let play_button = document.getElementById("play");
+      let undo_button = document.getElementById("undo");
+      play_button.addEventListener("click", () => {
+        if (play_button.classList.contains("fa-play")) {
+          play_button.classList.replace("fa-play", "fa-stop-circle");
+          video1.play();
+        } else {
+          play_button.classList.replace("fa-stop-circle", "fa-play");
+          video1.pause();
+        }
+      });
+      undo_button.addEventListener("click", () => {
+        video1.currentTime = 0;
+      });
+
+      /*
+            canPlayType()
+                返回空字符串：浏览器不支持该格式
+                返回“probably”或“maybe”：浏览器可能支持该格式
+
+                即使返回值不为空，也无法保证浏览器支持该格式
+                但是一般开发人员会认为只要不返回空字符串，则说明浏览器支持该格式
+        */
+      let audio1 = document.getElementById("audio1");
+      if (audio1.canPlayType("audio/wav")) {
+        audio1.src = "./audio/rain-5s.wav";
+        console.log("play wav");
+      } else if (audio.canPlayType("audio/mp3")) {
+        audio1.src = "./audio/rain-5s.mp3";
+        console.log("play mp3");
+      } else {
+        console.log("can't play");
+      }
+    </script>
+  </body>
+</html>

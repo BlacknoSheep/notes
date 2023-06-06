@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类方法</title>
+    <script>
+        "use strict";
+        class Person{
+            name = "";
+
+            // sayHello = function(){}  // 添加实例方法的一种方式
+            sayHello(){  // 添加实例方法的另一种方式
+                console.log("Hello");
+            }
+
+            showThis(){
+                // 实例方法中的this就是当前实例
+                console.log(this);
+            }
+
+            static staticShowThis(){
+                // 静态方法中this指向当前类
+                console.log(this);
+            }
+        }
+
+        const p1 = new Person();
+        p1.name = "p1";
+        p1.sayHello();  // "Hello"
+        p1.showThis();  // Person {name: 'p1'}
+
+        Person.staticShowThis();  // class Person{...}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

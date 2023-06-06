@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addClass方法</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+        }
+
+        .box2 {
+            border: 5px red solid;
+        }
+
+        .box3 {
+            background-color: pink;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        $(function () {
+            // 为按钮绑定响应函数
+            $("#btn").click(function () {
+                // 使用addClass()可以为元素添加一个或多个class
+                // $(".box1").addClass("box2");  // 添加边框
+                // $(".box1").addClass("box2 box3");  // 边框+变色
+                // $(".box1").addClass(["box2", "box3"]);  // 边框+变色
+
+                // addClass()也可以接收一个回调函数作为参数
+                // 回调函数的参数：索引（0开始）, 类名
+                // 在回调函数中，this表示的是当前的元素（DOM元素）
+                // 回调函数的返回值会成为该元素的class
+                $(".box1").addClass(function (index, className) {
+                    console.log(index, className);
+                    console.log("this:", this);
+                    if (index % 2 === 0) {
+                        return "box2";
+                    }
+                    else {
+                        return "box3";
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <hr>
+    <div class="box1">1</div>
+    <div class="box1">2</div>
+</body>
+
+</html>

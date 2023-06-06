@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页的布局</title>
+
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        header, main, footer{
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        header{
+            height: 100px;
+            background-color: #e8e8e8;
+        }
+
+        main{
+            height: 400px;
+            background-color: #bfa;
+            margin: 10px auto;
+        }
+
+        .LB, .MB, .RB{
+            height: 360px;
+            margin: 20px 0px 0px 20px;
+            background-color: aqua;
+            float: left;
+        }
+        .LB, .RB{
+            width: 150px;
+        }
+        .MB{
+            width: 620px;
+        }
+
+        footer{
+            height: 100px;
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <!-- 网页头部 -->
+    <header></header>
+    
+    <!-- 网页主体 -->
+    <main>
+        <!-- 左侧导航块 -->
+        <nav class="LB">
+
+        </nav>
+
+        <!-- 中间块 -->
+        <div class="MB">
+
+        </div>
+
+        <!-- 右侧块 -->
+        <aside class="RB">
+
+        </aside>
+    </main>
+
+    <!-- 网页底部 -->
+    <footer></footer>
+</body>
+</html>

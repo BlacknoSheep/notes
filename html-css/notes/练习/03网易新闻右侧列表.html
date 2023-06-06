@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易新闻右侧列表</title>
+
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .tab_news{
+            width: 300px;
+            height: 324px;
+            margin-top: 27px;
+        }
+        .tab_news_title_bar{
+            height: 41px;
+            border-top: 1px #ddd solid;
+        }
+        .tab_news_title{
+            display: inline-block;  /* 转换为行内块，保证边框宽度和文字一致 */
+            border-top: 1px #f34540 solid;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: -1px;  /* 将h2上移，边框盖住父元素的边框 */
+            padding: 6px 0px 10px 0px;
+        }
+        .tab_news a{
+            color: #404040;
+            text-decoration: none;
+        }
+        .tab_news a:hover{
+            color: #f34540;
+        }
+        .tab_news_img{
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+        .tab_news_caption{
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: -30px;
+            padding-left: 30px;
+        }
+        .tab_news_img img{
+            display: inline;
+            opacity: 1;
+        }
+        .tab_news_list{
+            margin-top: 12px;
+        }
+        .tab_news_list li{
+            font-family: 宋体;
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 15px;
+            overflow: hidden;
+        }
+        /* 行前小方块 */
+        .tab_news_list > li::before{
+            display: inline-block;  /* before为行内元素，需要设置为inline-block才能设置长宽 */
+            content: "";
+            width: 4px;
+            height: 4px;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>便于看显示效果</p>
+    </div>
+    <div class="tab_news">
+        <div class="tab_news_title_bar">
+            <h2 class="tab_news_title">
+                <a href="#">体育</a>
+            </h2>
+        </div>
+        <div class="tab_news_img">
+            <a href="#">
+                <img src="./imgs/wangyi01.jpg" alt="这是一张体育的图片">
+                <div class="tab_news_caption">
+                    <h3>这是一张体育的图片</h3>
+                </div>
+            </a>
+        </div>
+        <ul class="tab_news_list">
+            <li>
+                <a href="#">第一个新闻</a>
+            </li>
+            <li>
+                <a href="#">第二个新闻第二个新闻第二个新闻第二个新闻第二个新闻</a>
+            </li>
+            <li>
+                <a href="#">第三个新闻</a>
+            </li>
+            <li>
+                <a href="#">第四个新闻第四个新闻</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式的方法</title>
+    <script>
+        /*
+            reg.test()
+                - 检查是否匹配该正则表达式
+            reg.exec()
+                - 获取字符串中匹配正则表达式的部分
+                - 默认只返回第一个匹配，若要返回多个匹配，需要
+                    指定匹配模式 g
+                    然后多次调用exec()，每次返回一个匹配
+
+            匹配模式
+                - i 不区分大小写
+                - g 全局搜索（不指定则只返回第一个匹配）
+        */
+        let str = "abcAdcacc";
+
+        console.log("------exec()匹配------");
+        let reg = /a[a-z]c/gi;
+        console.log(reg.exec(str));  // ['abc']
+        console.log(reg.exec(str));  // ['Adc']
+        console.log(reg.exec(str));  // ['acc']
+        console.log(reg.exec(str));  // null
+
+        console.log("------分组------");
+        reg = /a([a-z])c/gi;
+        console.log(reg.exec(str));  // ['abc', 'b']
+        reg = /a(([a-z])c)/g;
+        console.log(reg.exec(str));  // ['abc', 'bc', 'b']
+
+        reg = /a(([a-z])c)/ig;
+        let result = reg.exec(str);
+        while(result){
+            console.log(result[0], result[1], result[2]);
+            result = reg.exec(str);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

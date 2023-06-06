@@ -1,0 +1,121 @@
+html {
+  font-size: 5.33333333vw;
+}
+body {
+  background-color: #eff0f4;
+}
+a {
+  text-decoration: none;
+}
+.w,
+.header,
+.banner,
+.main_menu,
+.course {
+  width: 17.325rem;
+  margin: 0 auto;
+}
+.header {
+  height: 4.375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .logo a {
+  font-size: 1.5rem;
+  color: #24253d;
+}
+.header .menu a,
+.header .search a {
+  font-size: 1.2rem;
+  color: #999999;
+}
+.banner img {
+  width: 100%;
+}
+.main_menu {
+  height: 8.25rem;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-content: space-evenly;
+}
+.main_menu a {
+  width: 8.2rem;
+  height: 2.65rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
+  line-height: 2.65rem;
+  color: #fff;
+}
+.main_menu a i {
+  margin: 0 0.4rem;
+}
+.main_menu .courses {
+  background-color: #f97053;
+}
+.main_menu .star {
+  background-color: #c657ff;
+}
+.main_menu .sub {
+  background-color: #ff3971;
+}
+.main_menu .download {
+  background-color: #1d92ff;
+}
+.course {
+  height: 10.9rem;
+}
+.course .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.course .title h2::before {
+  display: inline-block;
+  content: "";
+  width: 0.075rem;
+  height: 0.7rem;
+  background-color: #3a84ff;
+  margin-right: 0.2rem;
+}
+.course .title h2 {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.course .title .more {
+  font-size: 0.78rem;
+  color: #656565;
+}
+.course .item_list {
+  height: 8.125rem;
+  display: flex;
+  overflow: auto;
+}
+.course .item_list .item {
+  width: 8.125rem;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  margin-right: 0.6rem;
+  text-align: center;
+}
+.course .item_list .item > img {
+  width: 7.125rem;
+  margin: 0.5rem;
+}
+.course .item_list .item .item_title {
+  font-size: 0.75rem;
+}
+.course .item_list .item .userinfo {
+  display: flex;
+  font-size: 0.7rem;
+  color: #656565;
+  align-items: center;
+}
+.course .item_list .item .userinfo img {
+  width: 1rem;
+}
+/*# sourceMappingURL=./14.css.map */

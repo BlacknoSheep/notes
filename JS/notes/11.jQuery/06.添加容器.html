@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加容器</title>
+    <style>
+        #list1 li:nth-child(1) {
+            font-size: 16px;
+            /* color: red; */
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            unwrap()
+                - 删除当前元素的外层父元素
+                - 可以接受一个选择器字符串作为参数（符合则删除，否则无变化）
+            
+            wrap()
+                - 为当前元素添加外层容器（父元素）
+                - 参数：选择器/html代码/DOM元素/jQuery对象
+                    函数（返回值为html代码或jQuery对象）
+            
+            wrapAll()
+                - 为当前所有元素一起添加外层容器（父元素）
+            
+            wrapInner()
+                - 为当前元素添加一个内部容器（创建一个子元素包裹旧子元素）
+        */
+        $(function () {
+            var $swk = $("#list1 li:nth-child(1)");
+            $("#btn").click(function () {
+                // $swk.unwrap();  // 去掉外层的ul
+                // $("#list1 li").unwrap();  // 同上
+
+                // $swk.wrap('<div class="wrapper"></div>');
+                // $("#list1 li").wrap('<div class="wrapper"></div>');  // 两个li分别都被div包裹
+
+                // $("#list1 li").wrapAll('<div class="wrapper"></div>');  // 两个li被一个div包裹
+
+                $("#list1 li").wrapInner('<div class="wrapper"></div>');  // 两个li被一个div包裹
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <hr>
+    <ul id="list1">
+        <li>孙悟空</li>
+        <li>猪八戒</li>
+    </ul>
+    <ul id="list2">
+        <li>沙和尚</li>
+        <li>唐僧</li>
+    </ul>
+</body>
+
+</html>

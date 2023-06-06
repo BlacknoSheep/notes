@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型对象</title>
+    <script>
+        class Person{
+            name;
+
+            constructor(name){
+                this.name = name;  // 位于对象自身中
+            }
+
+            sayHello(){  // 位于原型对象中
+                console.log(this.name);
+            }
+        }
+
+        const p1 = new Person("永雏塔菲");
+        const p2 = new Person("Taffy");
+
+        /*
+            所有同类型对象的原型对象都是同一个
+                也就意味着，同类型对象的原型链是一样的
+            
+            原型的作用：
+                原型相当于一个公共的区域，可以被所有该类的实例访问，
+                    可以将公共属性（方法）存到原型中，这样只需要创建一个属性（方法）就能被所有实例访问
+    
+            JS中继承就是通过原型实现的
+        */
+        console.log(Object.getPrototypeOf(p1)===Object.getPrototypeOf(p2));  // true
+
+        class Animal{
+
+        }
+
+        class Cat extends Animal{
+
+        }
+
+        // 原型链：cat --> Animal实例 --> Object --> Object的原型 --> null 
+        const cat = new Cat();
+        console.log(cat);  // Cat {}
+        console.log(cat.__proto__);  // Animal {constructor: ƒ}
+        console.log(cat.__proto__.__proto__);  // {constructor: ƒ}
+        console.log(cat.__proto__.__proto__.__proto__);  // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+        console.log(cat.__proto__.__proto__.__proto__.__proto__);  // null
+        
+        console.log(cat.__proto__===Animal);  // false
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

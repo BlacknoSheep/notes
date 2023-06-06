@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+    <script>
+        /*
+            函数（Function）
+                - 函数也是一个对象
+                - 使用typeof 返回function
+                - 定义形参就相当于在函数中声明了对应的变量，但是没有赋值
+                - 参数：
+                    1.若实参和形参数量相同，则对应位置的实参会赋值给对应的形参
+                    2.若实参多于形参，则多于的实参不会被使用
+                    3.若实参少于形参，则缺少实参的形参为undefined
+
+                - 参数的类型
+                    任何类型都可以作为参数，JS不会检查参数类型
+        */
+        // 1.函数声明
+        function fn(){
+            console.log("函数声明");
+        }
+        fn();
+
+        function sum(a,b){
+            return a+b;
+        }
+        console.log(sum(114514,114514));
+
+
+        // 2.函数表达式
+        const fn2 = function(){
+            console.log("函数表达式");
+        };
+        fn2();
+        
+
+        // 3.箭头函数
+        const fn3 = () => {
+            console.log("箭头函数");
+        }
+        fn3();
+
+        // 省略大括号
+        // 后面只能跟一行代码，同时会隐式返回这行代码的值
+        const fn4 = () => console.log("箭头函数-省略大括号");
+        fn4();
+        const fn5 = () => 1+1;
+        console.log("fn5() =",fn5());  // fn5() = 2
+        
+        // 当且仅当只有一个形参时也可以省略()
+        const fn6 = a => console.log("箭头函数-省略()");
+        fn6();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

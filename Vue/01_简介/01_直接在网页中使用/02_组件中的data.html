@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01_简介</title>
+    <!-- 引入Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      /*
+        创建一个根组件，在Vue3中组件就是一个普通的js对象。
+        组件用来创建组件实例，组件是组件实例的模板。
+        组件 --》 组件实例 --》 虚拟DOM --》DOM（在页面中呈现）
+      */
+      const Root = {
+        data() {
+          // data是一个函数，需要一个对象作为返回值
+          return {
+            message: "我是数据", // data方法返回的对象，其属性会自动添加到组件实例中
+          };
+        },
+
+        /*
+          在模板中可以直接访问组件实例中的数据。
+          可以通过 {{属性名}} 来访问数据
+        */
+        template: "<h1>我是模板，{{message}}</h1>", // 希望组件在页面中呈现的样子
+      };
+
+      // 创建组件实例
+      const app = Vue.createApp(Root);
+
+      // 将实例在页面中挂载
+      app.mount("#app");
+    </script>
+  </body>
+</html>

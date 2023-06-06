@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set</title>
+    <script>
+        /*
+            Set
+                - 用于创建一个集合
+                - 功能和数组类似，但不能存储重复的数据
+            
+            创建
+                - new Set()
+                - new Set(arr)
+            
+            属性和方法
+                - size
+                - add()
+                - has()
+                - delete()
+        */
+        // 创建Set
+        const set = new Set();
+
+        // 向set中添加数据
+        set.add("Taffy");
+        set.add(17);
+        set.add(17);
+        console.log(set);  // {'Taffy', 17}
+
+        // 检查set中是否有特定数据
+        console.log(set.has(17));  // true
+
+        // 遍历set
+        for(let item of set){
+            console.log(item);
+        }
+
+        // 将set转为数组
+        const arr = [...set];
+        console.log(arr);  // ['Taffy', 17]
+
+        // 根据数组创建集合
+        const set2 = new Set([1,1,2,3,2,4,2]);
+        console.log(set2);  // {1, 2, 3, 4}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型对象</title>
+    <script>
+        /*
+            访问原型对象的方式：
+                1.对象.__proto__
+                    不建议这样访问
+        */
+        class Person{
+            name;
+
+            constructor(name){
+                this.name = name;  // 位于对象自身中
+            }
+
+            sayHello(){  // 位于原型对象中
+                console.log(this.name);
+            }
+        }
+
+        const p1 = new Person("永雏塔菲");
+
+        /* 不建议通过这种方式访问 */
+        console.log(p1.__proto__);  // {constructor: ƒ, sayHello: ƒ}
+        /* ！！！不应该随意修改原型对象的内容！！！ */
+        // 显式向原型对象中显示添加属性和方法
+        p1.__proto__.val1 = "原型对象中的属性";
+        p1.__proto__.fn1 = () => {
+            console.log("原型对象中的方法")
+        };
+        console.log(p1.__proto__);  // {val1: '原型对象中的属性', fn1: ƒ, constructor: ƒ, sayHello: ƒ}
+        // 通过对象调用原型对象中的方法
+        p1.fn1();  // "原型对象中的方法"
+
+        /* 更好的访问方式 */
+        console.log(Object.getPrototypeOf(p1));  // 同console.log(p1.__proto__);
+        console.log(Object.getPrototypeOf(p1)===p1.__proto__);  // true
+
+
+        /*
+            原型对象的数据结构
+                1.来自对象中的部分数据
+                2.constructor
+            
+            原型链：
+                - 原型对象也有原型，这样就构成了一条原型链，
+                    根据对象的复杂程度不同，原型链的长度也不同
+                - 读取对象属性时，会优先在对象自身中寻找
+                    然后沿着原型链进行寻找，
+                    直到null，
+                    若还是没有，则返回undefined
+                
+            注意对比：
+                - 原型链：找属性的链，找不到返回undefined
+                - 作用域链：找变量的链，找不到报错
+        */
+        console.log("---------原型对象的数据结构---------")
+        // p1的原型链：p1对象 --> 原型 --> 原型 --> null
+        console.log(p1);  // Person {name: '永雏塔菲'}
+        console.log(p1.__proto__);  // {val1: '原型对象中的属性', fn1: ƒ, constructor: ƒ, sayHello: ƒ}
+        console.log(p1.__proto__.__proto__);  // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+        console.log(p1.__proto__.__proto__.__proto__);  // null
+
+        // obj1的原型链：obj1 --> 原型 --> null
+        const obj1 = {};
+        console.log(obj1);  // {}
+        console.log(obj1.__proto__);  // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+        console.log(obj1.__proto__.__proto__);  // null
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

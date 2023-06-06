@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其他拷贝方式</title>
+    <script>
+        const arr1 = ["a","b","c"];
+        console.log("arr1:",arr1);  // ['a', 'b', 'c']
+
+
+        // 浅拷贝
+        console.log("------暴力浅拷贝------");
+        const arr2 = [arr1[0],arr1[1],arr1[2]];
+        console.log("arr2:",arr2);  // ['a', 'b', 'c']
+        
+        /*
+            ... （展开运算符）
+                - 可以将一个数组中的元素展开，或者作为函数参数传递
+                - 通过它也可以对数组进行浅复制
+        */
+        console.log("------... 展开运算符------")
+        const arr3 = ["0",...arr1,"z"];
+        console.log("arr3:",arr3);  // ['0', 'a', 'b', 'c', 'z']
+
+        console.log("展开运算符用于函数的参数：")
+        function add(a,b){
+            return a+b;
+        }
+        const args = [2,3];
+        console.log(`${args[0]} + ${args[1]} = ${add(...args)}`);  // "2 + 3 = 5"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

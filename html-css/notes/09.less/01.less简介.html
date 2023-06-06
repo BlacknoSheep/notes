@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>less简介</title>
+
+    <!-- 
+        less是一门css的预处理语言
+            - less是css的增强版，通过less可以编写更少的代码实现更强大的样式
+            - less语法大体上和css语法一致，但是增添了许多功能
+            - less可以编译为css，编译出的css具有较好的兼容性
+     -->
+    <style>
+        html{
+            /* css原生也支持变量的设置（兼容性差） */
+            --color1:#bfa;
+        }
+        
+        .box1{
+            /* calc()计算函数（兼容性差） */
+            /* width: 100px; */
+            width: calc(200px/2);
+            height: 100px;
+            /* background-color: #bfa; */
+            background-color: var(--color1);
+        }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            color: #bfa;
+        }
+
+        .box3{
+            width: 100px;
+            height: 100px;
+            border: 1px #bfa solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">aaa</div>
+    <div class="box2">bbb</div>
+    <div class="box3">ccc</div>
+</body>
+</html>

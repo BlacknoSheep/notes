@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插入元素</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+
+        #box3 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            append()
+                - 向父元素末尾添加一个子元素
+            appendTo()
+                - 将子元素添加到父元素末尾
+
+            prepend()
+                - 向父元素开头添加一个子元素
+            prependTo()
+                - 将子元素添加到父元素开头
+
+            text()
+                - 获取/设置元素的文本内容
+                - 无参数表示读取，传参数表示设置
+            html()
+                - 获取/设置元素的html代码
+                - 无参数表示读取，传参数表示设置
+        */
+        $(function () {
+            $("#btn").click(function () {
+                // $("#box1").append('<div id="box2"/>');
+                $('<div id="box2"/>').appendTo($("#box1"));  // 效果同上
+
+                $("#box1").prepend('<div id="box3"/>');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <hr>
+    <div id="box1"></div>
+</body>
+
+</html>

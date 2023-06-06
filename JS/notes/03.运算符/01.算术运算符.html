@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算术运算符</title>
+    <script>
+        /*  */
+        let a = 0;
+        a = 10 / 5;  // 2
+        a = 10 / 3;  // 3.3333333333333335
+        a = 10 / 0;  // Infinity
+        a = 2 ** 10;  // 1024
+        a = 4 ** 0.5;  // 2
+        a = 10 % 4;  // 2
+        console.log(a);
+
+        /*
+            JS是一门弱类型语言，运算时会发生自动类型转换
+                算术运算时，除了与字符串的加法
+                    非数值类型的变量都会转换为数值然后再运算
+                与字符串的加法：
+                    先将其他类型转换成字符串，然后再做字符串拼接
+                        可以通过将任意类型+一个空串的形式来将其转换为字符串
+        */
+        a = 100 - "22";  // 100 - 22 = 78
+        a = 100 - NaN;  // NaN
+        a = undefined - 100;  // NaN
+        a = null - 100;  // -100
+        a = 1 + "23";  // "123"
+        a = NaN + "123"  // "NaN123"
+        a = true + ""  // "true"
+        console.log(typeof a, a);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

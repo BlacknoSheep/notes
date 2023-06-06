@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删除元素</title>
+    <style>
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            remove()
+                - 移除元素（同时移除事件）
+            detach()
+                - 移除元素（保留事件）
+            empty()
+                - 删除所有子元素
+        */
+        $(function () {
+            $swk = $("#list li:nth-child(1)");
+            $swk.click(function () {
+                alert("孙悟空");
+            });
+            $("#btn").click(function () {
+                // $swk.remove();
+                $swk.detach();
+
+                // $("#list").empty();
+            });
+
+            $("#btn2").click(function () {
+                // 使用remove()删除的恢复时不会恢复事件
+                // 使用detach)删除的恢复时会恢复事件
+                $swk.appendTo($("#list"));
+            });
+
+
+            /*
+                replaceAll()
+                    - 用当前元素替换所有选中的元素
+                replaceWith()
+                    - 用指定的元素替换当前元素
+            */
+            $("#btn3").click(function () {
+                // $("<div>白骨精</div>").replaceAll($("#list li"));
+                $("#list li:nth-child(1)").replaceWith("<li>白骨精</li>");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">删除</button>
+    <button id="btn2" type="button">还原</button>
+    <button id="btn3" type="button">替换</button>
+    <hr>
+    <ul id="list">
+        <li>孙悟空</li>
+        <li>猪八戒</li>
+        <li>沙和尚</li>
+        <li>唐僧</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修改用户信息</title>
+  </head>
+
+  <body>
+    <form action="/do_update?id=<%= user.id %>" method="post">
+      <fieldset>
+        <legend>修改用户信息</legend>
+        <div>id&emsp;<%= user.id %></div>
+        <label for="name">用户名</label>
+        <input type="text" name="name" id="name" required value="<%= user.name %>" />
+        <br />
+        <label for="age">年&emsp;龄</label>
+        <input type="number" name="age" id="age" max="150" min="0" required value="<%= user.age %>" />
+        <br />
+        <label for="gender">性&emsp;别</label>
+        <input type="radio" name="gender" value="男" required <%= user.gender==="男"&&"checked" %>/> 男 <input
+        type="radio" name="gender" value="女" required <%= user.gender==="女"&&"checked" %>/> 女
+        <br />
+        <label for="address">地&emsp;址</label>
+        <input type="text" name="address" id="address" required value="<%= user.address %>" />
+        <br />
+        <input type="submit" value="确认" />
+      </fieldset>
+    </form>
+  </body>
+</html>

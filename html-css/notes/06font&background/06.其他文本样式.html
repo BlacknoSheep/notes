@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其他文本样式</title>
+
+    <style>
+        /*
+        text-decoration 设置文本修饰
+            可选值：
+                none 什么都没有
+                underline 下划线
+                line-through 删除线
+                overline 上划线
+        */
+        .box1{
+            font-size: 50px;
+            font-family: "宋体",serif;
+            text-decoration: underline red dotted;
+        }
+        
+        /*
+        white-space 设置网页如何处理空白
+        可选值
+            normal 正常
+            nowrap 不换行（溢出）
+            pre 保留空白（格式和代码里一样）
+        */
+        .box2{
+            /* 让溢出部分显示... */
+            width: 300px;
+            overflow: hidden;
+            /* 不换行，由于裁剪了overflow部分，所以不出现滚动条 */
+            white-space: nowrap;
+            /* 文本溢出部分显示... */
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        少小离家老大回。
+    </div>
+    <br />
+    <div class="box2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, nam impedit soluta eligendi officiis mollitia possimus quas minima iure corporis rem libero deserunt at dolorem. Explicabo fugiat saepe praesentium laboriosam!
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日期的格式化</title>
+    <script>
+        const d = new Date();
+        console.log(d);
+
+        let res = d.toLocaleDateString();  // 将日期转换为本地字符串
+        console.log(res);
+
+        res = d.toLocaleTimeString();  // 将时间转换为本地字符串
+        console.log(res);
+
+        res = d.toLocaleString();  // 同时转日期和时间
+        console.log(res);
+
+        /*
+            以toLocalString()为例
+                - 可以将一个日期转换为本地时间格式的字符串
+                - 参数
+                    1.描述语言和国家的字符串
+                        zh-CN 中文中国
+                        zh-HK 中文香港
+                        en-US 英文美国
+                    2.需要一个对象作为参数，通过对象的属性来对日期的格式进行匹配
+                        对象属性：
+                            dataStyle   日期的风格
+                            timeStyle   时间的风格
+                                full
+                                long
+                                medium
+                                short
+                            
+                            hour12      是否使用12小时制
+                                true
+                                false
+                            
+                            weekday     星期的表示
+                                long
+                                short
+                                narrow
+                            
+                            year        年份的表示
+                                numeric
+                                2-digit
+                            
+                            ...
+                        注意：每个日期时间组件属性的默认值都是 undefined，
+                            但是若所有的组件属性都是 undefined，
+                            那么 year、month 和 day 的值就都被认为是 numeric。
+        */
+        console.log("------以toLocalString()为例------")
+        console.log("---第一个参数---")
+        console.log(d.toLocaleString("zh-CN"));
+        console.log(d.toLocaleString("zh-HK"));
+        console.log(d.toLocaleString("en-US"));
+
+        console.log("---第二个参数---")
+        console.log(d.toLocaleString("zh-CN", {dateStyle:"full"}))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

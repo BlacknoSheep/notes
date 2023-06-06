@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钟表</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* ------盘面------ */
+        .clock{
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+            background-image: url("./imgs/1024px-Analogue_clock_face.svg.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        /* 指针wrapper公共设置 */
+        .clock > div{
+            /* 居中 */
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+            /* 动画 */
+            animation-name: hand_rotate;
+            animation-timing-function: steps(60);
+            animation-iteration-count: infinite;
+        }
+
+        /* 指针公共设置 */
+        .hour_hand,
+        .minute_hand,
+        .second_hand{
+            width: 100%;
+            height: 50%;
+        }
+
+        /* ------时针------ */
+        .hour_hand_wrapper{
+            width: 9px;
+            height: 100px;
+            /* 动画 */
+            animation-duration: 360s;
+        }
+        .hour_hand{
+            background-color: red;
+        }
+
+        /* ------分针------ */
+        .minute_hand_wrapper{
+            width: 5px;
+            height: 150px;
+            /* 动画 */
+            animation-duration: 6s;
+        }
+        .minute_hand{
+            background-color: green;
+        }
+
+        /* ------秒针------ */
+        .second_hand_wrapper{
+            width: 3px;
+            height: 200px;
+            /* 动画 */
+            animation-duration: 0.1s;
+        }
+        .second_hand{
+            width: 100%;
+            height: 50%;
+            background-color: blue;
+        }
+
+        /* 指针旋转动画 */
+        @keyframes hand_rotate {
+            from{
+                transform: rotateZ(0deg);
+            }
+            to{
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="hour_hand_wrapper">
+            <div class="hour_hand"></div>
+        </div>
+        <div class="minute_hand_wrapper">
+            <div class="minute_hand"></div>
+        </div>
+        <div class="second_hand_wrapper">
+            <div class="second_hand"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪碧图</title>
+
+    <style>
+        /*
+        解决图片分次加载的闪烁问题
+            可以将多张图片拼接成一张大图片，然后通过调整background-position来显示不同图片
+            这样图片会同时加载到网页中，有效避免出现闪烁
+            这种技术被称为 CSS-Sprite （雪碧图）
+        */
+        .button{
+            width: 93px;
+            height: 29px;
+            background-image: url("../练习/imgs/按钮/btn.png");
+        }
+        .button:hover{
+            background-position: -93px 0px;
+        }
+        .button:active{
+            background-position: -186px 0px;
+        }
+    </style>
+</head>
+<body>
+    <a>
+        <div class="button"></div>
+    </a>
+</body>
+</html>

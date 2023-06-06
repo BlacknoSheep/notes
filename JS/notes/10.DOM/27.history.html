@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>histor</title>
+</head>
+
+<body>
+    <button type="button" , id="btn">按钮</button>
+    <br>
+    <a href="http://www.baidu.com">超链接</a>
+
+    <script>
+        /*
+            history 历史记录
+                - history.length    历史记录的数量
+                - history.back()    回退
+                - history.forward() 前进
+                - history.go()      前进或后退
+                    1   前进
+                    -1  后退
+        */
+        console.log(history);
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+            // history.back();
+            // history.forward();
+            history.go(1);
+        });
+    </script>
+</body>
+
+</html>

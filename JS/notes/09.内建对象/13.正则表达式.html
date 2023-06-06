@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式</title>
+    <script>
+        /*
+            正则表达式
+                - 正则表达式也是一个对象
+                    所以要使用正则表达式，需要先创建正则表达式对象
+
+            RegExp()构造函数
+                - 可以接收两个参数：
+                    1.正则表达式
+                    2.匹配模式
+            也可以通过字面量来创建正则表达式
+                /正则表达式/匹配模式
+        */
+        console.log("------正则表达式的创建------");
+        // 通过构造函数来创建一个正则表达式
+        let reg = new RegExp("a", "i");
+        console.log(reg);  // /a/i
+
+        // 通过字面量创建正则表达式
+        reg = /b/i;
+        console.log(reg);  // /b/i
+
+
+        console.log("------正则表达式的使用------");
+        reg = /a/;
+        console.log(reg.test("a dog"));  // true
+        console.log(reg.test("A dog"));  // false
+
+
+        /*
+            正则表达式的语法
+                1.大部分字符都可以直接写
+                2. | 表示或
+                3. [] 表示任意一个
+                    [a-z]   任意小写字母
+                    [A-Z]   任意大写字母
+                    [a-zA-Z]任意字母
+                    [0-9]   任意数字
+                4. [^] 表示除了
+                    [^x] 除了x
+                5. . 表示除了换行符以外的任意字符
+                6. \ 转义字符
+                7.其他字符集
+                    \w  任意的单词字符  [A-Za-z0-9_]
+                    \W  除了单词字符    [^A-Za-z0-9_]
+                    \d  任意数字        [0-9]
+                    \D  除了数字        [^0-9]
+                    \s  空白字符
+                    \S  除了空白字符
+                    \b  单词边界
+                    \B  非单词边界
+                8.开头和结尾
+                    ^ 表示字符串的开头
+                    $ 表示字符串的结尾
+
+            匹配模式
+                1. i 表示忽略大小写
+        */
+        console.log("------正则表达式的语法------");
+        reg = /ab|bc/;
+        console.log(reg.test("abc"));  // true
+        console.log(reg.test("bcd"));  // true
+
+
+        /*
+            量词
+                {m}     匹配前一个字符正好出现m次
+                {m,}    匹配前一个字符至少出现m次
+                {m,n}   匹配前一个字符至少出现m次，至多出现n次
+                +       匹配前一个字符1次或多次
+                *       匹配前一个字符0次或多次
+                ?       匹配前一个字符0次或1次
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

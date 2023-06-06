@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可变类型</title>
+    <script>
+        /*
+            - 原始值都是不可变类型，具体在内存中如何储存有争议
+                使用时可以像其他语言（C++、Python等）一样，认为不同变量相互独立（不论变量的值是否相同）
+        */
+        let a = 10;
+        let b = a;
+        ++b;
+        console.log("a =",a);  // 10    对b的修改不会影响到a
+        console.log("b =",b);  // 11
+
+        /*
+            对象属于可变类型
+                - 当对两个对象使用相等或全等比较时，比较的是其保存的地址
+                - 当两个对象变量保存相同地址时，它们实际上指向同一块内存，
+                    故通过其中一个对象修改属性时，另一个对象的属性也会改变
+                
+            - 修改对象时，如果有其他变量指向该对象，
+                则所有指向该对象的变量都会受到影响
+
+            - 修改变量时，
+                只会影响当前的变量
+            
+            在使用变量存储对象时，很容易因为改变变量指向的对象而使得代码不清晰
+                所以通常情况下，声明存储对象的变量时会使用const
+                - const 禁止对变量本身进行修改（不禁止修改对象的属性）
+        */
+        let obj1 = {};
+        let obj2 = {};
+        console.log(obj1==obj2);  // false
+        console.log(obj1===obj2);  // false
+
+        let obj3 = {
+            name: "孙笑川",
+            age: -1,
+        }
+        let obj4 = obj3;  // obj4和obj3保存相同的地址
+        --obj4.age;
+        console.log("obj3:",obj3);  // age: -2  对obj4的属性的修改影响到了obj3的属性
+        console.log("obj4:",obj4);  // age: -2
+        obj4 = {  // obj4保存新的地址，不影响obj3
+            name: "丁真",
+            age: -100,
+        }
+        console.log("obj3:",obj3);
+        console.log("obj4:",obj4);
+
+        const obj5 = {
+            name: "哈哈哈",
+        };
+        obj5.name = "呵呵呵";  // 可以修改对象的属性
+        const obj6 = obj5;
+        // 禁止修改变量
+        obj6 = {};  // TypeError: Assignment to constant variable.
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

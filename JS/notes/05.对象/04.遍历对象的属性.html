@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遍历对象的属性</title>
+    <script>
+        /*
+            枚举属性：指将对象中的所有属性全部获取
+
+            for-in 语句
+            
+            注意：并非所有属性都可以枚举，比如符号属性
+        */
+        let myS = Symbol();
+        let obj1 = {
+            name: "孙笑川",
+            age: 114514,
+            gender: "不知道",
+            [myS]: "mySymbol",  // 符号属性无法被枚举
+        }
+        for(let prop_name in obj1){
+            console.log(`${prop_name}: ${obj1[prop_name]}`);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串</title>
+
+    <script>
+        /*
+            字符串（String）
+                - 使用双引号或单引号
+                - 转义字符
+        */
+       let a = 'Hello';
+       a = "Hello";
+       a = "Hello '你好'";
+       a = "\"转义字符\"";
+       console.log(a);
+
+        // 跨行
+        // 1.使用 \ ，并非所有浏览器都支持，且换行会变成空格
+        let b = "Hello \
+                world";
+        console.log(b);
+        /*
+            2.模板字符串（长字符串）
+                - 使用反单引号 ` 
+                - 保留换行符
+                - 可以嵌入变量
+        */
+       let c = `Hello 
+       World
+        !`;
+       console.log(c);
+
+       let name = "KYOU";
+       let str = `こんにちは、${name}`;
+       console.log(str);
+
+       // 注意：字符串和模板字符串都是String类型，使用typeof都返回"string"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

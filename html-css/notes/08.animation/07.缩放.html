@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缩放</title>
+
+    <style>
+        .box1{
+            width: 100px;
+            height: 100px;
+            margin: 100px auto;
+            background-color: #bfa;
+            transition: transform 2s;
+
+            /* 变形的原点，默认值center */
+            transform-origin: 0px 0px;
+        }
+
+        .box1:hover{
+            /* 
+            对元素进行缩放
+                scaleX()
+                scaleY()
+                acale 双方向缩放
+             */
+            transform: scale(2);
+        }
+
+        .img_wrapper{
+            width: 200px;
+            height: 200px;
+            border: 1px red solid;
+            overflow: hidden;
+        }
+
+        .img_wrapper img{
+            transition: 2s;
+        }
+
+        .img_wrapper:hover img{
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+
+    <div class="img_wrapper">
+        <img src="../resource/imgs/世萌.png">
+    </div>
+</body>
+</html>

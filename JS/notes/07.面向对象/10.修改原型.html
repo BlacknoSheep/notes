@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改原型对象</title>
+    <script>
+        /*
+            大部分情况下，不需要修改原型对象
+                注意：千万不要通过类的实例去修改原型
+                    1.通过一个对象影响所有同类对象，不合适
+                    2.随意修改很危险
+            
+            除了通过实例访问原型对象以外，
+                还可以通过类的prototype属性来访问实例的原型对象
+                    （注意是所有实例的原型对象，不是类的）
+                修改原型时，最好通过类去修改
+        */
+        class Person{
+            name;
+
+            constructor(name){
+                this.name = name;
+            }
+        }
+
+        const p1 = new Person();
+
+        // p1.__proto__.fn1 = () => {};  // 不要这么使用
+        // p1.__proto__ = Object();  // 不要这么使用
+
+        console.log(Person.prototype);  // {constructor: ƒ}
+        console.log(Person.prototype===p1.__proto__);  // true
+        Person.prototype.fn2 = () => {
+            console.log("通过类去修改实例的原型对象的属性");
+        }
+        p1.fn2();  // "通过类去修改实例的原型对象的属性"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

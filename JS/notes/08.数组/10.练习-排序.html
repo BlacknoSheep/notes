@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习-排序</title>
+    <script>
+        const arr = [8,8,8,9,2,3,2,5,6,8,1];
+        console.log(arr);
+        
+        /*
+            冒泡排序
+        */
+        function bubbleSort(arr){
+            const len = arr.length;
+
+            for(let i=len-1; i>=1; --i){
+                for(let j=0; j<i; ++j){
+                    if(arr[j] > arr[j+1]){
+                        let temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+        }
+        let arr_copy = arr.slice();
+        bubbleSort(arr_copy);
+        console.log(arr_copy);
+
+        /*
+            选择排序
+        */
+        function selectSort(arr){
+            const len = arr.length;
+
+            for(let i=0; i<len; ++i){
+                for(let j=i+1; j<len; ++j){
+                    if(arr[j] < arr[i]){
+                        let temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+
+            return arr;
+        }
+        arr_copy = arr.slice();
+        selectSort(arr_copy)
+        console.log(arr_copy);
+
+        /*
+            快速排序
+        */
+        function quickSort(arr, left, right){
+            if(left >= right) return;
+
+            let pivot = arr[left];
+            let i = left+1;
+            let j = right;
+            while(i < j){
+                while(i<j && arr[i]<=pivot) ++i;
+                while(i<j && arr[j]>=pivot) --j;
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            if(arr[i] > pivot) --i;
+            let temp = arr[left];
+            arr[left] = arr[i];
+            arr[i] = temp;
+
+            quickSort(arr, left, i-1);
+            quickSort(arr, i+1, right);
+        }
+        arr_copy = arr.slice();
+        quickSort(arr_copy, 0, arr_copy.length-1);
+        console.log(arr_copy);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

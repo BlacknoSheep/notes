@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+</head>
+<body>
+    <!-- 
+        form 表单：
+            用于将本地的数据提交给远程的服务器
+     -->
+     <!-- 
+        form的属性
+            action 表单要提交的服务器地址
+      -->
+      <form action="./target.html">
+        <!-- 添加表单项 -->
+
+        <!-- 
+            文本框
+            注意：数据要提交到服务器中，必须指定name属性
+            可以用value属性指定默认值
+         -->
+        文本框<input type="text" name="username" value="username">
+         <br />
+        <!-- 
+            密码框
+            同样需要指定name属性
+         -->
+        密码框<input type="password" name="password" value="111">
+        <br />
+        <!-- 
+            单选按钮
+            同样的name表示同一组，同一组内只能选择一个
+                - 像这种选择框，必须指定value属性，用于提交给服务器
+                - checked 默认选中（或者check="check"）
+         -->
+         单选按钮
+         <input type="radio" name="choice" value="a">
+         <input type="radio" name="choice" value="b" checked>
+        <br />
+        <!-- 
+            多选框
+         -->
+         多选框
+         <input type="checkbox" name="duoxuan" value="1">
+         <input type="checkbox" name="duoxuen" value="2" checked>
+         <input type="checkbox" name="duoxuan" value="3">
+        <br />
+        <!-- 
+            下拉列表
+                selected 设置默认选中
+         -->
+         下拉列表
+         <select name="select">
+            <option value="1">111</option>
+            <option value="2" selected>222</option>
+            <option value="3">333</option>
+         </select>
+        <br />
+        <!-- 
+            提交按钮
+                默认显示“提交”，可通过value值修改
+         -->
+        <input type="submit" value="注册">
+      </form>
+</body>
+</html>

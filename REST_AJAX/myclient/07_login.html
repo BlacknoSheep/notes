@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+    <style>
+      #stuinfo_page {
+        /* 先隐藏 */
+        display: none;
+      }
+      table {
+        /* 先隐藏 */
+        display: none;
+
+        border-collapse: collapse;
+        text-align: center;
+      }
+      table th,
+      table td {
+        padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <h2>登录</h2>
+      <form>
+        <div>用户名<input type="text" id="username" placeholder="admin" /></div>
+        <div>密&emsp;码<input type="password" id="password" placeholder="123123" /></div>
+        <div><button id="login_btn" type="button">登录</button></div>
+      </form>
+    </div>
+
+    <div id="stuinfo_page">
+      <button id="btn_load">点击加载学生列表</button>
+      <button id="add_stu">点击添加学生</button>
+
+      <div>
+        <table border="1" align="center" id="stu_table">
+          <caption>
+            学生列表
+          </caption>
+          <thead>
+            <tr>
+              <th>学号</th>
+              <th>姓名</th>
+              <th>年龄</th>
+              <th>性别</th>
+              <th>地址</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const root = document.getElementById("root");
+      const login_btn = document.getElementById("login_btn");
+
+      // 加载学生信息操作页面
+      function load_stuinfo() {
+        const btn_load = document.getElementById("btn_load");
+        const add_stu = document.getElementById("add_stu");
+
+        // 加载学生列表
+        btn_load.addEventListener("click", () => {
+          // 在访问需要权限的api时，必须在请求中附加权限信息
+          // token一般通过请求头来发送
+          const token = localStorage.getItem("token");
+          fetch("http://localhost:3000/students", {
+            headers: {
+              // 需要 "认证方式 认证参数" 的形式 "Bearer xxx"
+              Authorization: `Bearer ${token}`,
+            },
+          })
+            .then((res) => {
+              if (res.status === 200) {
+                return res.json();
+              } else {
+                throw new Error("加载失败！");
+              }
+            })
+            .then((res) => {
+              // console.log(res);
+              if (res.status === "ok") {
+                const table = document.getElementById("stu_table");
+                table.style.display = "table";
+                const tbody = table.querySelector("tbody");
+                tbody.innerHTML = "";
+                for (let stu of res.data) {
+                  const tr = document.createElement("tr");
+                  const stu_info = [stu.id, stu.name, stu.age, stu.gender, stu.address];
+                  for (let i = 0; i < stu_info.length; ++i) {
+                    const td = document.createElement("td");
+                    td.innerText = stu_info[i];
+                    tr.insertAdjacentElement("beforeend", td);
+                  }
+                  tbody.insertAdjacentElement("beforeend", tr);
+                }
+              }
+            })
+            .catch((err) => {
+              console.log("出错了：", err);
+            });
+
+          // 添加学生
+          add_stu.addEventListener("click", () => {
+            fetch("http://localhost:3000/students", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              // 通过 body 发送数据时，必须通过请求头来指定数据的类型
+              body: JSON.stringify({
+                name: "Taffy",
+                age: "17",
+                gender: "女",
+                address: "bilibili",
+              }),
+            }).then((res) => {
+              btn_load.click();
+            });
+          });
+        });
+      }
+
+      // 渲染登录后的页面
+      function logined() {
+        const nickname = localStorage.getItem("nickname");
+        // 清空页面
+        root.innerHTML = "";
+        // 写入新页面
+        const h2 = document.createElement("h2");
+        h2.innerText = `欢迎回来，${nickname}！`;
+        root.insertAdjacentElement("beforeend", h2);
+        root.insertAdjacentHTML("beforeend", '<div><button id="logout_btn" onclick="logout()">注销</button></div>');
+        // 插入分隔线
+        const body = document.querySelector("body");
+        const hr = document.createElement("hr");
+        body.insertBefore(hr, root.nextSibling);
+        // 显示学生信息页面
+        const stuinfo_page = document.getElementById("stuinfo_page");
+        stuinfo_page.style.display = "block";
+        // 加载学生信息页面
+        load_stuinfo();
+      }
+
+      // 发送登录请求
+      function login(status) {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        // alert(`${username}-${password}`);
+
+        // 发送请求，完成登录
+        fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === "ok") {
+              // 登录成功
+              console.log(res);
+
+              /*
+                登录成功后，需要保持用户的登录状态
+                本地存储：
+                  保存到浏览器自身的存储空间
+                    sessionStorage：存储时间短，页面一关闭就会丢失
+                    localStorage：存储时间长
+              */
+              localStorage.setItem("username", username);
+              // 保存服务器发来的token
+              localStorage.setItem("token", res.data.token);
+              localStorage.setItem("nickname", res.data.nickname);
+              logined();
+            } else {
+              throw new Error("用户名或密码错误！");
+            }
+          })
+          .catch((err) => {
+            console.log("出错了！");
+            const div = document.createElement("div");
+            div.innerText = err;
+            div.style.color = "red";
+            root.insertAdjacentElement("beforeend", div);
+          });
+      }
+
+      login_btn.addEventListener("click", () => {
+        login();
+      });
+
+      // 若已登录
+      if (localStorage.getItem("token")) {
+        logined();
+      }
+
+      // 登出
+      function logout() {
+        // 清空登录信息
+        localStorage.clear();
+        // 刷新页面
+        location.reload();
+      }
+    </script>
+  </body>
+</html>

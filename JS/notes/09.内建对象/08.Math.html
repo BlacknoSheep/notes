@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math</title>
+    <script>
+        /*
+            Math
+                - Math是一个工具类（实际上是对象），提供数学运算相关的常量和方法
+                - 用于Number类型，不支持BigInt
+                - 常量
+                    Math.E
+                    Math.PI
+                    ...
+                - 方法：
+                    Math.abs()
+                    Math.min()
+                    Math.max()
+                    Math.pow()
+                    Math.sqrt()
+
+                    Math.floor()    向下取整
+                    Math.ceil()     向上取整
+                    Math.round()    四舍五入
+                        小数部分大于0.5，向绝对值大的方向舍入
+                        小数部分小于0.5，向绝对值小的方向舍入
+                        小数部分恰好等于0.5，向正无穷方向舍入
+                    Math.trunc()    截去小数部分
+
+                    Math.random()   [0, 1) 范围内的随机数
+        */
+        console.log(Math.abs(-1.111e2));  // 111.1
+        const arr = [1,2,-1,-2,0];
+        console.log(Math.min(...arr));  // -2
+        console.log(Math.max(...arr));  // 2
+        console.log(Math.pow(2,10));  // 1024   2**10
+        console.log(Math.sqrt(144));  // 12
+
+        console.log(Math.floor(-1.5));  // -2
+        console.log(Math.ceil(-1.5));  // -1
+
+        console.log(Math.round(-1.5));  // -1   向正无穷方向
+        console.log(Math.round(-1.51)); // 2    向绝对值大的方向
+
+        console.log(Math.trunc(-1.5));  // -1
+
+        console.log(Math.random());
+
+        // [0, 1)的随机数
+        function getRandom(){
+            return Math.random();
+        }
+        console.log(getRandom());
+
+        // [a, b)的随机数
+        function getRandomArbitrary(min, max){
+            return Math.random() * (max - min) + min;
+        }
+        console.log(getRandomArbitrary(100, 200));
+
+        // [a, b)之间的随机整数
+        function getRandomInt(min, max){
+            min = Math.ceil(min);
+            max = Math.ceil(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+        console.log(getRandomInt(0.5, 3.1));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

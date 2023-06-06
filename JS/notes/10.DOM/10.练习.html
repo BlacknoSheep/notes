@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <script>
+        window.onload = function () {
+            // 获取四个选项的数组
+            const hobbies = document.getElementsByName("hobby");
+            console.log(hobbies);
+
+            /*
+                全选checkbox
+            */
+            const check_all = document.getElementById("check_all");
+            check_all.onchange = function () {
+                for (let hobby of hobbies) {
+                    hobby.checked = this.checked;
+                }
+
+                /*
+                    在事件的响应函数中，响应函数绑定给谁，this就是谁
+                        （但一般不推荐这么使用）
+
+                    箭头函数除外（因为箭头函数没有自己的this）
+                */
+                // console.log(this);  // check_all对象
+            };
+
+            /*
+                使全选checkbox和四个checkbox是否同步
+            */
+            for (let hobby of hobbies) {  // 为四个checkbox都设置响应函数
+                hobby.onchange = function () {
+                    // 检查是否全选
+                    let checked_num = document.querySelectorAll("[name=hobby]:checked");
+                    check_all.checked = checked_num.length === hobbies.length ? true : false;
+                };
+            }
+
+
+            /*
+                全选按钮
+            */
+            const btn_all = document.getElementById("all");
+            // console.log(btn_all);
+            btn_all.onclick = function () {
+                for (let hobby of hobbies) {
+                    hobby.checked = "checked";
+                }
+
+                check_all.checked = true;
+            };
+
+            /*
+                取消
+            */
+            let btn_cancel = document.getElementById("cancel");
+            btn_cancel.onclick = function () {
+                for (let hobby of hobbies) {
+                    hobby.checked = false;
+                }
+
+                check_all.checked = false;
+            };
+
+            /*
+                反选
+            */
+            let btn_reverse = document.getElementById("reverse");
+            btn_reverse.onclick = function () {
+                for (let hobby of hobbies) {
+                    hobby.checked = !hobby.checked;
+                }
+
+                // 检查是否全选
+                let checked_num = document.querySelectorAll("[name=hobby]:checked");
+                check_all.checked = checked_num.length === hobbies.length ? true : false;
+            };
+
+            /*
+                提交
+                    - 点击按钮后，将选中的内容显示出来
+            */
+            let btn_submit = document.getElementById("submit");
+            btn_submit.onclick = function () {
+                let result = "你的爱好是：";
+                for (let hobby of hobbies) {
+                    if (hobby.checked) {
+                        result += hobby.value;
+                        result += "、";
+                    }
+                }
+                if (result.at(-1) === '、') {
+                    result = result.slice(0, -1);
+                }
+                result += "。";
+                // console.log(result);
+                alert(result);
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <form action="#">
+            <div>
+                请选择你的爱好：
+                <input type="checkbox" id="check_all">全选
+            </div>
+            <div>
+                <input type="checkbox" name="hobby" value="乒乓球">乒乓球
+                <input type="checkbox" name="hobby" value="篮球">篮球
+                <input type="checkbox" name="hobby" value="羽毛球">羽毛球
+                <input type="checkbox" name="hobby" value="足球">足球
+            </div>
+            <div>
+                <button type="button" id="all">全选</button>
+                <button type="button" id="cancel">取消</button>
+                <button type="button" id="reverse">反选</button>
+                <button type="button" id="submit">提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

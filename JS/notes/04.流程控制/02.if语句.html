@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if语句</title>
+    <script>
+        /*
+            流程控制语句可以用来改变程序的执行顺序
+                1.条件判断语句
+                2.条件分支语句
+                3.循环语句
+            
+            if语句
+                用法同C++
+        */
+        let a = 0;
+        if(a > 0){
+            console.log("a > 0");
+        }
+        else if(a < 0){
+            console.log("a < 0")
+        }
+        else{
+            console.log("a == 0");
+        }
+
+        // prompt()可以用来获取用户的输入
+        // 返回的是一个字符串
+        let input = +prompt("请输入一个整数");
+        console.log("您的输入是：", input);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

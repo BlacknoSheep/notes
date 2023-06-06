@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <script>
+        const map = new Map();
+        map.set("name", "Taffy");
+        map.set("age", 17);
+        console.log(map);
+
+        /*
+            将map转换为数组
+                1.Array.from()
+                2.[...map]
+            转换后是一个n*2的二维数组
+        */
+        console.log("------将map转换为数组------");
+        const arr = Array.from(map);
+        console.log("arr:", arr);
+        const arr2 = [...map];
+        console.log("arr2:", arr2);
+
+
+        /*
+            将二维数组转换为map
+        */
+        console.log("------将二维数组转换为map------");
+        const arr3 = [["name", "Taffy"],
+        ["age", 17],
+        ["gender", "girl"],];
+        console.log("arr3:", arr3);
+        const map3 = new Map(arr3);
+        console.log(map3);
+
+
+        /*
+            遍历map
+                1.for-of 语句
+                2.map.forEach()
+                    注意是箭头函数的参数是(value, key)
+        */
+        console.log("------遍历map------");
+        for (const entry of map3) {
+            console.log(entry);
+        }
+        for (const [key, value] of map3) {  // 遍历同时解构
+            console.log(key, value);
+        }
+
+        console.log("------map.forEach()------");
+        map3.forEach((value, key) => {
+            console.log(key, value);
+        });
+
+
+        /*
+            map.keys()
+                获取map中所有的key，返回一个 MapIterator
+            map.values()
+                获取map中的所有value，返回一个 MapIterator
+        */
+        console.log("------map.keys(), map.values()------");
+        console.log("keys:", map3.keys());
+        console.log("values:", map3.values());
+        for (value of map3.values()) {
+            console.log(value);
+        }
+
+        // map.entries()    获取所有键值对，返回一个 MapIterator
+        console.log("------map.entries()------");
+        console.log(map3.entries());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

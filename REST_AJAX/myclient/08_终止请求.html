@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+  </head>
+  <body>
+    <div>
+      <button id="btn01">发送一个不被处理的GET请求</button>
+      <button id="btn02">一段时间后终止的请求</button>
+    </div>
+    <hr />
+    <div>
+      <button id="btn03">发请求</button>
+      <button id="btn04">终止请求</button>
+    </div>
+    <hr />
+    <div>
+      <button id="btn05">使用async和await</button>
+    </div>
+
+    <script>
+      const btn01 = document.getElementById("btn01");
+      const btn02 = document.getElementById("btn02");
+      const btn03 = document.getElementById("btn03");
+      const btn04 = document.getElementById("btn04");
+      const btn05 = document.getElementById("btn05");
+
+      // 不会收到响应的请求
+      btn01.addEventListener("click", () => {
+        fetch("http://localhost:3000/test")
+          .then((res) => {
+            console.log("请求得到响应！");
+          })
+          .catch((err) => {
+            console.log("出错了");
+          });
+      });
+
+      // 自动终止请求
+      btn02.addEventListener("click", () => {
+        const controller = new AbortController();
+
+        setTimeout(() => {
+          controller.abort();
+        }, 3000);
+
+        fetch("http://localhost:3000/test", {
+          signal: controller.signal,
+        })
+          .then((res) => {
+            console.log("请求得到响应！");
+          })
+          .catch((err) => {
+            console.log("出错了");
+          });
+      });
+
+      (function () {
+        let controller;
+
+        // 发请求
+        btn03.addEventListener("click", () => {
+          controller = new AbortController();
+          fetch("http://localhost:3000/test", {
+            signal: controller.signal,
+          })
+            .then((res) => {
+              console.log("请求得到响应！");
+            })
+            .catch((err) => {
+              console.log("出错了");
+            });
+        });
+
+        // 终止请求
+        btn04.addEventListener("click", () => {
+          controller && controller.abort(); // controller 可能未定义
+        });
+      })();
+
+      btn05.addEventListener("click", async () => {
+        // 注意：将promise改写为await时，一定要写try-catch
+        try {
+          const response = await fetch("http://localhost:3000/hello");
+          const result = await response.json();
+          console.log(result);
+        } catch (err) {
+          console.log("出错了！");
+        }
+      });
+    </script>
+  </body>
+</html>

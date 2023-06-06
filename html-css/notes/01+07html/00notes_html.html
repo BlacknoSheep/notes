@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 有Chrome Frame就用chrome内核渲染，没有就用最高版本的IE进行渲染 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- 3秒后重定向 -->
+    <!-- <meta http-equiv="refresh" content="3;url=https://www.baidu.com"> -->
+
+    <!-- 设置页面宽度以及缩放（适应手机等） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="HTML5,学习">
+    <meta name="descirption" content="这是一个用于学习web的网站">
+    <title>html笔记</title>
+</head>
+<body>
+    <div>  <!-- 基本标签 -->
+        <!-- 一般只使用h1~h3，h4~h6很少用 -->
+        <!--
+            块元素（block element）
+                -h1、p这种独占一行的元素称为块元素（block element）
+                -p元素中不能放任何块元素
+                -一般通过块元素进行页面布局
+            行内元素（inline element）
+                -b、em等不会独占一行的元素成为行内元素（inline element）
+                -一般行内元素内不放块元素
+            
+            浏览器在解析网页时，会自动对不符合规范的内容进行修正
+        -->
+
+        <!-- hgroup标签用于将多个标题标签放入一组 -->
+        <hgroup>
+            <h1>一级标题</h1>
+            <h2>二级标题</h2>
+        </hgroup>
+
+        <em>em 加重语气</em>
+        <br />
+        <strong>strong 强调</strong>
+        <br />
+        blockquote: 
+        <blockquote>
+            blockquote 长引用
+        </blockquote>
+        q: <q>q 短引用</q>
+    </div>
+    
+    <div>  <!-- 列表 -->
+        <h3>列表</h3>
+        <!-- 为了保证不同浏览器显示效果一致，一般只使用ul（去掉前面的点） -->
+        <!-- 列表可以嵌套 -->
+
+        无序列表
+        <ul>
+            <li>第一项</li>
+            <li>第二项</li>
+            <li>第三项</li>
+        </ul>
+
+        有序列表
+        <ol>
+            <li>第一项</li>
+            <li>第二项</li>
+            <li>第三项</li>
+        </ol>
+
+        结构列表（较少使用）
+        <dl>
+            <dt>名称</dt>
+            <dd>解释</dd>
+            <dd>解释</dd>
+        </dl>
+    </div>
+    
+    <div>  <!-- 超链接 -->
+        <!-- 
+            a标签-超链接
+                -属于行内元素，但是可以嵌套除了自身以外的任何元素（包括块元素）
+                -target属性，用来指定超链接打开位置
+                    _self 默认值，当前页
+                    _blank 新标签页
+         -->
+         <a href="#bottom">去底部</a>
+         <br />
+         <a href="https://www.baidu.com" target="_blank">百度</a>
+         <br />
+         <a href="javascript:;">这个超链接什么也不做</a>
+         <br />
+         <a href="#" >回到顶部</a>
+    </div>
+
+    <div>  <!-- 图片 -->
+        <!--
+            图片标签属于替换元素，具有两种属性的特点
+            - src 外部图片的路径，同超链接
+            - alt 图片描述。用于提供给搜索引擎检索。
+            - width,height（单位：像素）
+                - 如果只修改一个，另一个会等比例变化
+            常用图片格式
+                - jpeg,gif,png,webp,base64
+                    - webp兼容性不好
+                    - base64 将图片转为字符，可以使图片和网页一起加载。
+        -->
+        <img src="./imgs/世萌.png" alt="图片">
+        <img src="./imgs/世萌.png" alt="图片" width="100">
+    </div>
+
+    <div>  <!-- 内联框架（很少使用） -->
+        <!--
+            内联框架，属于替换元素，用于向当前页面引入一个其他页面
+            frameborder
+                - 0 无边框
+                - 1 有边框
+        -->
+        <iframe src="https://www.w3cschool.cn/htmltags/" width="400" height="200" frameborder="0"></iframe>
+    </div>
+
+    <div>  <!-- 音视频 -->
+        <!--
+            audio标签 用来向页面内引入一个外部的音频文件
+                - 默认不允许用户控制（即什么也不显示）
+                - IE8及以下不支持
+            属性
+                - controls 添加控制条
+                - autoplay 自动播放。但是大部分浏览器都不会自动播放
+                - loop 循环
+                - muted 静音
+        -->
+        <audio src="./audios/alarm_clock.wav" controls muted></audio>
+        <!--
+            除了通过src来指定外部路径以外，还可以通过source来指定文件
+            可指定多个音频文件，优先播放第一个可用的，忽略后面的
+            若找到可用音频，则其他内容均忽略
+        -->
+        <audio controls>
+            对不起，您的浏览器不支持播放音频！请升级浏览器！
+            <source src="./audios/alarm_clock.wav">
+        </audio>
+
+        <br />
+        <!--
+            video标签和audio标签使用方式基本一样
+            可以通过iframe引入其他网站的视频
+        -->
+        <video controls width="200">
+            <source src="./videos/flower.webm">
+        </video>
+    </div>
+    
+    <p id="bottom">底部</p>
+</body>
+</html>

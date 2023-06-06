@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的委派</title>
+</head>
+
+<body>
+    <button type="button" id="btn">按钮</button>
+
+    <ul id="list">
+        <li><a href="javascript:;">超链接一</a></li>
+        <li><a href="javascript:;">超链接二</a></li>
+        <li><a href="javascript:;">超链接三</a></li>
+        <li><a href="javascript:;">超链接四</a></li>
+    </ul>
+
+    <script>
+        const btn = document.getElementById("btn");
+        const list = document.getElementById("list");
+
+        // 点击超链接，弹出提示框
+        // 但是无法为新添加的li绑定事件
+        /* for (const link of links) {
+            link.addEventListener("click", event => {
+                alert(link.textContent);
+            });
+        } */
+
+        // 点击按钮，向ul中添加一个li
+        btn.addEventListener("click", event => {
+            list.insertAdjacentHTML("beforeend", '<li><a href="javascript:;">新超链接</a></li>');
+        });
+
+
+        /*
+            如何只绑定一次事件，即可让已有超链接和将来添加的超链接都绑定事件
+                思路1：将事件统一绑定给父元素
+                    但是父元素可能比子元素大，点击子元素外的地方也可能触发事件
+                    解决方案：
+                        判断触发事件的元素是否是子元素
+            
+            事件的委派：
+                委派就是将本该绑定给多个元素的事件，统一绑定给document
+                    - 也可以绑定给其他父元素，但统一绑定给document便于管理
+        */
+        // 绑定给ul也行
+        document.addEventListener("click", event => {
+            // 获取实时的links
+            const links = list.querySelectorAll("a");
+
+            // 将Collection转换为Array
+            // console.log(links);
+            // console.log(Array.from(links));
+
+            if ([...links].includes(event.target)) {
+                alert(event.target.textContent);
+            };
+        });
+    </script>
+</body>
+
+</html>

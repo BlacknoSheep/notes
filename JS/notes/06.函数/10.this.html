@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+    <script>
+        /*
+            this
+                - 函数在执行时，JS解析器每次都会传递一个隐含的参数
+                    这个参数就是this
+                - this所指向的对象会根据函数调用方式的不同而不同
+                    对于函数声明和函数表达式：
+                        1.以函数形式调用时（不论是在全局作用域还是在局部作用域），this指向window
+                            （本质上也是第二种，因为直接用function定义的函数会自动成为window的方法）
+                        2.以方法的形式调用时，this指向调用该方法的对象
+        */
+        console.log("this===window ",this===window);  // true
+        
+        function fun1(){
+            return this;
+        }
+        console.log("fun1()===window ",fun1()===window);  // true
+        
+        let obj1 = {};
+        obj1.f = fun1;
+        console.log("obj1.f()===obj1 ",obj1.f()===obj1);  // true
+
+        let obj2 = {};
+        obj2.f = fun1;
+        console.log("obj2.f()===obj2 ",obj2.f()===obj2)  // true
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包装类</title>
+    <script>
+        /*
+            在JS中，除了直接创建原始值以外，也可以创建原始值的对象
+                new String()
+                new Number()
+                new Boolean()
+            但是千万不要这么做
+        */
+        let strObj = new String("strObj");
+        console.log(strObj);
+        let boolObj1 = new Boolean(true);
+        let boolObj2 = new Boolean(true);
+        // alert(boolObj1);  // 弹窗 true
+        // alert(boolObj2);  // 弹窗 true
+        console.log(boolObj1===boolObj2);  // false     因为对象比较的是内存地址
+
+
+        /*
+            包装类：
+                JS中一共有5个包装类
+                    String  将字符串包装为String对象，下同
+                    Number
+                    Boolean
+                    BigInt
+                    Symbol
+                
+                通过包装类可以将一个原始值包装为一个对象
+                    当对原始值调用方法或属性时，JS解释器会临时将原始值包装为包装类
+                        然后调用这个对象的属性或方法
+                    
+                由于原始值会被转换为对应的对象，所以对象中的方法可以直接通过原始值调用
+        */
+        let str = "hello";
+        // 字符串没有name属性
+        console.log(str.name);  // undefined
+        str.name = "str的name";  // 对象临时创建，使用后就销毁
+        console.log(str.name);  // undefined    每次临时创建的对象时不同的
+
+        let num = 11;
+        // Number对象具有toString()方法
+        console.log(num.toString());  // "11"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

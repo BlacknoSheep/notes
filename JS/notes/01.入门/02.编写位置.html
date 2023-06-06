@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编写位置</title>
+
+    <!-- 1.直接写在script标签中 -->
+    <script>
+        document.write("写在script标签中")
+    </script>
+
+    <!-- 
+        2.引入外部js文件
+            引入后就不能再在内部写代码了
+            多个script标签会从上到下依次执行
+     -->
+    <script src="./script/02.js"></script>
+</head>
+<body>
+    <!-- 3.可以将js代码写到指定属性中 -->
+    <hr>
+    <button onclick="alert('写入指定属性中')">按钮</button>
+
+    <!-- 4.可以写入超链接中 -->
+    <hr>
+    <a href="javascript:alert('写入超链接中')">超链接</a>
+</body>
+</html>

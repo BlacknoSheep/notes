@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变形</title>
+
+    <style>
+        /*
+        变形：通过css来改变元素的形状或位置
+            注意：变形不会影响页面的布局
+                不会脱离文档流
+            - transform 用来设置元素的变形效果
+                多个transform效果之间用空格隔开
+                - 平移
+                    translateX() 沿着x轴方向平移
+                    translateY() 沿着Y轴方向平移
+                    translateZ() 沿着Z轴方向平移
+                    百分比是相对于自身计算
+
+        */
+        .outer{
+            border: 1px red solid;
+        }
+        
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+            margin-top: 50px;
+
+            transform: translateY(50%);
+        }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .outer2{
+            width: 300px;
+            height: 300px;
+            background-color: silver;
+            margin: 10px auto;
+            position: relative;
+        }
+        .box3{
+            background-color: orange;
+            position: absolute;
+
+            /* 以下居中方式只适用于元素大小确定的 */
+            /* width: 100px;
+            height: 100px;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto; */
+
+            left: 50%;  /* 中间偏右 */
+            transform: translateX(-50%) translateY(-50%);  /* 往回拉到中间 */
+            top: 50%;
+        }
+
+        .box4,.box5{
+            width: 100px;
+            height: 150px;
+            background-color: pink;
+            float: left;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .box4:hover,
+        .box5:hover{
+            transform: translateY(-4px);
+            box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="box1"></div>
+    </div>
+    <div class="box2"></div>
+
+    <div class="outer2">
+        <div class="box3">XXXX<br />XXXX</div>
+    </div>
+
+    <br />
+    <div class="box4"></div>
+    <div class="box5"></div>
+</body>
+</html>

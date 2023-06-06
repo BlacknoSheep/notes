@@ -1,0 +1,81 @@
+/*
+    css中的注释，会被解析到css文件中
+*/
+body {
+  width: 600px;
+  height: 600px;
+  background-color: #bfa;
+}
+body box1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin: 0 auto;
+}
+.box1 {
+  width: 400px;
+  height: 400px;
+  background-color: silver;
+}
+.box1 .box2 {
+  width: 200px;
+  height: 200px;
+  background-color: #bfa;
+}
+.box1 .box2 .box3 {
+  width: 50%;
+  height: 50%;
+  background-color: pink;
+}
+.box4 {
+  width: 500px;
+  height: 10px;
+  background-color: red;
+}
+.box5 {
+  width: 150px;
+  height: 150px;
+  background-color: blue;
+  background-image: url("box5/1.png");
+}
+.box10 .box11 {
+  color: red;
+}
+.box10 > .box12 {
+  color: red;
+}
+.box10:hover {
+  color: red;
+}
+.box10_sub1box {
+  color: red;
+}
+.e1,
+.e2 {
+  width: 100px;
+  height: 100px;
+}
+.e2 {
+  color: red;
+}
+.e3 {
+  width: 100px;
+  height: 100px;
+  color: blue;
+}
+.e5 {
+  width: 200px;
+  height: 200px;
+  columns: green;
+  background-color: #bfa;
+}
+.e6 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid aqua;
+}
+.other1 {
+  width: 150px;
+  height: 100px/2;
+}
+/*# sourceMappingURL=./02_syntax.css.map */

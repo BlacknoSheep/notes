@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数值</title>
+
+    <script>
+        /*
+            数值（Number）
+                - 所有整数和浮点数都是Number类型
+                - 数值并非无限大，超过一定范围后会显示近似值
+                    （可能比实际值大也可能比实际值小）
+                    （超过一定访问后会显示为科学计数法）
+                - Infinity 是一个特殊的数值，表示无穷
+                - NaN 表示非法的数值
+        */
+        let a = 10;
+        a = 9999999999999991;
+        a = 0.000000001;
+            // 浮点数计算结果不精确
+        a = 0.1 + 0.2;  // = 0.30000000000000004
+        a = Infinity;
+        a = NaN;
+        console.log(a)
+
+        /*
+            大整数（BigInt）
+                - 用来表示较大的整数
+                - 以n结尾，范围无限大（取决于内存大小）
+        */
+        let b = 999999999999999999999999n;
+        console.log(b)
+
+        /*
+            其他进制的数值：
+                二进制 0b
+                八进制 0o
+                十六进制 0x
+            打印出来时还是十进制形式
+        */
+        c = 0b1010;
+        c = 0o7575;
+        c = 0xfff;
+        console.log(c)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <style>
+        .outer {
+            width: 400px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        table {
+            width: 400px;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px black solid;
+            padding: 10px 0px;
+        }
+
+        form div {
+            margin: 10px 0px;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        "use strict";
+        $(function () {
+            // 删除，通过事件委托完成
+            $("table").on("click", "a", function () {
+                // 委托时，jQuery将this设置为了触发事件的对象（DOM对象）
+                // alert(this);
+                // var tr = this.parentNode.parentNode;
+
+                /*
+                    parents(选择器)
+                        - 在当前元素的祖先元素中寻找符合选择器的元素
+                */
+                var $tr = $(this).parents("tr");
+                // console.log($tr);
+
+                if (confirm("确认删除 " + $tr.children()[0].textContent + " 吗？")) {
+                    $tr.remove();
+                }
+
+                // 取消默认行为（同时也取消了冒泡）
+                return false;
+            });
+
+
+            // 添加
+            $("#btn_add").click(function () {
+                // 获取用户输入的内容
+                // trim()  去除前后的空格
+                var name = $("#name").val().trim();
+                var email = $("#email").val().trim();
+                var salary = $("#salary").val().trim();
+
+                // 存在xss攻击风险
+                // $("tbody").append("<tr><td>" + name + "</td><td>" + email + "</td><td>" + salary + "</td><td><a href='javascript:;'>删除</a></td></tr>");
+
+                // 创建一个tr
+                var $tr = $("<tr><td/><td/><td/><td><a href='javascript:;'>删除</a></td>");
+                // 添加内容
+                // var $tds = $tr.children();
+                var $tds = $tr.find("td");
+                $tds.eq(0).text(name);
+                $tds.eq(1).text(email);
+                $tds.eq(2).text(salary);
+
+                // 将tr添加到tbody中
+                $("tbody").append($tr);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="outer">
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>邮箱</th>
+                    <th>薪资</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>孙悟空</td>
+                    <td>swg@hgs.com</td>
+                    <td>10000</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>猪八戒</td>
+                    <td>zbj@glz.com</td>
+                    <td>8000</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>沙和尚</td>
+                    <td>shs@lsh.com</td>
+                    <td>6000</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form action="#">
+            <div>
+                <label for="name">姓名</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div>
+                <label for="email">邮箱</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div>
+                <label for="salary">薪资</label>
+                <input type="text" name="salary" id="salary">
+            </div>
+            <button type="button" id="btn_add">添加</button>
+        </form>
+    </div>
+</body>
+
+</html>

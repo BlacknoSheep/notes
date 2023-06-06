@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型转换-数值</title>
+    <script>
+        /*
+            将其他数据类型转换为数值
+                1.使用Number()函数进行转换
+                    转换的情况：
+                        - 字符串
+                            - 如果字符串是合法的数字，则会转换为对应的数字
+                            - 若为不合法数字，则转换为NaN
+                            - 若未空串或纯空格，则转换为0
+
+                        - 布尔值
+                            - true转换为1，false转换为0
+
+                        - null转换为0
+                        - undefined转换为NaN
+        */
+        let a = "123";
+        console.log(typeof a, a);
+
+        a = Number(a);
+        console.log(typeof a, a);
+
+        a = "123px";
+        a = Number(a);
+        console.log(typeof a, a);  // NaN
+
+        a = Number("   ");
+        console.log(a);
+
+        /*
+            专门将字符串转换为数值的两个方法
+                parseInt() -- 将一个字符串转换为一个整数
+                    - 解析时，会自左向右进行读取，只取前面的有效整数部分
+                        若开头就不是字符串，则返回NaN
+                        可以使用parseInt()取整（忽略小数点及以后的部分）
+                            性能不太好（会发生多次类型转换）
+                parseFloat() -- 将一个字符串转为一个浮点数
+                    - 解析时，自左向右读取，只取前面有效的浮点数部分
+        */
+        let b = "12.34px";
+        console.log(typeof b, b);
+
+        b = parseInt(b);
+        console.log(typeof b, b);
+
+        b = parseFloat("12.34px");
+        console.log(typeof b, b);
+
+        // 取整
+        b = parseInt(12.34);
+        console.log(typeof b, b);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动的其他特点</title>
+
+    <style>
+        *{
+            margin: 0;
+            border: 0;
+        }
+        /*
+        浮动元素不会盖住文字，文字会自动环绕在浮动元素周围
+            所以可以通过浮动来设置文字环绕图片的效果
+        */
+        .box1{
+            width: 500px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+
+        /*
+        元素设置为浮动后，会脱离文档流
+        脱离文档流的元素的一些特点也会发生改变
+        脱离文档流的特点：
+            块元素：
+                - 不再独占一行
+                - 宽高默认被内容撑开
+            
+            行内元素：
+                - 脱离文档流后会变为块元素，特点和块元素一样
+        */
+        .box2 > span{
+            width: 50px;
+            height: 50px;
+            background-color: #bfa;
+            float: right;
+        }
+
+        .dividing{
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="text">
+        <p>私が先生と知り合いになったのは鎌倉かまくらである。その時私はまだ若々しい書生であった。暑中休暇を利用して海水浴に行った友達からぜひ来いという端書はがきを受け取ったので、私は多少の金を工面くめんして、出掛ける事にした。私は金の工面に二に、三日さんちを費やした。ところが私が鎌倉に着いて三日と経たたないうちに、私を呼び寄せた友達は、急に国元から帰れという電報を受け取った。電報には母が病気だからと断ってあったけれども友達はそれを信じなかった。友達はかねてから国元にいる親たちに勧すすまない結婚を強しいられていた。彼は現代の習慣からいうと結婚するにはあまり年が若過ぎた。それに肝心かんじんの当人が気に入らなかった。それで夏休みに当然帰るべきところを、わざと避けて東京の近くで遊んでいたのである。彼は電報を私に見せてどうしようと相談をした。私にはどうしていいか分らなかった。けれども実際彼の母が病気であるとすれば彼は固もとより帰るべきはずであった。それで彼はとうとう帰る事になった。せっかく来た私は一人取り残された。</p>
+    </div>
+    <div class="dividing">
+        <span>分界线</span>
+    </div>
+    <div class="box2">
+        <span>hello</span>
+    </div>
+</body>
+</html>

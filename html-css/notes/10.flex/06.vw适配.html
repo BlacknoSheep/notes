@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 
+        完美视口
+        device-width 设备的逻辑分辨率
+     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <meta name="viewport" content="width=200px"> -->
+
+    <title>移动端</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html{
+            /*
+            网页中字体大小最小是12px（0除外）
+            对于width=750px的设计图（一般为375的整数倍）
+                0.1333vm = 1px
+                5.3333vm = 40px
+            
+            设置font-size: 5.3333vm;后
+                1rem = 5.3333vm = 40px
+            因此，设置好之后，可以方便地计算设计图上的尺寸对应的rem大小
+                100px = 100/40 = 2.5rem
+            */
+            font-size: 5.3333vm;
+        }
+
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+        }
+    </style>
+</head>
+<body>
+      <div class="box1"></div>
+</body>
+</html>

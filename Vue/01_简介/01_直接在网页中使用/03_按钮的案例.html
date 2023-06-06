@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01_简介</title>
+    <!-- 引入Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // 创建一个按钮，显示被点击的次数
+      const Root = {
+        data() {
+          return {
+            count: 0, // 被点击的次数
+            // data中的数据会自动和使用它的视图绑定，当数据发生变化时，视图也会自动更新
+          };
+        },
+        template: "<button @click='++count'>点我一下</button>，被点击了 {{ count }} 次",
+      };
+      const app = Vue.createApp(Root);
+      app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sessionStorage</title>
+  </head>
+  <body>
+    <h2>本地存储的演示 sessionStorage</h2>
+    <button id="btn01">存</button>
+    <button id="btn02">取</button>
+    <button id="btn03">删</button>
+    <button id="btn04">清空</button>
+
+    <script>
+      const btn01 = document.getElementById("btn01");
+      const btn02 = document.getElementById("btn02");
+      const btn03 = document.getElementById("btn03");
+      const btn04 = document.getElementById("btn04");
+
+      btn01.onclick = () => {
+        /*
+          sessionStorage
+            保存在浏览器的 应用-会话存储空间 中，仅在当前页面有效
+            setItem() 用来存储数据
+            getItem() 读取数据
+            removeItem() 删除数据
+            clear()  清空数据
+        */
+        sessionStorage.setItem("name", "Taffy");
+        console.log(sessionStorage);
+      };
+      btn02.onclick = () => {
+        const name = sessionStorage.getItem("name");
+        console.log(name);
+      };
+      btn03.onclick = () => {
+        sessionStorage.removeItem("name");
+        console.log(sessionStorage);
+      };
+      btn04.onclick = () => {
+        sessionStorage.clear();
+        console.log(sessionStorage);
+      };
+    </script>
+  </body>
+</html>

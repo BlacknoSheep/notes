@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+
+    <style>
+        /*
+        font-face可以将服务器中的字体直接提供给用户使用
+        问题：
+            1.加载速度
+            2.版权
+        */
+        @font-face {
+            /* 指定字体名字 */
+            font-family: "myfont";
+            /* 服务器中字体路径，多个路径用,隔开，使用第一个可用的 */
+            /* format可省略（由浏览器自行判断） */
+            src: url(./font/xxx.ttf) format("truetype"),
+                 url(./font/xxx2.ttf);
+        }
+        
+        /*
+        字体相关样式
+            - color 颜色
+            - font-size 字体大小
+                和font-size相关单位
+                    em 相当于当前元素的一个font-size
+                    rem 相当于根元素的一个font-size
+            - font-family
+                可选值：
+                    serif 衬线字体
+                    sans-serif 非衬线字体
+                    monospace 等宽字体
+                指定字体的类别，浏览器自动使用该类别下的字体
+
+                可以同时指定多个字体，用,隔开
+                    优先使用第一个，第一个无法使用则使用第二个，以此类推
+        */
+        p{
+            color: red;
+            font-size: 25px;
+            font-family: 'Courier New', Courier, monospace;
+            /* font-family: myfont; */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>或日あるひの暮方の事である。HHII</p>
+    </div>
+</body>
+</html>

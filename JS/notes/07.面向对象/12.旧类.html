@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旧类</title>
+    <script>
+        /*
+            早期JS中，直接通过函数来定义类
+                - 一个函数如果直接以 xxx() 形式，那么这个函数就是一个普通函数
+                - 如果通过 new 调用，那么就是一个构造函数
+        */
+        function Person(){}
+        const p1 = new Person();  // 创建了Person类对象
+
+        // 添加属性
+        function Dog(name,age){
+            this.name = name;
+            this.age = age;
+
+            this.fn1 = () => {};  // 添加在对象中，不推荐
+        }
+
+        // 添加方法
+        Dog.prototype.sayHello = () => {console.log("Hello")};  // 添加在Dog实例的原型中
+
+        console.log(Dog);
+
+        // 添加静态属性
+        Dog.staticP1 = "静态属性";
+        // 添加静态方法
+        Dog.staticF1 = () => {console.log("静态方法1")};
+
+        const dog = new Dog("旺财",5);
+        console.log(dog);
+
+
+        /*
+            这种定义方式会导致类的各部分分离开来，不是一个整体
+            可以使用立即执行函数将其构成一个整体
+        */
+        const Cat = (function(){  // 用Cat接收创建的类
+            function Cat(name){
+                this.name = name;
+            }
+
+            Cat.prototype.sayHello = function(){
+                console.log("Hello, cat "+this.name+"!");
+            };
+
+            return Cat;  // 返回创建的类
+        }());
+
+        const cat = new Cat("Tom");
+        console.log(cat);  // Cat {name: 'Tom'}
+        cat.sayHello();  // "Hello, cat Tom!"
+
+        // 继承
+        const TinyCat = (function(){
+            function TinyCat(name){
+                this.name = name;
+            }
+
+            TinyCat.prototype = new Cat();
+
+            return TinyCat;
+        }());
+
+        const tinyCat = new TinyCat("小猫咪");
+        console.log(tinyCat);  // TinyCat {name: '小猫咪'}
+        tinyCat.sayHello();  // "Hello, cat 小猫咪!"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

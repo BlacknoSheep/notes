@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数作为参数</title>
+    <script>
+        function callFun(fun,argument){
+            fun(argument);
+        }
+        
+        // 将函数作为参数
+        callFun(function(){console.log("我是匿名函数")});  // "我是匿名函数"
+        callFun(()=>console.log("我是箭头函数"));  // "我是箭头函数"
+        callFun((content="")=>console.log("传入内容为：", content),"切割喵");  // "传入内容为： 切割喵"
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

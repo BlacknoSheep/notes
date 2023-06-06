@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定定位</title>
+
+    <style>
+        body{
+            font-size: 50px;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        /*
+        固定定位：position: fixed;
+        固定定位也是一种绝对定位，大部分特点都和绝对定位相同
+            - 唯一不通点是固定定位永远参照于浏览器的视口
+                所以不会随滚动条滚动
+        */
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+
+            position: fixed;
+            left: 0px;
+            top: 0px;
+        }
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+        
+        .box4{
+            width: 300px;
+            height: 300px;
+            background-color: #bfa;
+
+            position: relative;
+        }
+        
+        .box5{
+            width: 200px;
+            height: 200px;
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box4">4
+        <div class="box5">5
+            <div class="box2">2</div>
+        </div>
+    </div>
+    <div class="box3">3</div>
+</body>
+</html>
