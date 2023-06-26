@@ -19,9 +19,6 @@
    </script>
    ```
 
-   
-
-
 # 二、虚拟 DOM 和 Diff 算法
 
 参考资料
@@ -81,9 +78,49 @@ var element = {
    readonlyObj.name = "Jerry"; // Error，只读属性无法赋值
    
    const obj2 = shallowReactive({ goods: { name: "apple" } }); // 浅层响应式对象
+   isReactive(goods.name) // false
    ```
 
-## 3. 注意：**深层响应式对象更新时，会触发页面的重新渲染，此时浅层响应式对象的属性也会同步到页面上**
+注意1：**深层响应式对象更新时，会触发页面的重新渲染，此时浅层响应式对象的属性也会同步到页面上**
+
+注意2：尽量不要将浅层响应式对象嵌套在深层响应式对象中，这会导致对象的不同部分响应性不一致。
+
+## 3. `markRaw()`
+
+   将一个对象标记为不可被转为代理。返回该对象本身。
+
+   ```javascript
+   const foo = markRaw({})
+   console.log(isReactive(reactive(foo))) // false
+   
+   // 也适用于嵌套在其他响应性对象
+   const bar = reactive({ foo })
+   console.log(isReactive(bar.foo)) // false
+   ```
+
+> **谨慎使用！**
+>
+> `markRaw()` 和类似 `shallowReactive()` 这样的浅层式 API 使你可以有选择地避开默认的深度响应/只读转换，并在状态关系谱中嵌入原始的、非代理的对象。它们可能出于各种各样的原因被使用：
+>
+> - 有些值不应该是响应式的，例如复杂的第三方类实例或 Vue 组件对象。
+> - 当呈现带有不可变数据源的大型列表时，跳过代理转换可以提高性能。
+>
+> 可能会导致**对象身份风险**，即执行一个依赖于对象身份的操作，但却同时使用了同一对象的原始版本和代理版本：
+>
+> ```js
+> const foo = markRaw({
+>   nested: {}
+> })
+> 
+> const bar = reactive({
+>   // 尽管 `foo` 被标记为了原始对象，但 foo.nested 却没有
+>   nested: foo.nested
+> })
+> 
+> console.log(foo.nested === bar.nested) // false
+> ```
+>
+> 
 
 ## 4. `toRef`、`toRefs`、`toRaw`
 
@@ -189,7 +226,7 @@ var element = {
 
 ## 1. [组件的生命周期](https://xiaoman.blog.csdn.net/article/details/122811060)
 
-<img src="./images/组件的生命周期.png"></img>
+<img src="./images/组件的生命周期.png">
 
 ## 2. 父子组件传参 `Props`
 
@@ -233,7 +270,7 @@ var element = {
    父组件传递回调函数给子组件
 
    ```html
-   <!-- 父组件 --><!-- 父组件 -->
+   <!-- 父组件 -->
    <A @show-msg="(msg) => console.log(msg)"></A>
    
    <!-- 子组件A -->
@@ -320,3 +357,133 @@ const props = defineProps(["count"]);
 </style>
 ```
 
+## 7. 动态组件
+
+```vue
+<template>
+  <component :is="A"></component>
+  <!-- 等价于 -->
+  <A></A>
+</template>
+
+<script setup>
+import A from "./components/A.vue";
+</script>
+```
+
+## 8. 插槽 `slot`
+
+8.1 插槽入口的内容会替换插槽出口的内容，若入口无内容，则显示默认内容
+
+```vue
+<!-- App.vue -->
+<C>插入的内容</C> <!-- 插槽入口 -->
+
+<!-- C.vue -->
+<div>
+  <slot>默认内容</slot> <!-- 插槽出口 -->
+</div>
+```
+
+<img src="./images/slot.png">
+注意1：插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。
+
+8.2 具名插槽
+
+一个组件中包含多个插槽时，为了区分，可以使用具名插槽
+
+```vue
+<!-- App.vue -->
+<template>
+  <C>
+    插入默认插槽
+    <template v-slot:box1> 插入具名插槽 </template> <!-- v-slot:box1 可以简写为 #box1 -->
+  </C>
+</template>
+
+<div class="box1">
+  <slot :name="`box1`"></slot> <!-- 插槽名为 `box1` -->
+</div>
+<div class="box2">
+  <slot></slot> <!-- 默认插槽名为 `default`，有其他具名插槽时，最好也显式标明 defalut -->
+</div>
+```
+
+注意1：插槽名支持动态参数
+
+```vue
+<base-layout>
+  <template #[dynamicSlotName]>
+    ...
+  </template>
+</base-layout>
+```
+
+8.3 作用域插槽
+
+默认情况下，插槽只能访问父组件作用域中的内容，无法访问到子组件的内容。
+
+可以使用作用域插槽将子组件的参数传递给父组件。
+
+```vue
+<!-- 父组件 -->
+<C>
+  <template v-slot:box1="box1Props"> 插入具名插槽 -- {{ box1Props.msg1 }} </template>
+</C>
+
+<!-- 子组件 -->
+<div class="box1">
+  <slot :name="`box1`" :msg1="msg1"></slot>
+</div>
+```
+
+## 9. 异步组件（通过顶层 `await`）
+
+`<script setup>` 中可以使用顶层 `await`。结果代码会被编译成 `async setup()`：
+
+```vue
+<!-- AsyncComp.vue -->
+<script setup>
+const post = await fetch(`/api/post/1`).then((r) => r.json())
+</script>
+```
+
+通过 `defineAsyncComponent()` 引入异步组件
+
+```js
+import { defineAsyncComponent } from 'vue'
+
+const AsyncComp = defineAsyncComponent(() => {
+  return new Promise((resolve, reject) => {
+    // ...从服务器获取组件
+    resolve(/* 获取到的组件 */)
+  })
+})
+```
+
+`defineAsyncComponent` 方法接收一个返回 **Promise** 的加载函数。这个 Promise 的 `resolve` 回调方法应该在从服务器获得组件定义时调用。
+
+[ES 模块动态导入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import)也会返回一个 Promise，可以用它来导入 Vue 单文件组件
+
+```js
+import { defineAsyncComponent } from 'vue'
+
+const AsyncComp = defineAsyncComponent(() =>
+  import('./components/AsyncComp.vue')
+)
+```
+
+通过 `<Suspense>` 使用异步组件
+
+```vue
+<template>
+  <Suspense> <!-- 有两个插槽 -->
+    <template #default>
+      <AsyncComp></AsyncComp>
+    </template>
+    <template #fallback>
+      <div>loading...</div> <!-- 加载完成前显示的内容 -->
+    </template>
+  </Suspense>
+</template>
+```
