@@ -151,6 +151,10 @@ git merge <本地分支名> <远程主机名>/<远程分支名>
 git pull <远程主机名> <远程分支名>:<本地分支名>
 # 若与当前分支合并，可省略 <本地分支名>
 git pull <远程主机名> <远程分支名>
+
+# 若出现 fatal: refusing to merge unrelated histories
+# 则加上 --allow-unrelated-histories
+git pull origin main --allow-unrelated-histories
 ```
 注意：推送代码之前，一定要先从远程库拉取最新的代码
 
