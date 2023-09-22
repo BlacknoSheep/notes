@@ -1,6 +1,6 @@
 https://www.sass.hk/docs/
 
-## 常用语法
+# 常用语法
 
 1. 嵌套规则
 
@@ -158,5 +158,3 @@ https://www.sass.hk/docs/
      font-size: 20px;
    }
    ```
-
-   
