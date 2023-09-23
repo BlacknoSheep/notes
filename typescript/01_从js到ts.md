@@ -789,3 +789,80 @@ let arr = [...nums];
 console.log(arr); // [0, 1, 2]
 ```
 
+## 4. 命名空间
+
+TypeScript 与 ECMAScript 2015一样，任何包含**顶级 import** 或者 **export** 的文件都被当成一个模块。相反地，如果一个文件不带有顶级的 import 或者 export 声明，那么它的内容被视为全局可见的（可见但不可用），会造成全局变量污染。
+
+可通过命名空间（namespace）来解决名称冲突。
+
+```typescript
+// 只有通过 export 导出的变量和函数可以在外部访问。
+namespace A {
+  export let value = 1;
+  export function fn() {
+    console.log(value);
+  }
+}
+
+A.value = 2;
+A.fn();
+```
+
+命名空间可以嵌套：
+
+```typescript
+namespace B {
+  export namespace C {
+    export namespace D {
+      export const val = 1;
+    }
+  }
+}
+console.log(B.C.D.val);
+```
+
+将命名空间抽离为一个文件。
+
+```typescript
+// test.ts
+export namespace A {
+  export let val = 1;
+}
+
+// index.ts
+import { A } from "./test";
+console.log(A.val); // 1
+```
+
+可以用 `import` 为导入的命名空间定义别名。
+
+```typescript
+// test.ts
+export namespace A {
+  export namespace B {
+    export let val = 1;
+  }
+}
+
+// index.ts
+import { A } from "./test";
+import AB = A.B;
+console.log(AB.val); // 1
+```
+
+同名命名空间会合并。
+
+```typescript
+export namespace A {
+  export let val1 = 1;
+}
+
+export namespace A {
+  export let val2 = 2;
+}
+
+console.log(A.val1, A.val2); // 1 2
+```
+
+
+
