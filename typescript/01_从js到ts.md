@@ -620,6 +620,14 @@ type T1 = Person2<Person>;
 // }
 ```
 
+## 19. 仅导入声明
+
+```typescript
+import type { foo } from "xxx";
+
+export type { foo };
+```
+
 
 
 # 三、补充内容
