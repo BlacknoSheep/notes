@@ -34,11 +34,6 @@ pnpm install webpack-dev-server -D
 ### 2.2 在 `webpack.config.js` 中进行配置
 
 ```javascript
-// webpack时CommonJS规范，直接使用 import { Configuration } from "webpack"; 会报错
-import webpack from "webpack";
-const { Configuration } = webpack;
-// import { Configuration } from "webpack"; // 仅用于获取类型提示，写好后注意注释掉这一行
-
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
@@ -48,8 +43,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 提供类型提示
-/**
- * @type {Configuration}
+/** 
+ * @type {import("webpack").Configuration}
  */
 
 export default {
@@ -156,8 +151,9 @@ export default {
 
 ```javascript
 // webpack.config.js
+// webpack是CommonJS规范，直接使用 import { DefinePlugin } from "webpack"; 会报错
 import webpack from "webpack";
-const { Configuration, DefinePlugin } = webpack;
+const { DefinePlugin } = webpack;
 
 // 在 export default 中添加
 plugins: [
