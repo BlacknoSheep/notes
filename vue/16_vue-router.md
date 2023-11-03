@@ -526,3 +526,5 @@ router.addRoute({ name: 'admin', path: '/admin', component: Admin }) // 动态�
 router.addRoute('admin', { path: 'settings', component: AdminSettings }) // 动态添加子路由
 ```
 
+添加同 name 的路由时，会先删除旧的，再添加新的。
+
