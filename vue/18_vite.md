@@ -43,9 +43,10 @@ export default defineConfig({
 
 如果改用cdn引入，需要自己写插件。
 
-首先在 tsconfig.node.json中添加：
+首先在 tsconfig.node.json 中添加：
 
 ```json
+// tsconfig.node.json
 {
   "compilerOptions": {
     "paths": {
@@ -61,40 +62,44 @@ export default defineConfig({
 ```typescript
 // ./plugins/rollup-plugin-external-import-rewrite/index.ts
 /*
-通过字符串替换的方式，将打包好的js文件中的import语句改为全局变量
-！！：请务必设置 viteconfig.build.minify:true（默认值），否则可能会替换失败
-！！：使用前请确保先格式化代码
-！！：由于是全局字符串替换，可能会导致对包含import语句的字符串进行更改
+通过字符串替换的方式，将打包好的js文件中的import语句改为全局变量，并在html文件中添加cdn链接
+!!!: 请务必设置 viteconfig.build.minify:true（默认值），否则可能会替换失败
+!!!: 使用前请确保先格式化代码
+!!!: 由于是全局字符串替换，可能会导致对包含import语句的字符串进行更改
 */
 import type { Plugin } from "~/node_modules/.pnpm/rollup@3.29.4/node_modules/rollup/dist/rollup.d.ts";
 
-interface ExternalImportRewriteMap {
-  // key: 要从外部导入的包，value: 对应的全局变量，""表示删除该import语句（如删除css）
-  [key: string]: string;
+interface CdnImportMap {
+  // key: 要从外部导入的包名
+  [key: string]: {
+    globalVal: string; // 对应的全局变量，""表示删除该import语句（如删除css）
+    cdn?: string; // 对应的cdn地址
+  };
 }
 
-export default function externalImportRewritePlugin(map: ExternalImportRewriteMap): Plugin {
-  let externals = Object.keys(map);
+export default function CdnImportPlugin(map: CdnImportMap): Plugin {
+  const externals = Object.keys(map);
   return {
     name: "external-import-rewrite",
     version: "0.0.1",
     generateBundle(options, bundle) {
       for (const filename in bundle) {
         if (filename.endsWith(".js")) {
+          // 将js文件中的import语句改为全局变量
           let code: string = bundle[filename]["code"];
           // 读取所有import语句
           const regex = RegExp(`import.+?";`, "g");
           const ipts = code.match(regex);
           const replaceMap = new Map<string, string>(); // 需要替换的import语句
           for (const ipt of ipts) {
-            let replaceIpt: string = ipt;
-            const iptSource = ipt.split(`"`).at(-2);
+            let replaceIpt: string = ipt; // 替换后的import语句
+            const iptSource: string = ipt.split(`"`).at(-2);
             if (externals.includes(iptSource)) {
               if (!ipt.includes("from")) {
-                replaceMap.set(ipt, map[iptSource]);
+                replaceMap.set(ipt, map[iptSource].globalVal);
                 continue;
               }
-              const iptTarget = map[iptSource];
+              const iptTarget: string = map[iptSource].globalVal;
               // 拆分如 import Vue, { createApp } from "vue"; 的语句
               replaceIpt = replaceIpt.replace(/,\s?{/, ` from"${iptSource}";import{`);
               // 删除与全局变量同名的import语句
@@ -115,16 +120,34 @@ export default function externalImportRewritePlugin(map: ExternalImportRewriteMa
           console.log("\n");
           replaceMap.forEach((value, key) => {
             code = code.replace(key, value);
-            console.log(`\x1b[32m[external-import-rewrite]\x1b[0m ${key} => ${value}`);
+            // console.log(`\x1b[32m[external-import-rewrite]\x1b[0m ${key} => ${value}`);
           });
           bundle[filename]["code"] = code;
+        } else if (filename == "index.html") {
+          let code: string = bundle[filename]["source"];
+          // title标签行的缩进
+          const indent: string = code.match(/(?<=\n)(\s*)<title>/)?.[1];
+          // 在html文件中添加cdn链接
+          let replaceHtml: string = "</title>\n";
+          for (const external of externals) {
+            const cdn: string = map[external].cdn;
+            if (cdn) {
+              if (cdn.endsWith(".css")) {
+                replaceHtml += `${indent}<link rel="stylesheet" href="${cdn}">\n`;
+              } else {
+                replaceHtml += `${indent}<script src="${cdn}"></script>\n`;
+              }
+            }
+          }
+          code = code.replace("</title>\n", replaceHtml);
+          bundle[filename]["source"] = code;
         }
       }
     },
   };
 }
 
-export { ExternalImportRewriteMap };
+export { CdnImportMap };
 ```
 
 在 vite.config.ts 中配置
@@ -133,12 +156,21 @@ export { ExternalImportRewriteMap };
 // vite.config.ts
 import { defineConfig } from "vite";
 // 重写外部导入，以对接cdn导入
-import externalImportRewritePlugin, { ExternalImportRewriteMap } from "./plugins/rollup-plugin-external-import-rewrite";
+import CdnImportPlugin, { CdnImportMap } from "./plugins/rollup-plugin-cdn-import";
 
-const externalMap: ExternalImportRewriteMap = {
-  vue: "Vue",
-  "element-plus": "ElementPlus",
-  "element-plus/dist/index.css": "",
+const externalMap: CdnImportMap = {
+  vue: {
+    globalVal: "Vue",
+    cdn: "https://unpkg.com/vue@3/dist/vue.global.prod.js",
+  },
+  "element-plus": {
+    globalVal: "ElementPlus",
+    cdn: "https://unpkg.com/element-plus@2.4.2/dist/index.full.js",
+  },
+  "element-plus/dist/index.css": {
+    globalVal: "",
+    cdn: "https://unpkg.com/element-plus/dist/index.css",
+  },
 };
 
 // https://vitejs.dev/config/
@@ -147,7 +179,7 @@ export default defineConfig({
     rollupOptions: {
       // 外部化依赖，不会打包到库中 https://cn.rollupjs.org/configuration-options/#external
       external: [...Object.keys(externalMap)],
-      plugins: [externalImportRewritePlugin(externalMap)],
+      plugins: [CdnImportPlugin(externalMap)],
     },
   },
 });
