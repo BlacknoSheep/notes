@@ -250,7 +250,9 @@ store.$onAction((args) => {
 });
 ```
 
-# 四、[组合式 store](https://pinia.vuejs.org/zh/core-concepts/#setup-stores)
+# 四、组合式 store
+
+[组合式 store](https://pinia.vuejs.org/zh/core-concepts/#setup-stores)
 
 可以以组合式函数的形式定义 store。在组合式函数中：
 

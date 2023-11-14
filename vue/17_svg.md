@@ -1,4 +1,6 @@
-# 一、[vite-plugin-svg-icons](https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md#vite-plugin-svg-icons)
+# 一、通过vite插件进行管理
+
+[vite-plugin-svg-icons](https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md#vite-plugin-svg-icons)
 
 一次生成所有svg文件的雪碧图。
 

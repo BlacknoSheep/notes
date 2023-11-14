@@ -185,9 +185,9 @@ export default defineConfig({
 });
 ```
 
-# 二、[vite 环境变量](https://cn.vitejs.dev/guide/env-and-mode.html#env-variables-and-modes)
+# 二、vite 环境变量
 
-可通过 `import.meta.env` 获取当前的 vite 环境变量
+可通过 `import.meta.env` 获取当前的 [vite 环境变量](https://cn.vitejs.dev/guide/env-and-mode.html#env-variables-and-modes)。
 
 在生产环境中，这些环境变量会在构建时被**静态替换**，因此，在引用它们时请使用完全静态的字符串。动态的 key 将无法生效。例如，动态 key 取值 `import.meta.env[key]` 是无效的。
 

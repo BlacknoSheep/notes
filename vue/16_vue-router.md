@@ -85,7 +85,9 @@ app.mount("#app");
 </template>
 ```
 
-# 二、[不同历史模式](https://router.vuejs.org/zh/guide/essentials/history-mode.html)
+# 二、不同历史模式
+
+[不同历史模式](https://router.vuejs.org/zh/guide/essentials/history-mode.html)
 
 ## 1. hash 模式
 
@@ -334,9 +336,9 @@ const routes: Array<RouteRecordRaw> = [
 ];
 ```
 
-# 十、[导航守卫](https://router.vuejs.org/zh/guide/advanced/navigation-guards.html)
+# 十、导航守卫
 
-作用类似于中间件，在跳转到下一个路由前调用。
+[导航守卫](https://router.vuejs.org/zh/guide/advanced/navigation-guards.html)的作用类似于中间件，在跳转到下一个路由前调用。
 
 ## 1. `router.beforeEach()`
 

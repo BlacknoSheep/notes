@@ -484,7 +484,9 @@ val = "hello";
 - 同名 interface 会合并。而别名是不允许重复的。
 - interface 可以通过 extends 继承 interface 或 type 。type 只能通过交叉类型（&）实现类似继承的效果。
 
-## 16. [extends 的用法](https://blog.csdn.net/qq_34998786/article/details/120300361)
+## 16. extends
+
+[extends 的用法](https://blog.csdn.net/qq_34998786/article/details/120300361)
 
 1. 用于类或 interface 继承
 

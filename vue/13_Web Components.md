@@ -1,6 +1,6 @@
-# 一、[原生 Web Component](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components)
+# 一、原生 Web Component
 
-Web Component 是一套自定义元素的技术。
+[Web Component](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components)是一套自定义元素的技术。
 
 ```javascript
 // index.js
