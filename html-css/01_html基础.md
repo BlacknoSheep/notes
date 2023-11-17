@@ -82,3 +82,13 @@
 <a href="javascript:;">这个超链接什么也不做</a>
 ```
 
+# 二、BEM命名规范
+
+块（block）、元素（element）、修饰符（modifier）
+
+```css
+.block {}
+.block__element {}
+.block--modifier {}
+.block__element--modifier {}
+```

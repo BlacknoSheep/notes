@@ -14,6 +14,7 @@ export default defineConfig({
       symbolId: "icon-[dir]-[name]",
     }),
   ],
+  // 路径别名，供src下的文件使用，使用绝对路径以获得正确的路径
   resolve: {
     alias: {
       "@": path.resolve("./src"),
@@ -49,6 +50,8 @@ export default defineConfig({
 // tsconfig.node.json
 {
   "compilerOptions": {
+    // 为了ts不报错，实际使用的是vite.config.json中设置的路径别名
+    "baseUrl": ".",
     "paths": {
       "~/*": ["./*"]
     }

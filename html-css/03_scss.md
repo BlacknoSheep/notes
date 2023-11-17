@@ -1,4 +1,4 @@
-https://www.sass.hk/docs/
+https://sass-lang.com/
 
 # 常用语法
 
