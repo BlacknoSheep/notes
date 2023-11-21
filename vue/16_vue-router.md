@@ -68,7 +68,7 @@ app.mount("#app");
 
 切换路由
 
-`/` 表示根url（`http://localhost:5173`），若不加或使用 `./` 则是相对url，相对于当前目录，如从`http://localhost:5173/a/b` 页面点击 `c` ，则会跳转到 `http://localhost:5173/a/c` 。
+`/` 表示根url（如`http://localhost:5173`），若不加或使用 `./` 则是相对url，相对于当前目录，如从`http://localhost:5173/a/b` 页面点击 `c` ，则会跳转到 `http://localhost:5173/a/c` 。
 
 由于相对url在不同页面会有不同的值，最好避免使用。
 
