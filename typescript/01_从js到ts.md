@@ -236,6 +236,7 @@ let users: string[] = ["A", "B", "C"];
 function getUser(): string[];
 function getUser(id: number): string;
 function getUser(ids: number[]): string[];
+// 上面几行用于解决ts爆红，下面的函数实现真正的逻辑
 function getUser(idOrIds?: number | number[]): string | string[] {
   if (typeof idOrIds === "number") {
     return users[idOrIds];
@@ -774,6 +775,7 @@ let arr2 = [...arr];
 - 可以手动为对象实现迭代器接口
 
 ```typescript
+const nums = {
   min: 0,
   max: 3,
   [Symbol.iterator]() {
