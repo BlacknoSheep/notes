@@ -289,6 +289,8 @@ export const useTestStore = defineStore("test", () => {
 
 pinia 保存的状态在页面刷新后会丢失，需要通过插件实现持久化。
 
+## 1. 手写持久化插件
+
 ```typescript
 // persistedPiniaPlugin.ts
 import { toRaw } from "vue";
@@ -329,5 +331,13 @@ export default function persistedPiniaPlugin(options: PiniaPluginOptions | undef
     };
   };
 }
+```
+
+## 2. 安装已有的持久化插件
+
+https://prazdevs.github.io/pinia-plugin-persistedstate/zh/guide/
+
+```bash
+pnpm install pinia-plugin-persistedstate
 ```
 
