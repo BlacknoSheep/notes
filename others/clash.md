@@ -97,3 +97,15 @@ function main(params) {
 }
 ```
 
+# 二、其他
+
+## clash for linux
+
+```bash
+# 添加执行权限
+chmod +x clash
+
+# 启动clash，指定的目录下需要有 config.yaml 和 Country.mmdb 这两个文件
+clash -d /.../clash
+```
+
