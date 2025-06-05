@@ -42,19 +42,24 @@ git commit -a -m "xxx"  # 将所有已修改的文件提交到仓库（未跟踪
 
 - 修改文件后，文件会变为“已修改”的状态
 
-## 常用命令 ##
 - 撤销对工作区文件的修改（ctrl+z）
 ```bash
 git restore <filename>
 ```
 
-- 取消暂存状态
-  - 可以用来撤销add
+- 撤销add
 ```bash
 git restore --staged <filename>
 ```
 
+- 撤销 commit
+
+```bash
+git reset --soft HEAD^ # 撤销上一次 commit
+```
+
 - 删除文件
+
 ```bash
 git rm <filename>  # 若存在未提交的修改，会阻止删除
 git rm <filename> -f  # 强制删除
