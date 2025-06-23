@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css笔记06</title>
+
+    <style>
+        /*
+        伪类：用来描述一个元素的特殊状态
+            - 比如：第一个子元素、被点击的元素、鼠标移入的元素
+            - 伪类一般以:开头 
+                :first-child
+                :last-child
+                :nth-child()
+                    特殊值：
+                        n 第n个，[0,+∞]
+                        2n或even 第偶数个
+                        2n+1或odd 第奇数个
+                - 以上这些伪类都是根据所有子元素进行排序
+                    - 如：li前面有别的元素，则此时该元素为first-child
+                
+                :first-of-type
+                :last-of-type
+                :nth-of-type()
+                - 这些伪类功能与上面类似，但是只在指定类型元素内排序
+
+                :not() 否定伪类
+                    - 将符合条件的元素从选择器中取出
+         */
+        ul > li:first-child{
+            color: red;
+        }
+        ul > li:last-child{
+            color: blue;
+        }
+        ul > li:nth-child(2n){
+            font-size: 10px;
+        }
+        ul > li:nth-child(2n+1){
+            font-size: 20px;
+        }
+
+        ul > li:not(:nth-of-type(3)){
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ul>li*5：插件会自动生成5行无序列表 -->
+    <ul>
+        <!-- <span></span> -->
+        <li>第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+        <li>第四个</li>
+        <li>第五个</li>
+        <li>第六个</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <style>
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        $(function () {
+            // 获取全选
+            var $check_all = $("#check_all");
+            // 获取四个多选框
+            var $hobbies = $("[name=hobby]");
+
+            /* 全选后，其他多选框同步切换状态 */
+            $check_all.click(function () {
+                // 在事件的响应函数中，this是绑定事件的对象，这点在jQuery中同样适用
+                // 注意：this是DOM对象
+                // alert(this);  // [object HTMLInputElement]
+
+                $hobbies.prop("checked", this.checked);
+            });
+
+            /* 使得全选框和四个小框同步 */
+            $hobbies.click(function () {
+                // 判断四个多选框是否全选
+                // var checked_num = $hobbies.filter(":checked").length;
+                // if (checked_num < 4) {
+                //     $check_all.prop("checked", false);
+                // }
+                // else {
+                //     $check_all.prop("checked", true);
+                // }
+
+                // 使用is和伪元素选择器来简化代码
+                $check_all.prop("checked", !$hobbies.is(":not(:checked)"));
+            });
+
+
+            /* 按钮 */
+            // 全选按钮
+            $("#all").click(function () {
+                $check_all.add($hobbies).prop("checked", true);
+            });
+
+            // 取消按钮
+            $("#cancel").click(function () {
+                $check_all.add($hobbies).prop("checked", false);
+            });
+
+            // 反选按钮
+            $("#reverse").click(function () {
+                $hobbies.prop("checked", function (index, old_val) {
+                    return !old_val;
+                });
+                $check_all.prop("checked", !$hobbies.is(":not(:checked)"));
+            });
+
+            // 提交按钮，打印选中的值
+            $("#submit").click(function () {
+                // alert($hobbies.val());  // 只会返回第一个元素的value
+                var result = "";
+                /* for (var i = 0; i < $hobbies.length; ++i) {
+                    result += $hobbies[i].value;  // 注意索引返回的是DOM对象
+                    result += "，";
+                } */
+
+                /*
+                    each()
+                        - 用来遍历jQuery对象，需要一个函数作为参数，
+                            将当前元素作为this，对每个元素调用这个函数
+                */
+                $hobbies.filter(":checked").each(function () {
+                    result += this.value;
+                    result += "，";
+                });
+
+                alert(result);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <form action="#">
+            <div>
+                请选择你的爱好：
+                <input type="checkbox" id="check_all">全选
+            </div>
+            <div>
+                <input type="checkbox" name="hobby" value="乒乓球">乒乓球
+                <input type="checkbox" name="hobby" value="篮球">篮球
+                <input type="checkbox" name="hobby" value="羽毛球">羽毛球
+                <input type="checkbox" name="hobby" value="足球">足球
+            </div>
+            <div>
+                <button type="button" id="all">全选</button>
+                <button type="button" id="cancel">取消</button>
+                <button type="button" id="reverse">反选</button>
+                <button type="button" id="submit">提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

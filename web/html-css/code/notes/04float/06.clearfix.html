@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clearfix</title>
+
+    <style>
+      .box1 {
+        width: 200px;
+        height: 200px;
+        background-color: #bfa;
+      }
+      .box1::before {
+        content: "";
+        /*
+            解决外边距重叠问题
+            */
+        display: table;
+      }
+      .box2 {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        margin-top: 100px;
+      }
+
+      /*
+        同时解决外边距重叠和高度塌陷问题
+        */
+      .clearfix::before,
+      .clearfix::after {
+        content: " ";
+        display: table;
+        clear: both;
+      }
+
+      /* 高度塌陷 */
+      .box3 {
+        border: 5px red solid;
+      }
+      .box4 {
+        width: 100px;
+        height: 100px;
+        background-color: #bfa;
+        float: left;
+      }
+
+      /* 外边距重叠 */
+      .box5 {
+        width: 200px;
+        height: 200px;
+        background-color: #bfa;
+      }
+      .box6 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2"></div>
+    </div>
+    <br />
+    <div class="box3 clearfix">
+      <div class="box4"></div>
+    </div>
+    <br />
+    <div class="box5 clearfix">
+      <div class="box6"></div>
+    </div>
+  </body>
+</html>

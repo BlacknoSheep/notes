@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的拷贝</title>
+    <script>
+        /*
+            深拷贝 —— 同数组
+                使用JS提供的structuredClone()方法
+        */
+        console.log("------深拷贝------");
+        const objDeep1 = {
+            name: "Taffy",
+            group: {
+                name: "Airport",
+            },
+        };
+        const objDeep2 = structuredClone(objDeep1);  // 深拷贝
+        console.log(objDeep1===objDeep2);  // false
+        console.log(objDeep1.name===objDeep2.name);  // true
+        console.log(objDeep1.group===objDeep2.group);  // false
+
+        /*
+            对象的浅拷贝
+                - Object.assign(目标对象, 源对象)
+                    将源对象中的属性复制到目标对象，并返回目标对象
+                    采用添加（同名属性覆盖）的方式
+                
+                - 也可以使用 ... 运算符进行浅拷贝
+        */
+        console.log("------浅拷贝------");
+        const obj1 = {name: "Taffy"};
+
+        const obj2 = Object.assign({},obj1);  // 浅拷贝
+        // 等价于
+        // const obj2;
+        // Object.assign(obj2,obj1);
+
+        console.log("obj1:",obj1);  // {name: 'Taffy'}
+        console.log("obj2:",obj2);  // {name: 'Taffy'}
+        console.log(obj1===obj2);  // false
+
+        const obj3 = {
+            name: "kkk",
+            age: 17,
+        };
+        Object.assign(obj3, obj1);
+        console.log("obj3:",obj3);  // {name: 'Taffy', age: 17}
+
+        console.log("使用 ... 运算符进行浅拷贝：")
+        const obj4 = {...obj3};
+        console.log("obj4:",obj4);  // {name: 'Taffy', age: 17}
+        console.log(obj4===obj3);  // false
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

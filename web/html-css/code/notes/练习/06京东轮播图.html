@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东轮播图</title>
+
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        /* body{
+            background-color: #bfa;
+        } */
+
+        .slider {
+            width: 590px;
+            height: 470px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider_list>li {
+            /* 让所有图片重叠在一起 */
+            position: absolute;
+        }
+
+        /* 通过修改元素层级来显示指定的图片 */
+        .slider_list>li:nth-child(1) {
+            z-index: 1;
+        }
+
+        .indicator_point .slider_indicators_list {
+            position: absolute;
+            left: 30px;
+            top: 440px;
+            /* 圆形永远位于最上层 */
+            z-index: 100;
+        }
+
+        .slider_indicators_list>li {
+            /* 圆形横向排列 */
+            float: left;
+        }
+
+        .indicator_point {
+            /* 圆形默认样式 */
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin-right: 6px;
+        }
+
+        .indicator_point:hover {
+            /* 圆形被鼠标移入的样式 */
+            background-color: rgba(255, 255, 255, 1);
+            outline: 3px rgba(255, 255, 255, 0.5) solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <!-- 图片 -->
+        <ul class="slider_list">
+            <li>
+                <a href="#">
+                    <img src="./imgs/t06_01.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./imgs/t06_02.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./imgs/t06_03.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./imgs/t06_04.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./imgs/t06_05.jpg">
+                </a>
+            </li>
+        </ul>
+
+        <!-- 下方圆点 -->
+        <ul class="slider_indicators_list">
+            <li>
+                <div class="indicator_point"></div>
+            </li>
+            <li>
+                <div class="indicator_point"></div>
+            </li>
+            <li>
+                <div class="indicator_point"></div>
+            </li>
+            <li>
+                <div class="indicator_point"></div>
+            </li>
+            <li>
+                <div class="indicator_point"></div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

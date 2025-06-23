@@ -1,6 +1,6 @@
 # 忽略该目录下的所有文件
-.ignore/
-.vscode/
+**/.ignore/
+**/.vscode/
 
 # 忽略压缩包
 *.zip

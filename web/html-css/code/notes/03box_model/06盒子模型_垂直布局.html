@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型-垂直分布</title>
+
+    <style>
+        .outer{
+            background-color: #bfa;
+            /* 默认情况下父元素的高度被内容撑开 */
+        }
+        .inner1{
+            width: 20px;
+            height: 40px;
+            background-color: aqua;
+
+            margin-bottom: 20px;
+        }
+        .box1{
+            width: 600px;
+            height: 100px;
+            background-color: #bfa;
+            margin: 0 auto;
+
+            /*
+            子元素在父元素的内容区中排列
+                - 若子元素的大小超过了父元素，则子元素会从父元素中溢出
+                - 使用 overflow 属性来设置如何处理溢出的子元素
+                    - visible 默认值，在父元素外部显示
+                    - hidden 溢出部分被裁剪
+                    - scroll 生成两个滚动条
+                    - auto 根据需要生成滚动条
+                overflow-x，over-flow-y：单独设置水平或垂直溢出的处理
+            */
+            overflow: auto;
+        }
+        .childBox1{
+            width: 100px;
+            height: 200px;
+            background-color: red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner1"></div>
+        <div class="inner1"></div>
+    </div>
+    <br />
+    <div class="box1">
+        <div class="childBox1"></div>
+    </div>
+    <br />
+</body>
+</html>

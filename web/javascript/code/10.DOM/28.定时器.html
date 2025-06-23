@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定时器</title>
+    <style>
+      #count {
+        font-size: 30px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="count">0</div>
+    <button id="btn" type="button">停止计时器</button>
+
+    <script>
+      /*
+            通过定时器，可以使代码在指定时间后执行
+            
+            设置定时器的方式有两种：
+                setTimeout()
+                    - 参数：
+                        1.回调函数
+                        2.间隔时间（ms）
+                    - 返回一个定时器标号（实际上是一个数字）
+
+                    - 关闭定时器
+                        clearTimeout()  需要传入要关闭的定时器标号
+
+                setInterval()
+                    - 每间隔一段时间代码就会执行一次
+                    - 参数：
+                        1.回调函数
+                        2.间隔时间（ms）
+                    - 返回一个定时器标号（实际上是一个数字）
+
+                    - 关闭定时器
+                        clearInterval() 需要传入要关闭的定时器标号
+        */
+      const timer1 = setTimeout(() => {
+        alert("setTimeout()设置的定时器");
+      }, 2000);
+      clearTimeout(timer1);
+
+      const timer2 = setInterval(() => {
+        console.log("setInterval()设置的定时器");
+      }, 200);
+      clearInterval(timer2);
+
+      console.log(timer1, timer2);
+
+      const count_div = document.getElementById("count");
+      let num = 0;
+      const timer3 = setInterval(() => {
+        ++num;
+        count_div.textContent = num;
+        if (num >= 20) {
+          clearInterval(timer3);
+        }
+      }, 500);
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        clearInterval(timer3);
+      });
+    </script>
+  </body>
+</html>

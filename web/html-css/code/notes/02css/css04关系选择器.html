@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css笔记04</title>
+
+    <style>
+        /* 子元素选择器：只选择该元素的直接子元素 */
+        div > p{
+            color: blue;
+        }
+        div.d1 > p{
+            font-size: 30px;
+        }
+
+        /* 后代元素选择器：选择该元素的所有后代元素 */
+        div span{
+            font-style: italic;
+        }
+
+        /* 选择下一个兄弟元素 */
+        h1 + h2{
+            color: red;
+        }
+        /* 选择下面所有的兄弟元素 */
+        h2 ~ h3{
+            color: green;
+        }
+
+    </style>
+
+</head>
+<body>
+    <!-- 元素之间存在父子关系 -->
+    <div>
+        <p>div的子元素p</p>
+        <span>div的子元素span</span>
+        <p>
+            <span>div的后代元素span</span>
+        </p>
+    </div>
+
+    <p>div外的p</p>
+
+    <div class="d1">
+        <p>class="d1"的div的子元素d1</p>
+    </div>
+
+    <h1>我是h1</h1>
+    <h2>我是h2</h2>
+    <h2>我也是h2</h2>
+    <h3>我是h3</h3>
+    <h3>我也是h3</h3>
+
+</body>
+</html>

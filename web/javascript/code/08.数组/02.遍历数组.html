@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遍历数组</title>
+    <script>
+        // 数组中的元素可以是任何类型
+        const arr0 = [1,"hello",true,null,undefined,{},()=>{}];  // [1, 'hello', true, null, undefined, {…}, ƒ]
+        console.log("arr0:",arr0);
+
+        /*
+            遍历数组
+                - 循环
+                - for-of 语句
+                    - 每次执行将一个元素赋值给变量
+                    - 只要是可迭代对象都可以遍历（如字符串等）
+        */
+        const arr1 = ["甘","文","崔"];
+
+        for(let i=0; i<arr1.length; ++i){
+            document.write(arr1[i]);
+        }
+        document.write("<br />");
+        for(let i=arr1.length-1; i>=0; --i){
+            document.write(arr1[i]);
+        }
+
+        document.write("<br />");
+        for(let item of arr1){
+            document.write(item);
+        }
+
+        // 遍历字符串
+        let str = "abcd";
+        for(let item of str){
+            console.log(item);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

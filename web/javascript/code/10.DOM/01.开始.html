@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开始</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    
+    <script>
+        /*
+            要使用DOM来操作网页，我们需要至少需要浏览器提供一个对象作为接口
+            浏览器提供了一个document对象
+                - 它是一个全局变量
+                - document代表的是整个网页
+        */
+
+        // 获取指定id的对象
+        const btn = document.getElementById("btn");
+        console.log(btn);
+
+        // 修改btn对象中的文字
+        btn.innerText = "修改后的文字";
+    </script>
+</body>
+</html>

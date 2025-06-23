@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粘滞定位</title>
+
+    <style>
+        body{
+            font-size: 50px;
+            height: 4000px;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        /*
+        粘滞定位：position: sticky;
+        和相对定位特点基本相同
+            - 不同的是粘滞定位可以在元素到达某个位置（相对于其最近包含块）时将其固定
+            - 缺点：兼容性差
+        */
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+
+            position: sticky;
+            top: 50px;
+        }
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+        .box4{
+            width: 300px;
+            height: 800px;
+            background-color: #bfa;
+        }
+        .box5{
+            width: 200px;
+            height: 400px;
+            background-color: #e8e8e8;
+
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box4">4
+        <div class="box5">5
+            <div class="box2">2</div>
+        </div>
+    </div>
+    <div class="box3">3</div>
+</body>
+</html>

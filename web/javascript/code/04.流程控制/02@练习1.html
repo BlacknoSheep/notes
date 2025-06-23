@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习1</title>
+    <script>
+        /*
+            编写一个程序，获取用户的输入，判断其是奇数还是偶数
+        */
+        // 由于NaN参与关系运算时永远返回false，
+        // 故无法通过==或===来判断一个值是否是NaN
+        // 可以通过isNaN来检查一个值是否是NaN
+        let input = prompt("请输入一个整数");
+
+        if(input===null){
+            alert("输入为空！");
+        }
+        else{
+            // 转换为数值
+            input = +input;
+            if(isNaN(input)){
+                // 输入不是合法的数值
+                alert(`${input} 错误的输入！`);
+            }
+            else if(input%1){
+                // 输入是浮点数
+                alert(`${input}不是整数！`);
+            }
+            else if(input&1){
+                alert(`${input}是奇数！`);
+            }
+            else{
+                alert(`${input}是偶数！`);
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

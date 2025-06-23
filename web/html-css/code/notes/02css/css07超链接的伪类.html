@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css笔记07</title>
+
+    <style>
+      /* :link 没访问过的链接（正常的链接） */
+      a:link{
+          color: red;
+      }
+      /* 
+      :visited 访问过的链接
+          - 由于隐私原因，visited这个伪类只能设置颜色
+          - 一般不建议修改
+       */
+       a:visited{
+          color: aqua;
+       }
+  
+       /* :hover 用来表示鼠标移入的状态 */
+        a:hover{
+          font-size: 30px;
+        }
+        /* :actice 用来表示鼠标点击（不松手）的状态 */
+        a:active{
+          font-size: 50px;
+        }
+  </style>
+</head>
+
+<body>
+    <a href="./css07超链接的伪类.html">访问过的链接</a>
+    <br />
+    <br />
+    <a href="javascript:;">没访问过的链接</a>
+</body>
+</html>

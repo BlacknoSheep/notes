@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String类的方法</title>
+    <script>
+        /*
+            字符串
+                - 字符串本质上就是一个字符数组
+                - 字符串的很多方法都和数组是非常相似的
+                - 属性和方法
+                    length  获取字符串长度
+                    字符串[索引]    获取指定位置的字符
+
+                    str.at()
+                        - 根据索引获取字符
+                        - 可使用负整数索引
+                    str.charAt()
+                        - 根据索引获取字符
+                        - 只能使用0或正整数
+                    str.concat()
+                        - 用来连接两个或多个字符串
+                    str.includes()
+                        - 用来检查字符串中是否包含某个子串
+                        - 第二个参数（可选）用于指定查询的起始位置
+                    
+                    str.indexOf()
+                    str.lastIndexOf()
+
+                    str.startWith()
+                        - 检查一个字符串是否以指定内容开头
+                        - 第二个参数（可选）用于指定起始索引
+                    str.endWith()
+                        - 检查一个字符串是否以指定内容结尾
+                        - 第二个参数（可选）用于指定str的长度
+                            即检查的是子串的结尾
+                            注意：第二个参数与starWith()方法的意义不同！
+
+                    str.padStart()
+                    str.padEnd()
+                        - 在字符串开头或结尾填充字符（或字符串）
+                        - 默认填充字符为空格
+                        - 非破坏性方法，返回一个新的字符串
+
+                    str.replace()
+                        - 非破坏性，返回一个新字符串
+                        - 用新字符串替换指定子串
+                        - 只替换第一个匹配的子串
+                    str.replaceAll()
+                        - 同replace，但会替换所有匹配的子串
+                    
+                    str.slice()
+                        - 非破坏性，返回一个新字符串
+                        - 字符串切片（同数组切片）
+                    str.substring()
+                        - 同slice()
+                        - 区别在于起始位置和结束位置在实参中的顺序可互换
+
+                    str.split()
+                        - 根据指定字符串来分割字符串为字符串数组
+
+                    str.toUpperCase()
+                        - 转为大写
+                        - 非破坏性，返回一个新字符串
+                    str.toLowerCase()
+                        - 转为小写
+                        - 非破坏性，返回一个新字符串
+
+                    str.trim()
+                    str.trimStart()
+                    str.trimEnd()
+                        - 去除字符串的前后空格
+                        - 非破坏性，返回一个新字符串
+        */
+        let str = "Hello!";
+        console.log(str.at(-1));  // "!"
+        
+        console.log(str.charAt(1));  // "e"
+
+        console.log(str.concat(" ", "Taffy"));  // Hello! Taffy
+
+        console.log(str.includes("ll"));  // true
+        console.log(str.includes("ll", 3));  // false
+
+        console.log(str.indexOf("l"));  // 2
+        console.log(str.lastIndexOf("l"));  // 3
+
+        console.log(str.startsWith("He"));  // true
+        console.log(str.startsWith("ll", 2));  // true
+        console.log(str.endsWith("e", 2));  // true
+
+        const str2 = "123"
+        console.log(str2.padStart(8));      //      123
+        console.log(str2.padEnd(8, "ab"));  // 123ababa
+
+        console.log(str.replace("l", "L"));  // HeLlo!
+        console.log(str.replaceAll("l","L"));  // HeLLo!
+
+        console.log(str.slice(2,4));  // ll
+        console.log(str.substring(4,2));  // ll
+
+        const str3 = "a dog with a cat.";
+        console.log(str3.split(" "));  // ['a', 'dog', 'with', 'a', 'cat.']
+        console.log(str3.split("with"));  // ['a dog ', ' a cat.']
+
+        console.log(str3.toUpperCase());  // A DOG WITH A CAT.
+        console.log(str.toLowerCase());  // hello!
+
+        const str4 = "  a bb  ccc   ";
+        console.log(str4.trim());       // a bb  ccc
+        console.log(str4.trimStart());  // a bb  ccc   
+        console.log(str4.trimEnd());    //   a bb  ccc
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

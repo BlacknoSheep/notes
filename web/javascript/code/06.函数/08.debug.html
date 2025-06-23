@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debug</title>
+    <script>
+        // debugger;
+
+        console.log(a);  // 2.5
+
+        var a = 1;
+
+        console.log(a);  // 1
+
+        function a(){
+            alert(2);
+        }
+
+        console.log(a);  // 1
+
+        function a(){
+            alert(2.5);
+        }
+
+        console.log(a);  // 1
+
+        var a = 3;
+
+        console.log(a);  // 3
+
+        var a = function(){
+            alert(4);
+        }
+
+        console.log(a);  // 4
+
+        var a;  // 声明已经被提升，所以这行会直接跳过
+
+        console.log(a);  // 4
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

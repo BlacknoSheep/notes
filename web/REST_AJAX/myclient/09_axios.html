@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios</title>
+    <!-- 引入axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <button id="btn1">发送POST请求</button>
+      <button id="btn2">发送GET请求</button>
+    </div>
+
+    <script>
+      //   console.log(axios);
+      document.getElementById("btn1").onclick = () => {
+        // 调用 axios发送请求
+        axios({
+          method: "POST",
+          url: "http://localhost:3000/students",
+          //   不需要在header中指定数据类型，会自动推断
+          data: {
+            name: "Taffy",
+            age: 17,
+            gender: "女",
+            address: "bilibili",
+          },
+        })
+          .then((res) => {
+            // console.log(res);
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log("出错了！", err);
+          });
+      };
+
+      document.getElementById("btn2").onclick = () => {
+        // 调用 axios发送请求
+        axios({
+          method: "GET",
+          url: "http://localhost:3000/students",
+        })
+          .then((res) => {
+            // axios默认只会在响应状态码为2xx时才会调用then
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log("出错了！", err);
+          });
+      };
+    </script>
+  </body>
+</html>

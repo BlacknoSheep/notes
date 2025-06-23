@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios配置对象</title>
+    <!-- 引入axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <button id="btn1">发送POST请求</button>
+    </div>
+
+    <script>
+      /*
+        axios拦截器可以对请求或响应进行拦截，在请求发送前和响应读取前处理数据
+        拦截器只对当前实例有效
+
+        取消拦截器
+            const myInterceptor = axios.interceptors.request.use(function () {});
+            axios.interceptors.request.eject(myInterceptor);
+            或者
+            const instance = axios.create();
+            instance.interceptors.request.use(function () {});
+            instance.interceptors.request.clear(); // Removes interceptors from requests
+            instance.interceptors.response.use(function () {});
+            instance.interceptors.response.clear(); // Removes interceptors from responses
+      */
+      // 添加请求拦截器
+      axios.interceptors.request.use(
+        function (config) {
+          // 在发送请求之前做些什么（如配置请求头等）
+          //  config 就是axios中的配置对象
+          console.log("请求拦截器执行，config: ", config);
+          // config是动态变化的
+          console.log(config.data);
+          config.data.name = "永雏塔菲";
+          return config;
+        },
+        function (error) {
+          // 对请求错误做些什么
+          return Promise.reject(error);
+        }
+      );
+
+      // 添加响应拦截器
+      axios.interceptors.response.use(
+        function (response) {
+          // 2xx 范围内的状态码都会触发该函数。
+          // 对响应数据做点什么
+          console.log("响应拦截器执行了！response: ", response);
+          return response;
+        },
+        function (error) {
+          // 超出 2xx 范围的状态码都会触发该函数。
+          // 对响应错误做点什么
+          return Promise.reject(error);
+        }
+      );
+
+      // 上面的拦截器对instance无效
+      const instance = axios.create();
+
+      document.getElementById("btn1").onclick = () => {
+        axios({
+          method: "POST",
+          baseURL: "http://localhost:3000",
+          url: "students",
+          data: {
+            name: "Taffy",
+            age: 17,
+            gender: "女",
+            address: "bilibili",
+          },
+        })
+          .then((res) => {
+            console.log("响应：", res.data);
+          })
+          .catch((err) => {
+            console.log("出错了！", err);
+          });
+      };
+    </script>
+  </body>
+</html>

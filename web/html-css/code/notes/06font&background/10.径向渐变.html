@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>径向渐变</title>
+
+    <style>
+        /*
+        radial-gradient() 径向渐变
+            默认情况下渐变的长短轴长度由元素的宽高决定
+            也可以手动指定渐变范围（长短轴）
+                - 宽 高
+                - circle 圆形
+                - elipse 椭圆
+
+            也可以指定渐变的位置
+                width height at x y
+                或者直接 at x y
+                    x,y可以是具体值也可以是top center等
+            
+            总结：
+                radial-gradient(大小 at 位置, 颜色 位置, 颜色 位置,...)
+        */
+        .box1{
+            width: 400px;
+            height: 100px;
+            background-image: radial-gradient(red,#bfa);
+        }
+
+        .box2{
+            width: 400px;
+            height: 100px;
+            background-image: radial-gradient(100px 100px,red,#bfa);
+        }
+
+        .box3{
+            width: 400px;
+            height: 100px;
+            background-image: repeating-radial-gradient(100px 100px,red,#bfa);
+        }
+
+        .box4{
+            width: 400px;
+            height: 400px;
+            background-image: radial-gradient(100px 100px at 100px 200px,red 50px 50px,#bfa);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <br />
+    <div class="box2"></div>
+    <br />
+    <div class="box3"></div>
+    <br />
+    <div class="box4"></div>
+</body>
+</html>

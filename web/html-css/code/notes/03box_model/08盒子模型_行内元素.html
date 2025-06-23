@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行内元素的盒模型</title>
+
+    <style>
+        /*
+        行内元素的盒模型
+            - 不支持设置宽度和高度
+            - 可以设置padding，但垂直方向的padding不会影响元素布局（直接覆盖）
+            - 可以设置border，但垂直方向的border不会影响元素布局（直接覆盖）
+            - 可以设置margin，但垂直方向的margin不会影响元素布局（直接覆盖）
+        
+            - 水平方向的直接加和
+        */
+        .s1, .s2{
+            background-color: #bfa;
+            padding: 50px;
+        }
+        .s1{
+            margin: 50px;
+        }
+        .s2{
+            margin: 50px;
+        }
+
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        /*
+            display用来设置元素显示的类型
+            可选值：
+                - inline 将元素设置为行内元素
+                - block 将元素设置为块元素
+                - inline-block 将元素设置为行内块元素
+                    行内块：既可以设置宽度和高度又不会独占一行
+                - table 将一个元素设置为一个表格
+                - none 元素不显示，不占空间
+            
+            visibility 用来设置元素的显示状态
+            可选值：
+                - visible 默认值，元素在页面中正常显示
+                - hideen 元素在页面中隐藏，但是依然占据空间
+            */
+        a{
+            display: inline-block;
+            /* display: none; */
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+
+            /* visibility: hidden; */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="s1">我是span</span>
+        <span class="s2">我是span</span>
+        <div class="box1"></div>
+        <br />
+        <a href="javascript:;">这个链接什么也不做</a>
+        <span>我在超链接inline-block旁边</span>
+    </div>
+</body>
+</html>

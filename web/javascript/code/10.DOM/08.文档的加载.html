@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档的加载</title>
+    <script>
+        /*
+            网页时自上向下加载的，若将js代码编写到网页的上面
+                js代码在执行时，网页还没加载完毕，此时会无法获取到DOM对象
+            
+            window.onload 事件会在窗口的内容加载完毕后才触发
+
+            document 的 DOMContentLoaded 事件会在当前文档加载完毕之后触发
+                - 比 window.onload 更早触发（因为窗口中可能有多个文档（iframe）））
+                
+            解决方案：
+                1.将 script 标签写到body的最后
+                2.将代码编写到 window.onload 的回调函数中
+                3.将代码编写到 document 对象的 DOMContentLoaded 的回调函数中
+                    执行时机早于window.onload
+                4.将代码编写到外部的js文件中，然后以 defer 形式引入（开发中常用）
+                    比 DOMContentLoaded 更早
+        */
+        const btn_before = document.getElementById("btn");
+        console.log(btn_before);  // null
+
+        /* window.onload = function(){
+            const btn0 = document.getElementById("btn");
+            console.log(btn0);  // 获取到了对象
+        } */
+
+        // window.addEventListener("load", function(){
+        //     // 在所有内容全部加载完之后弹出
+        //     const btn0 = document.getElementById("btn");
+        //     alert(btn0);  // 获取到了对象
+        // })
+
+        /* document.addEventListener("DOMContentLoaded", function(){
+            // 在按钮和iframe加载出来之前弹出
+            const btn0 = document.getElementById("btn");
+            alert(btn0);  // 获取到了对象
+        }) */
+    </script>
+
+    <!-- <script src="./script/08.js"></script> -->
+    <script defer src="./script/08.js"></script>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <iframe src="https://www.lilichao.com" frameborder="0"></iframe>
+
+    <script>
+        /*  */
+        // const btn = document.getElementById("btn");
+        // console.log(btn);  // 获取到了对象
+    </script>
+</body>
+
+</html>

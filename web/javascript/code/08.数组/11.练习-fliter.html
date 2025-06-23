@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习-fliter</title>
+    <script>
+        const arr = [
+            {name:"赵", age:15},
+            {name:"钱", age:25},
+            {name:"孙", age:35},
+        ]
+        console.log(arr);
+
+        /*
+            可以将函数作为参数
+                - 如果将一个函数作为参数传递，则称这个函数为回调函数（callback）
+            
+            高阶函数
+                - 如果一个函数的参数或返回值是函数，则这个函数就称为高阶函数
+        */
+        function fliter(arr, fn){
+            const result = [];
+            for(obj of arr){
+                if(fn(obj)){
+                    result.push(obj);
+                }
+            }
+            return result;
+        }
+
+        const result = fliter(arr, (obj)=>obj.age<18);
+        console.log(result);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

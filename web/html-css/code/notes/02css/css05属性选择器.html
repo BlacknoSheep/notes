@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css笔记05</title>
+
+    <style>
+        /*
+        [属性名]：选择含有指定属性的元素
+        [属性名=属性值]：选择含有指定属性且该属性含有指定属性值的元素
+        [属性名^=属性值]：选择含有指定属性且该属性含有以指定值开头的属性值的元素（开头匹配）
+        [属性名$=属性值]：选择含有指定属性且该属性含有以指定值结尾的属性值的元素（结尾匹配）
+        [属性名*=属性值]：选择含有指定属性且该属性的属性值中包含某值的元素（子串匹配）
+         */
+         p[title]{
+            color: red;
+         }
+         p[title=p2]{
+            font-size: 20px;
+         }
+         p[title^=p3]{
+            font-size: 25px;
+         }
+         p[title$=p4]{
+            font-size: 30px;
+         }
+         p[title*=p5]{
+            font-size: 35px;
+         }
+    </style>
+</head>
+<body>
+    <div>
+        <p title="p1">第一行</p>
+        <p title="p2">第二行</p>
+        <p title="p3kkk">第三行</p>
+        <p title="kkkp4">第四行</p>
+        <p title="kkkp5kkk">第五行</p>
+    </div>
+</body>
+</html>

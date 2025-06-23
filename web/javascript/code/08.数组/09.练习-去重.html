@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习-去重</title>
+    <script>
+        const arr = [9,5,5,1,1,1,9];
+        /*
+            数组的去重
+        */
+        // 双重循环
+        console.log("------双重循环------");
+        function unique1(_arr){
+            // 复制原数组
+            const arr = _arr.slice();
+
+            for(let i=0; i<arr.length; ++i){
+                for(let j=i+1; j<arr.length; ++j){
+                    if(arr[j]===arr[i]){
+                        arr.splice(j,1);  // 删除后后面元素会前移动
+                        --j;  // 故下一次j应该不变
+                    }
+                }
+            }
+
+            return arr;
+        }
+        console.log(unique1(arr));  // [9, 5, 1]
+
+        // indexOf()
+        console.log("------indexOf()------");
+        function unique2(_arr){
+            const arr = _arr.slice();
+
+            for(let i=0; i<arr.length; ++i){
+                let index = arr.indexOf(arr[i], i+1);  // 取出下一个与当前值相同的值的索引
+                while(index !== -1){
+                    arr.splice(index, 1);
+                    index = arr.indexOf(arr[index], index+1);
+                }
+            }
+
+            return arr;
+        }
+        console.log(unique2(arr));  // [9, 5, 1]
+
+        function unique3(_arr){
+            const arr = [];  // 直接创建一个新数组存储非重复值
+
+            const len = _arr.length;
+            for(let i=0; i<len; ++i){
+                if(arr.indexOf(_arr[i]) === -1){
+                    arr.push(_arr[i]);
+                }
+            }
+
+            return arr;
+        }
+        console.log(unique3(arr));  // [9, 5, 1]
+
+        // 哈希表
+        console.log("------哈希表------");
+        function unique4(_arr){
+            const hash = {};
+            for(let num of _arr){
+                hash[num] = true;
+            }
+
+            const arr = [];
+            for(let num in hash){
+                arr.push(+num);
+            }
+
+            return arr;
+        }
+        console.log(unique4(arr));  // [1, 5, 9]
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

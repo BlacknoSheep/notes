@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字面量和变量</title>
+
+    <script>
+        /*
+            字面量:
+                - 字面量就是一个值，它所代表的含义就是它字面的意思
+                - 比如：1 2 3 100 "hello" "hello world" true null
+                - 字面量可以直接使用（如打印），但不方便
+
+            变量：
+                - 变量可以“存储”字面量
+                - 并且变量中存储的字面量可以随意"修改"
+                    - 变量实际保存的是数据的地址，
+                        修改变量实际上是在修改地址指向新的数据
+        */
+
+        /*
+            变量的使用
+                声明变量 let变量名 或者 var变量 或者 const 变量
+                    - 一般用let，var是旧式用法
+                    - 变量提升：
+                        所有var声明在预编译时都会提升到其作用域顶端
+                        此时其值为undefined
+                        （仅声明被提升，仍需执行到指定位置才会赋值）
+
+                    - let 块级作用域，存在变量提升，但在赋值前禁止访问
+                        - 同作用域内不可重复声明
+                        - 存在暂时性死区：
+                            块内的let定义的变量会隔绝块外的同名变量
+                            不论let在块内的哪个位置
+
+
+                    - var 函数级作用域，存在变量提升
+                        - 同作用域内可以重复声明
+
+                    - const 同let，区别是其保存的变量无法被更改
+                变量赋值 a = xx
+        */
+        let a,b,c;
+        a = "我是a";
+        console.log(a);
+        console.log(c);
+
+        // 同时声明和赋值
+        let d = "我是d", e="我是e";
+        console.log(d);
+
+        // var可重复声明
+        var f;
+        var f = "我是重新声明的f";
+        console.log(f);
+
+        // 变量提升
+        console.log(g);
+        var g = "我是g";
+        
+        // 暂时性死区
+        let h = "我是全局h";
+        {
+            // console.log(h);
+            let h = "我是局部h";
+            console.log(h);
+        }
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

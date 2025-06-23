@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包的注意事项</title>
+    <script>
+        /*
+            闭包的生命周期：
+                1.闭包在外部函数调用时产生，外部函数每一次调用都会产生一个全新的闭包
+                2.在内部函数被垃圾回收后销毁
+
+            注意事项：
+                - 闭包用于隐藏不希望被访问的数据
+                    这意味着需要占用一定的内存
+                - 相较于类，闭包更浪费空间（类可以使用原型，而每次创建的闭包相互独立）
+                    需要创建大量实例时，使用类
+        */
+        function outer(){
+            let num = 0;
+            return () => {
+                console.log(++num);
+            }
+        }
+
+        const fn1 = outer();  // 产生一个闭包
+        fn1();
+        fn1();
+        const fn2 = outer();  // 产生一个新的闭包，和fn1独立
+        fn2();
+        fn2();
+
+        fn1 = null;  // 解除fn1对闭包的引用
+        fn2 = null;  // 解除fn2对闭包的引用
+                     // 解除引用可以使其在下次垃圾回收时被销毁
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

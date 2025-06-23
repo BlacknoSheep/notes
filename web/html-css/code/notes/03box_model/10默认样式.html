@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>默认样式</title>
+    <link rel="stylesheet" href="./reset.css">
+    <!-- 
+        使用重置样式表进行清除默认样式
+            reset.css 直接去除了浏览器的默认样式
+            normalize.css 对默认样式进行统一（便于统一修改）
+     -->
+
+    <style>
+        /*
+        默认样式
+            - 通常情况，浏览器会为元素设置一些默认样式
+            - 默认样式的存在会影响到页面的布局
+                通常情况下编写网页时必须要取出浏览器的默认样式（尤其是pc端），防止不同设备和浏览器显示不一样
+        */
+        body{
+            margin: 0;  /* 四周margin */
+        }
+        p{
+            margin: 0;  /* 上下margin */
+        }
+        ul{
+            margin: 0px;  /* 上下margin */
+            padding: 0;  /* 左侧padding */
+            list-style: none;  /* 左侧项目符号 */
+        }
+        .box1{
+            width: 400px;
+            height: 100px;
+            background-color: #bfa;
+        }
+
+        /* 清除所有默认的margin和padding */
+        /* *{
+            margin: 0;
+            padding: 0;
+        } */
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <p>第一段</p>
+    <p>第二段</p>
+    <p>第三段</p>
+    <ul>
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+    </ul>
+</body>
+</html>

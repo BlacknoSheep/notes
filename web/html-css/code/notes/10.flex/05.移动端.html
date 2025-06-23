@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 
+        完美视口
+        device-width 设备的逻辑分辨率
+     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <meta name="viewport" content="width=200px"> -->
+
+    <title>移动端</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        智能手机的像素点要远远小于计算机的像素点
+        默认情况下，移动端的网页都会将视口设置为980像素（css像素）
+            若网页设置的宽度超过了980px，移动端的浏览器会自动对网页进行缩放
+        所以大部分pc端网站都可以在移动端正常浏览，但是往往都不会有一个好的体验
+            为了解决这个问题，大部分网站都会专门为移动端设计网页
+     -->
+
+     <!-- 
+        移动端默认视口大小为980px（css像素）
+        则默认像素比为980/移动端宽度（如iphone6 980/750）
+        这样会导致一个css像素对于零点几个物理像素，编写出的内容会显得特别小
+
+        可以通过meta标签来设置视口大小，从而调整像素比
+            将最佳像素比称为完美视口
+      -->
+
+      <!-- 
+        不同设备的完美视口不同
+            iphone6 375px
+            iphone6plus 414px
+        同样的375像素在不同设备下意义时不一样的
+            如在iphone6中全屏，在iphone6plus中就会缺一块
+        所以在移动端开发时，就不能再使用px来布局
+
+        vw 表示的是视口宽度（viewport width）
+            100vw = 一个视口的宽度
+            vw永远相对于视口宽度进行计算
+       -->
+      <div class="box1"></div>
+</body>
+</html>

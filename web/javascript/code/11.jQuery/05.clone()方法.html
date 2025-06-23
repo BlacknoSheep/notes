@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clone()方法</title>
+    <style>
+        #list1 li:nth-child(1) {
+            color: red;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            clone()
+                - 用于复制jQuery对象（深拷贝）
+                - 默认只复制对象，不复制其事件绑定的函数
+                    通过传入参数 true 可以同时复制数据和事件
+        */
+        $(function () {
+            var $swk = $("#list1 li:nth-child(1)");
+            $swk.click(function () {
+                alert("孙悟空");
+            });
+            var $list2 = $("#list2");
+            $("#btn").click(function () {
+                // 由于每次clone都会生成一个新对象，所以多次点击会添加多个
+                $list2.append($swk.clone(true));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <hr>
+    <ul id="list1">
+        <li>孙悟空</li>
+        <li>猪八戒</li>
+    </ul>
+    <ul id="list2">
+        <li>沙和尚</li>
+        <li>唐僧</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用JSON实现深拷贝</title>
+    <script>
+        /*
+        
+        */
+        const obj1 = {
+            name: "obj1",
+            child: {name: "child1"},
+        }
+
+        console.log("------Object.assign()浅拷贝------");
+        const obj2 = Object.assign({}, obj1);  // 浅拷贝
+        console.log(obj1===obj2);  // false
+        console.log(obj1.child===obj2.child);  // true
+
+        console.log("------structuredClone()深拷贝------");
+        const obj3 = structuredClone(obj1);
+        console.log(obj3===obj1);  // false
+        console.log(obj3.child===obj1.child);  // false
+
+        console.log("------JSON字符串深拷贝------");
+        const obj4 = JSON.parse(JSON.stringify(obj1));
+        console.log(obj4===obj1);  // false
+        console.log(obj4.child===obj1.child);  // false
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

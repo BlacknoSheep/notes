@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象</title>
+    <script>
+        /*
+        数据类型：
+            原始值：
+                1.数值 Number
+                2.大整数 BigInt
+                3.字符串 String
+                4.布尔值 Boolean
+                5.空值 Null
+                6.未定义 Undefined
+                7.符号 Symbol
+            
+            对象：
+                类似C++中的类对象
+        */
+        // 创建对象
+        let obj = Object();
+
+        /*
+            对象中可以存储多个各种类型的数据
+                对象中存储的数据称为对象的属性
+                - 如果访问的是对象中没有的属性
+                    不会报错，而是返回undefined
+        */
+        // 向对象中添加属性
+        obj.name = "藤丸立香";
+        obj.age = 18;
+        obj.gender = "男";
+        console.log(obj);
+        // 访问对象的属性
+        console.log(obj.name);
+        // 修改对象的属性
+        obj.age = 19;
+        // 访问对象中没有的属性
+        console.log(obj.girl);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

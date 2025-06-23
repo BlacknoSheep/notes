@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的序列化</title>
+    <script>
+        /*
+            对象的序列化
+                - JS的对象在使用时都是存在于计算机的内存中的
+                - 序列化指将对象转换为一个可以存储的格式
+                    - 在JS中通常是转换为字符串（JSON字符串）
+                - 序列化的用途（将对象转换为字符串的用用处）
+                    - 可以使用其他语言或手动进行读写和修改
+                - 如何进行序列化
+                    - JSON类（JavaScript Object Notation，JS对象表示法）
+                    - 序列化后对象会被转化为一个JSON字符串
+            
+            JSON.stringify()
+                - 可以将一个对象转换为JSON字符串
+
+            JSON.parse()
+                - 可以将JSON格式的字符串解析为对象
+        */
+        const obj = {name: "Taffy", age: 17, gender: "girl"};
+        console.log(obj);
+
+        // 将对象转换为JSON字符串
+        console.log("------将对象转换为JSON字符串------");
+        const strObj = JSON.stringify(obj);
+        console.log(strObj);  // {"name":"Taffy","age":17,"gender":"girl"}
+        console.log(typeof strObj);  // string
+
+        // 将JSON字符串解析为对象
+        console.log("------将JSON字符串解析为对象------");
+        const obj2 = JSON.parse(strObj);
+        console.log(obj2);
+        console.log(obj===obj2);  // obj2是obj的深拷贝
+
+        // 手动编写JSON字符串
+        const str2 = '{"name":"Taffy","age":17,"gender":"girl"}';
+        console.log(JSON.parse(str2));  // 对象 {name: 'Taffy', age: 17, gender: 'girl'}
+
+
+        /*
+            也可以手动编写JSON字符串
+            编写JSON的注意事项：
+                1.JSON字符串有两种类型
+                    JSON对象    {}
+                    JSON数组    []
+                2.JSON对象的属性必须使用 "" 
+                3.JSON中可以使用的属性值（元素）
+                    - 数值（Number）    1 2 3 1.1 2e2 3E3
+                    - 布尔值    true false
+                    - 空值      null
+                    - 对象      {}
+                    - 数组      []
+
+                    - 大整数、undefined、函数等都无法使用
+                4.JSON的格式和JS对象的格式基本一致
+                    注意：JSON字符串最后不要加 , 
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

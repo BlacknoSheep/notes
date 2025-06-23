@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>递归</title>
+    <script>
+        /*
+            递归
+        */
+
+        // 阶乘
+        function factorial(n){
+            if(n === 1) return 1;
+            return n*factorial(n-1);
+        }
+        let n = 5;
+        console.log(`${n}! = ${factorial(n)}`);
+
+        // 斐波拉契数列
+        function fab(n){
+            if(n<3) return 1;
+            return fab(n-1) + fab(n-2);
+        }
+        let n2 = 10;
+        console.log(`第${n2}个斐波拉契数为：${fab(n2)}`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css笔记08</title>
+
+    <style>
+        /*
+         伪元素：表示页面中一些特殊的并不真实存在的元素（）特殊的位置
+            - 使用 :: 开头
+            ::first-letter
+            ::first-line
+            ::selection 被选中的文字
+
+            ::before 首前位置
+            ::after 尾后位置
+                - 必须结合content属性来使用
+                - 通过css添加的文字无法被鼠标选中
+                - 可以被first-letter等选择器选中
+         */
+         p::first-letter{
+            font-size: 40px;
+         }
+         p::first-line{
+            background-color: yellowgreen;
+         }
+         p::selection{
+            background-color: pink;
+         }
+         p::before{
+            content: "「";
+            color: red;
+         }
+         p::after{
+            content: "」";
+            color: red;
+         }
+    </style>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, tenetur incidunt? Eligendi consectetur exercitationem, quod natus explicabo quia sequi quibusdam odit ipsa porro in, voluptatum nam placeat suscipit officiis reprehenderit.</p>
+</body>
+</html>

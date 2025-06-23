@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询</title>
+
+    <style>
+        /*
+        媒体特性：
+            width 视口的宽度
+            height 视口的高度
+            min-width 视口的最小宽度（视口宽度 >= 指定值时生效）
+            max-width 视口的最大宽度（视口宽度 <= 指定值时生效）
+
+        可以用
+            only    用于兼容旧浏览器，后面必须接媒体类型
+            ,   “或”，并集，可以连接媒体类型或媒体特性
+            and “且”，交集。可以连接媒体类型或媒体特性
+            not “非”，对整个查询取反
+
+        样式切换的分界点称为断点
+        常用断点：
+            超小屏幕    max-width=768px
+            小屏幕      min-width=768px
+            中屏幕      min-width=992px
+            大屏幕      min-width=1200px
+        */
+        @media only scceen and (min-width:500px) and (max-width:700px) {
+            body{
+                background-color: #bfa;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

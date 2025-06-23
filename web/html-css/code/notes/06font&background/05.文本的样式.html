@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本的样式</title>
+
+    <style>
+        /*
+        text-align 文本的水平对齐
+            可选值：
+                left 左侧对齐，默认值
+                right 右侧对齐
+                center 居中对齐
+                justify 两端对齐
+        */
+        .text1{
+            border: 1px red solid;
+            width: 500px;
+
+            text-align: justify;
+        }
+
+        /*
+        vertical-align 垂直对齐
+            可选值：
+                baseline 基线对齐，默认值
+                top 顶部对齐（相对于父盒子）
+                bottom 底部对齐（相对父盒子）
+                middle 居中对齐（将元素的盒子的中点与父盒子的baseline + 父盒子的x-height的一半对齐）
+                    注意是小写的x
+        */
+        .text2{
+            line-height: 100px;
+            border: 1px red solid;
+            font-size: 30px;
+        }
+        .text2 > span{
+            border: 1px red solid;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+
+        .text3{
+            border: 1px red solid;
+        }
+        .text3 img{
+            /*默认的基线对齐会导致图片下方有空隙
+                注意要设给img标签
+            */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="text1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque modi, beatae quod nam doloribus maiores deleniti illum earum eum natus dolorum omnis accusantium maxime placeat voluptatum optio quibusdam quos. Ut.</div>
+    <br />
+    <div class="text2">文本的样式。HhYyJj!x<span>X文本的样式。HhYyJj!</span></div>
+    <br />
+    <div class="text3">
+        <img src="../练习/imgs/jd01.jpg">
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            /* background-color: #bfa; */
+            border: 1px red solid;
+            margin-right: 10px;
+            float: left;
+        }
+
+        .box2 {
+            width: 50px;
+            height: 50px;
+            border: 1px blue solid;
+            float: left;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        $(function () {
+            /*
+                end()
+                    - 将jQuery对象恢复到筛选前的状态
+                
+                add()
+                    - 向jQuery对象中添加其他元素，返回添加元素后的副本
+
+                contents()
+                    - 获取当前对象的所有子元素
+
+                addBack()
+                    - 将筛选前的元素再加回去（相当于add(筛选前的元素)）
+            */
+            // 获取所有box
+            var $boxs = $(".box1");
+
+            $("#btn").click(function () {
+                $boxs.css("background-color", "#bfa");
+            });
+
+            $("#btn2").click(function () {
+                $boxs
+                    .filter(".a")
+                    .css("background-color", "aqua")
+                    .end()
+                    .css("border", "5px red solid");
+            });
+
+            $("#btn3").click(function () {
+                console.log($boxs.length);  // 6
+                var $new_boxs = $boxs.add(".box2");
+                console.log($boxs.length);  // 6
+                console.log($new_boxs.length);  // 7
+                $new_boxs.css("margin-top", 20);
+            });
+
+            $("#btn4").click(function () {
+                $boxs.contents().css("background-color", "silver");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">添加背景颜色</button>
+    <button id="btn2" type="button">变色变边框</button>
+    <button id="btn3" type="button">add</button>
+    <button id="btn4" type="button">contents</button>
+    <hr>
+    <div class="box1 a"></div>
+    <div class="box1"></div>
+    <div class="box1"><span>span</span></div>
+    <div class="box1 a"></div>
+    <div class="box1 a"><span>span</span></div>
+    <div class="box1"></div>
+
+    <div class="box2"></div>
+</body>
+
+</html>

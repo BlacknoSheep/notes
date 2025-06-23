@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户名单</title>
+    <style>
+      table {
+        margin: 100px auto;
+        border-collapse: collapse;
+      }
+
+      table th,
+      table td {
+        border: 1px #000 solid;
+        padding: 5px 10px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      table caption {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="user_list">
+      <caption>
+        用户名单
+      </caption>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+          <th>gender</th>
+          <th>address</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% USERS.forEach(user=>{ %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.age %></td>
+          <td><%= user.gender %></td>
+          <td><%= user.address %></td>
+          <td>
+            <a href="/del_user?id=<%= user.id %>" onclick="return confirm('是否确认删除？')">删除</a>
+            <a href="/edit_user?id=<%= user.id %>">修改</a>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <form action="/add_user" method="post">
+      <fieldset>
+        <legend>添加用户</legend>
+        <label for="name">用户名</label>
+        <input type="text" name="name" id="name" required />
+        <br />
+        <label for="age">年&emsp;龄</label>
+        <input type="number" name="age" id="age" max="150" min="0" required />
+        <br />
+        <label for="gender">性&emsp;别</label>
+        <input type="radio" name="gender" value="男" required />
+        男
+        <input type="radio" name="gender" value="女" required />
+        女
+        <br />
+        <label for="address">地&emsp;址</label>
+        <input type="text" name="address" id="address" required />
+        <br />
+        <input type="submit" value="添加" />
+      </fieldset>
+    </form>
+  </body>
+</html>

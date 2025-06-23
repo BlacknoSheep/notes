@@ -19,3 +19,5 @@ https://github.com/zalandoresearch/pytorch-vq-vae/blob/master/vq-vae.ipynb
 # VQGAN
 
 https://zhuanlan.zhihu.com/p/637705399
+
+DALL-E用的VQ-VAE+GPT，DALL-E 2用的扩散模型+CLIP，DALL-E 3未公开

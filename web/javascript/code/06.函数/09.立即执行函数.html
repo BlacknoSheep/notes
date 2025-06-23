@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即执行函数</title>
+    <script>
+        /*
+            在开发中要尽量编写在局部作用域
+                避免在html中引入时出现命名覆盖
+            
+            let可以在块中创建具有块级作用域的变量
+        */
+        
+
+
+        /*
+            立即执行函数（IIFE）
+                - 是一个匿名的函数，只会执行一次
+                - 可以利用IIFE来创建一个一次性的函数作用域，避免变量冲突的问题
+        */
+        (function(){  // 最外层的小括号用于防止提升
+            let a = 10;
+            var b = 11;
+            console.log("a =",a);
+            console.log("b =",b);
+        }());  // 函数后面的小括号表示调用函数
+               // 括号后必须加上分号，否则可能会和后面的语句组成()xxx的错误语句
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

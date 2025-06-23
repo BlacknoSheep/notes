@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串的正则方法</title>
+    <script>
+        /*
+            split()
+                - 可以传入一个正则表达式作为分割符
+            search()
+                - 可以搜索符合正则表达式的内容第一次在字符串中出现的位置
+            replace()
+                - 可以依据正则表达式替换指定内容
+            match()
+                - 返回符合正则表达式的内容（数组形式）
+                - 若设置 g ，则会返回所有匹配
+                - 但是无法返回分组数据
+            matchAll()
+                - 必须指定 g
+                - 返回一个迭代器（可使用 for-of 循环遍历）
+                - 迭代器指向的值与reg.exec()返回的值相同
+        */
+        const str = "永abc雏adc塔afc菲";
+
+        console.log("------split()------");
+        console.log(str.split(/a[a-z]c/));  // ['永', '雏', '塔', '菲']
+
+        console.log("------search()------");
+        console.log(str.search("a"));  // 1
+        console.log(str.search(/[a-z]c/));  // 2
+
+        console.log("------replace()------");
+        console.log(str.replace(/a[a-z]c/, "-"));  // "永-雏adc塔afc菲"
+        console.log(str.replace(/a[a-z]c/g, "-"));  // "永-雏-塔-菲"
+
+        console.log("------match()------");
+        console.log(str.match(/a[a-z]c/g));  // ['abc', 'adc', 'afc']
+
+        console.log("------matchAll()------");
+        let res = str.matchAll(/a([a-z])c/g);  // RegExpStringIterator {}
+        for(item of res){
+            console.log(item);  // 结果与多次调用reg.exec()相同
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

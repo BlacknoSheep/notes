@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <!-- <script src="./test.js"></script> -->
+    <script>
+        /*
+            网上、书上说法非常多
+                一般认为JS具有堆和栈
+                    - 李立超老师认为栈中只存地址，值全部存在堆中
+                    - 《JavaScript高级程序设计 第四版》以及其他很多书中说原始值保存在栈中，对象保存在堆中
+                        这种说法显然有问题，栈空间有限，不可能用来保存大量字符串
+                    - 网上的一种说法是只有int32保存在栈中，其他所有类型的值均保存在堆中
+                
+                由于纵说纷纭，为了简单起见，以下不区分堆和栈，统一称为内存
+        */
+
+        const BasicVarGen = function () {
+            // int32内的Number
+            // 具有两级地址（显然第一级地址相同第二级地址也必定相同）
+            // chrome内存窗口中显示类型为：smi number
+            this.intNum1 = 1;  // 在内存中创建1，并令intNum1保存其地址
+            this.intNum2 = 1;  // 和intNum1保存同一地址
+            this.intNum3 = 3;  // 在内存中创建3，并令intNum3保存其地址
+            // this.intNum2 = 3;  // 和intNum3保存相同的地址
+
+            // 浮点数
+            // 具有两级地址
+            // chrome内存窗口中显示类型为：heap number
+            this.fNum1 = 1.1;
+            this.fNum2 = 1.1;
+            this.fNum3 = 3.3;  // 三者保存不同的地址，通过该地址可索引到另一个地址（三者也不同），第二级地址表示的内存中存放值
+
+            // BigInt
+            // chrome内存窗口中显示类型为：bigint
+            this.big1 = 1n;
+            this.big2 = 1n;
+            this.big3 = 3n;  // 三者保存不同的地址
+
+            // String
+            // chrome内存窗口中直接显示字符串
+            this.s1 = "IAmString";
+            this.s2 = "IAmString";  // 和s1保存相同的地址
+            this.s3 = "IAmAnotherString";  // 和s1、s2保存不同的地址
+            //this.s2 = "IAmAnotherString";  // 和s3保存相同的地址
+
+            // Symbol
+            this.symbol1 = Symbol();
+            this.symbol2 = Symbol();  // 二者保存不同的地址（其实Symbol()每次都会创建唯一的符号，内存地址肯定是不同的）
+
+
+            /*
+                Boolean、Null、和Undefined在chrome内存窗口中均属于Oddball类型
+                    - 具有两级地址
+                    - 这些值的地址固定
+                        如：对于任何变量 xxx = true; ，xxx都保存同一地址
+            */
+            // Boolean
+            this.b1 = true;
+            this.b2 = true;  // 和b1保存同一地址
+            this.b3 = false;
+            // this.b2 = false;
+
+            // Null
+            this.n1 = null;
+            this.n2 = null;  // 和n1保存同一地址
+
+            // Undefined
+            this.u1 = undefined;
+            this.u2 = undefined;  // 和u1保存同一地址
+
+
+            // Object
+            this.obj1 = {name: "obj01"};
+            this.obj2 = {name: "obj01"};
+            this.obj3 = {name: "obj03"};  // 三者保存不同的地址
+                                          // 但obj1.name和obj2.name保存相同的地址
+        }
+
+        // 对象
+        let a = new BasicVarGen();
+        let b = new BasicVarGen();  // 和a保存不同的地址，
+                                    // 浮点数、BigInt、Symbol和Object属性保存的地址不同，其余属性保存的地址相同
+
+        debugger;
+        a.symbol1 = a.symbol2;  // a.symbol1和a.symbol2保存同一地址
+        console.log(a.symbol1==a.symbol2);  // true
+        
+
+        // smi number表现类似String
+        a.s3 = "changed";  // 内存中创建"changed"，并令a.s3保存其地址
+        b.s3 = "changed";  // 内存中已存在"changed"，直接令b.s3保存其地址
+        // 此时没有任何变量保存"IAmAnotherString"的地址，但它并不会被立刻销毁（未来可能会由回收机制销毁）
+        a.s3 = "IAmAnotherString";  // "IAmAnotherString"在内存中已存在，故直接保存其地址
+        a.s1 = a.s3;  // a.s1和a.s3均保存"IAmAnotherString"的地址
+        
+        a.fNum1 = 3.3;
+        a.fNum1 = 1.1
+        a.fNum1 = a.fNum3;
+        // a.fNum1保存的地址均未发生改变
+        // a.fNum1，a.fNum2，a.fNum3三个变量的第二级地址都在动态变化（即使值相同地址也不相同）
+
+        a.big1 = 111n;  // a.big1保存的地址发生改变
+        a.big1 = 1n;  // a.big1保存的地址发生改变，且和一开始不一样，也和a.big2不一样
+        a.big1 = a.big3;  // a.big1和a.big3保存同一地址
+
+        a.obj1 = {name: "obj03"};  // a.obj1 保存的地址发生改变，且和 a.obj3 保存的地址不同
+                                   // 但 a.obj1.name 和 a.obj3.name 保存的地址相同
+        a.obj1 = a.obj3;  // a.obj1和a.obj3保存相同的地址
+
+
+        /*
+            总结：
+                1.int32类型的Number（smi number）、String一旦创建就无法修改，
+                    相同int32值（1,2,3,...）或String值（"a","bb","gds",...）的变量在内存中只存在一份，
+                    赋值的本质：若内存中已有该值（注意是值），则直接返回其地址，否则先在内存中创建该值再返回其地址
+
+                    注意：smi number在内存中的地址（一级和二级都会）会动态发生改变（相同值仍然只存在一份）（原因可能是内存整理）
+
+                2.浮点数
+                    - 一级地址创建后就不会改变
+                    - 赋值只改变二级地址
+                    - 二级地址会动态变化
+
+                3.BigInt
+                    类似Object，即使值相同也会重复创建
+                    赋值的本质：将右侧变量保存的地址复制给左侧变量
+                
+                4.Boolean（true,false）、Null（null）、和Undefined（undefined）在内存中地址固定，
+                    赋值时直接返回这些值的地址
+                
+                5.Symbol由于每次都会创建独立的符号，所以地址肯定不同
+                    赋值的本质：将右侧变量保存的地址复制给左侧变量
+                    
+                6.Object类型的变量，即使内容相同也会重复创建，但是其属性（变量）仍遵循所有规则
+                    赋值的本质：将右侧变量保存的地址复制给左侧变量
+
+
+            结论：7种原始值在赋值时不用考虑左右侧变量之间的关系，使用时可以认为二者互相独立
+                Object由于存在属性变量，当两个Object变量保存的地址相同时
+                    通过它们会访问到同一内存位置的属性变量，从而发生相互干扰
+        */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

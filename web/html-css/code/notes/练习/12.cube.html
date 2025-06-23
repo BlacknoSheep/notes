@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cube</title>
+
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .cube_wrapper{
+            width: 600px;
+            height: 600px;
+            background-color: silver;
+            margin: 50px auto;
+            position: relative;
+        }
+        
+        .cube{
+            width: 200px;
+            height: 200px;
+            perspective: 800px;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite;
+        }
+
+        .cube li{
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            position: absolute;
+        }
+
+        .cube li:nth-child(1){
+            background-image: url(./imgs/cube/1.jpg);
+            transform: translateZ(-100px);
+        }
+
+        .cube li:nth-child(2){
+            background-image: url(./imgs/cube/2.jpg);
+            transform: translateX(-100px) rotateY(90deg);
+        }
+
+        .cube li:nth-child(3){
+            background-image: url(./imgs/cube/3.jpg);
+            transform: translateX(100px) rotateY(-90deg);
+        }
+
+        .cube li:nth-child(4){
+            background-image: url(./imgs/cube/4.jpg);
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+        .cube li:nth-child(5){
+            background-image: url(./imgs/cube/5.jpg);
+            transform: translateY(100px) rotateX(-90deg);
+        }
+
+        .cube li:nth-child(6){
+            background-image: url(./imgs/cube/6.jpg);
+            transform: translateZ(100px);
+        }
+
+        @keyframes rotate {
+            from{
+                transform: rotateX(0) rotateZ(0);
+            }
+            to{
+                transform: rotateX(1turn) rotateZ(1turn);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube_wrapper">
+        <ul class="cube">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

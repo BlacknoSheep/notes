@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios配置对象</title>
+    <!-- 引入axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <button id="btn1">发送POST请求</button>
+    </div>
+
+    <script>
+      // axios实例相当于axios的一个副本，功能和axios相同
+      // axios默认配置在实例上也会生效
+      // 但是可以单独修改实例的默认配置（即 axios默认配置，实例默认配置，请求的config参数，后面的覆盖前面的）
+      const instance = axios.create();
+      instance.defaults.baseURL = "http://localhost:4000";
+
+      // 或者
+      // const instance = axios.create({
+      //   baseURL: "https://api.example.com",
+      // });
+
+      document.getElementById("btn1").onclick = () => {
+        instance({
+          method: "POST",
+          // baseURL: "http://localhost:3000",
+          url: "students",
+          data: {
+            name: "Taffy",
+            age: 17,
+            gender: "女",
+            address: "bilibili",
+          },
+          timeout: 3000,
+        })
+          .then((res) => {
+            console.log("响应：", res.data);
+          })
+          .catch((err) => {
+            console.log("出错了！", err);
+          });
+      };
+    </script>
+  </body>
+</html>

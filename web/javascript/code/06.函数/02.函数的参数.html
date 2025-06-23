@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的参数</title>
+    <script>
+        /*
+            可以为参数指定默认值
+                - 不指定的参数值默认为undefined
+                - 参数默认值在运行时决定（而非编译时），
+                    故参数默认值可以是一个变化的值
+        */
+        function fn1(a=1, b) {
+            console.log("a =", a);  // 1
+            console.log("b =", b);  // undefined
+        }
+        fn1();
+
+        let count = 0;
+        function addCount(){
+            return ++count;
+        }
+        function fn2(val=addCount()){
+            return val;
+        }
+        for(let i=0;i<3;++i){
+            console.log(fn2());  // 三次分别输出1 2 3
+        }
+
+        /*
+            JS中所有函数的参数都是按值传递的
+        */
+        let num1 = 100;
+        console.log("num1 =", num1);  // 100
+        function fn3(num){
+            console.log(num+1);
+        }
+        fn3(num1);  // 101
+        console.log("num1 =", num1);  // 100
+
+        obj1 = {name: "孙笑川"};
+        function fn4(a){
+            a.name = "hhh";
+            console.log(a);  // {name: 'hhh'}
+        }
+        fn4(obj1);
+        console.log(obj1);  // {name: 'hhh'}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

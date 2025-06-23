@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>w3school导航条</title>
+    
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        /* 去除所有链接的下划线 */
+        a{
+            text-decoration: none;
+        }
+        /* 导航条 */
+        .head_nav{
+            width: 1210px;
+            height: 48px;
+            margin: 50px auto;
+            background-color: #e8e8e8;
+            display: flex;
+        }
+        
+        .head_nav > li{
+            flex-grow: 1;
+        }
+
+        .head_nav > li:hover{
+            color: #dedede;
+            background-color: #3f3f3f;
+        }
+        /* 导航项中的文字 */
+        .head_nav_text{
+            font-size: 16px;
+            color: #797979;
+            /* 使文字垂直居中 */
+            height: 48px;
+            line-height: 48px;
+            /* 水平居中 */
+            text-align: center;
+        }
+        .head_nav_text:hover{
+            color: #dedede;
+        }
+    </style>
+</head>
+<body>
+    <ul class="head_nav">
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="HTML 系列教程">HTML/CSS</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="浏览器脚本教程">Browser Side</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="服务器脚本教程">Server Side</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="编程教程">Programming</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="XML 系列教程">XML</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="建站手册">Web Building</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="head_nav_text" title="参考手册">Reference</div>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

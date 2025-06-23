@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window对象</title>
+    <script>
+        /*
+            window对象
+                - 浏览器提供了一个window对象，可以直接访问
+                - window对象代表的是浏览器窗口，通过该对象可以对浏览器窗口进行各种操作
+                    除此之外window对象还负责存储JS的内置对象和浏览器的宿主对象
+                        JS内置对象：Number()，String()等JS内置函数（对象）
+                        浏览器宿主对象：alert()，document.write()，console.log()等由浏览器提供的函数（对象）
+                - window对象的属性可以通过window对象访问，也可以直接访问
+        */
+        // alert(window);  // [object Window]
+        // window.alert(window);  // 同上
+
+        // 向window对象中添加的属性会自动成为全局变量
+        window.a = "我是a";  //　全局变量
+        console.log(a);  // "我是a"
+
+        /*
+            1.在全局中使用var声明的变量，都会作为window的属性保存
+            2.在全局中使用function声明的函数，都会作为window的方法
+            3.使用let声明的变量不会存储在window中，而是存储在一个秘密的地方（无法访问）
+                同名变量优先在秘密的地方寻找，然后再在window中寻找
+        */
+        var b = "我是b";  // 等价于 window.b = "我是b";
+        console.log(window.b);  // "我是b"
+
+        function fun1(){ console.log("我是fun1()")};  // 等价于 window.fun1=...
+        window.fun1();  // "我是fun1()"
+
+        // let声明的变量不保存在window中
+        let c = "我是let声明的c";
+        console.log(window.c);  // undefined
+
+        // 优先找let声明的
+        window.c = "我是window的属性c";
+        console.log(c);  // "我是let声明的c"
+
+
+        /*
+            - var没有块作用域，但是有函数作用域
+            - 在局部作用域中，若不使用var或let声明变量，而是直接赋值，
+                则变量会自动成为window对象的属性，即全局变量
+                非常不建议这这种使用方式
+        */
+        function fun2(){
+            var a2 = "我是var声明的a2";
+            let b2 = "我是let声明的b2";
+            c2 = "我是局部作用域中直接使用赋值的c2";
+        }
+        fun2();  // 必须调用函数才会运行里面的代码
+        // console.log(a2);  // 报错
+        // console.log(b2);  // 报错
+        console.log(c2);  // "我是局部作用域中直接使用赋值的c2"
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

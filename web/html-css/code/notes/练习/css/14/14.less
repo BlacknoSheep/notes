@@ -1,0 +1,169 @@
+html{
+    font-size: (100/750*40vw);
+}
+
+body{
+    background-color: #eff0f4;
+}
+
+a{
+    text-decoration: none;
+}
+
+// 虚基类
+.w{
+    width: (693/40rem);
+    margin: 0 auto;
+}
+
+// -----------------顶部-----------------
+.header:extend(.w){
+    height: (175/40rem);
+    // 设置为弹性容器
+    display: flex;
+    // 水平分布
+    justify-content: space-between;
+    // 垂直居中
+    align-items: center;
+
+    .logo a{
+        font-size: 1.5rem;
+        color: #24253d;
+    }
+
+    .menu a,
+    .search a{
+        font-size: 1.2rem;
+        color: #999999;
+    }
+}
+
+// -----------------大横幅-----------------
+.banner:extend(.w){
+    img{
+        width: 100%;
+    }
+}
+
+// -----------------主菜单-----------------
+.main_menu:extend(.w){
+    height: (330/40rem);
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    align-content: space-evenly;
+    
+    // 文本格式
+    a{
+        // 背景
+        width: (328/40rem);
+        height: (106/40rem);
+        border-radius: 0.4rem;
+        box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.3);
+        
+        // 字体
+        // 垂直居中
+        font-size: 0.8rem;
+        line-height: (106/40rem);
+        color: #fff;
+
+        i{
+            margin: 0 0.4rem;
+        }
+    }
+
+    .courses{
+        // background-image: linear-gradient(#f47866 0, #f97053 (120/40rem));
+        background-color: #f97053;
+    }
+
+    .star{
+        background-color: #c657ff;
+    }
+
+    .sub{
+        background-color: #ff3971;
+    }
+
+    .download{
+        background-color: #1d92ff;
+    }
+}
+
+// -----------------课程-----------------
+.course:extend(.w){
+    height: (436/40rem);
+
+    .title{
+        // 标题前的竖线
+        h2::before{
+            display: inline-block;
+            content: "";
+            width: (3/40rem);
+            height: (28/40rem);
+            background-color: #3a84ff;
+            margin-right: 0.2rem;
+        }
+        
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        // 字体
+        h2{
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .more{
+            font-size: 0.78rem;
+            color: #656565;
+        }
+    }
+
+    .item_list{
+        height: (325/40rem);
+        display: flex;
+
+        // 滚动
+        overflow: auto;
+
+        .item{
+            width: (325/40rem);
+            height: 100%;
+            background-color: #fff;
+            border-radius: 0.4rem;
+            box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.3);
+            // item项间的距离
+            margin-right: 0.6rem;
+            // 文本水平居中
+            text-align: center;
+
+            // 大图
+            & > img{
+                width: (285/40rem);
+                // 大图和头像共用外边距
+                margin: (20/40rem);
+            }
+
+            .item_title{
+                // item标题比h2小一点
+                font-size: 0.75rem;
+            }
+
+            .userinfo{
+                // 设置为弹性块，使得元素横向排列
+                display: flex;
+                font-size: 0.7rem;
+                color: #656565;
+                // 垂直居中
+                align-items: center;
+                
+                // 头像
+                img{
+                    width: 1rem;
+                }
+            }
+        }
+    }
+}

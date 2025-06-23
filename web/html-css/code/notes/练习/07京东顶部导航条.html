@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东顶部导航条</title>
+
+    <!-- 引入重置样式表 -->
+    <link rel="stylesheet" href="./reset.css">
+    <!-- 引入图标字体表 -->
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+    <style>
+        body{
+            /* 防止缩小窗口时body宽度不足，拖动滚动条时出现白边 */
+            min-width: 1190px;
+        }
+
+        /* 清除浮动 */
+        .clearfix::before,
+        .clearfix::after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* 去除超链接下划线 */
+        a{
+            text-decoration: none;
+        }
+
+        /* 整个导航条 */
+        .header{
+            width: 100%;
+            height: 30px;
+            background-color: #e3e4e5;
+            border-bottom: 1px #ddd solid;
+        }
+
+        /* 导航条主体部分 */
+        .header_bar{
+            /* 固定主体部分宽度 */
+            width: 1190px;
+            /* 文字垂直居中 */
+            height: 30px;
+            line-height: 30px;
+            /* 字体格式 */
+            font-size: 12px;
+            font-family: "Microsoft YaHei", "Heiti SC", tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+            /* 主体居中 */
+            margin: 0 auto;
+            /* 设置为hidde将无法显示下拉菜单 */
+            /* overflow: hidden; */
+            /* 开启相对定位以供子元素定位使用 */
+            position: relative;
+        }
+
+        /* 横向排列 */
+        .location, .nav_list > li{
+            float: left;
+        }
+        .nav_list{
+            float: right;
+        }
+
+        /* 分隔线 */
+        .separate_line{
+            width: 1px;
+            height: 10px;
+            background-color: #ccc;
+            margin: 11px 5px;
+        }
+
+        .list_text{
+            /* 导航项间的间隔 */
+            padding: 0px 7px;
+        }
+
+        .fa-map-marker-alt
+        {
+            color: #f10215;
+            font-size: 13px;
+            margin-right: 2px;
+        }
+
+        .fa-angle-down{
+            /* 下拉菜单图标无法设置大小 */
+            font-size: 5px;
+        }
+
+        /* 文本颜色 */
+        .header_bar,
+        .header_bar a{
+            color: #999;
+        }
+        
+        .header_bar a.red_text,
+        .header_bar a:hover{
+            color: #f00;
+        }
+
+        /* ------------------------------------------定位---------------------------------------- */
+        /* 设置当前城市的效果 */
+        .current_city{
+            padding: 0px 8px;
+            /* 提前设置一个原色的边框，之后选中时设置的边框只会改变颜色，而不会改变文字的位置 */
+            border: 1px #e3e4e5 solid;
+            border-bottom: none;
+            /* 盖住下拉菜单的上边缘的一部分 */
+            position: relative;
+            z-index: 1000;
+        }
+
+        .location:hover .current_city{
+            background-color: #fff;
+            border: 1px #ccc solid;
+            border-bottom: none;
+        }
+
+        .location .city_list{
+            width: 320px;
+            height: 436px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            /* 默认隐藏 */
+            display: none;
+            /* 设置绝对定位使其脱离文档流，不占据页面位置，不会挤压其他元素，也不会撑开父元素 */
+            position: absolute;
+            top: 30px;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+        }
+
+        /*
+        设置鼠标移入展开下拉菜单效果
+        设置给location使得鼠标在整个location范围内时都触发hover
+        */
+        .location:hover .city_list{
+            display: block;
+        }
+
+        /* ---------------------------------------我的京东---------------------------------------- */
+        .nav_list .myJD .list_text{
+            /* 提前设置一个原色的边框，之后选中时设置的边框只会改变颜色，而不会改变文字的位置 */
+            border: 1px #e3e4e5 solid;
+            border-bottom: none;
+            /* 盖住下拉菜单的上边缘的一部分 */
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav_list .myJD:hover .list_text{
+            background-color: #fff;
+            border: 1px #ccc solid;
+            border-bottom: none;
+        }
+        
+        /* 下拉菜单 */
+        .nav_list .myJDlist{
+            width: 280px;
+            height: 232px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            /* 默认隐藏 */
+            display: none;
+            /* 设置绝对定位使其脱离文档流，不占据页面位置，不会挤压其他元素，也不会撑开父元素 */
+            position: absolute;
+            top: 30px;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+        }
+
+        .nav_list .myJD:hover .myJDlist{
+            display: block;
+        }
+
+        /* ---------------------------------------企业采购----------------------------------- */
+        .nav_list .company_service .list_text{
+            /* 提前设置一个原色的边框，之后选中时设置的边框只会改变颜色，而不会改变文字的位置 */
+            border: 1px #e3e4e5 solid;
+            border-bottom: none;
+            /* 盖住下拉菜单的上边缘的一部分 */
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav_list .company_service:hover .list_text{
+            background-color: #fff;
+            border: 1px #ccc solid;
+            border-bottom: none;
+        }
+
+        .nav_list .company_service_list{
+            width: 152px;
+            height: 140px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            /* 默认隐藏 */
+            display: none;
+            /* 设置绝对定位使其脱离文档流，不占据页面位置，不会挤压其他元素，也不会撑开父元素 */
+            position: absolute;
+            top: 30px;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+        }
+
+        .nav_list .company_service:hover .company_service_list{
+            display: block;
+        }
+
+        /* ---------------------------------------商家服务----------------------------------- */
+        .nav_list .seller_service{
+            /* 用于下拉框定位 */
+            position: relative;
+        }
+        
+        .nav_list .seller_service .list_text{
+            /* 提前设置一个原色的边框，之后选中时设置的边框只会改变颜色，而不会改变文字的位置 */
+            border: 1px #e3e4e5 solid;
+            border-bottom: none;
+            /* 盖住下拉菜单的上边缘的一部分 */
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav_list .seller_service .list_text:hover{
+            color: #f10215;
+        }
+
+        .nav_list .seller_service:hover .list_text{
+            background-color: #fff;
+            border: 1px #ccc solid;
+            border-bottom: none;
+        }
+
+        .nav_list .seller_service_list{
+            width: 171px;
+            height: 94px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            /* 默认隐藏 */
+            display: none;
+            /* 设置绝对定位使其脱离文档流，不占据页面位置，不会挤压其他元素，也不会撑开父元素 */
+            position: absolute;
+            top: 30px;
+            left: -95px;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+        }
+
+        .nav_list .seller_service:hover .seller_service_list{
+            display: block;
+        }
+
+        /* ---------------------------------------网站导航----------------------------------- */
+        .nav_list .site_nav{
+            /* 用于下拉框定位 */
+            position: relative;
+        }
+        
+        .nav_list .site_nav .list_text{
+            /* 提前设置一个原色的边框，之后选中时设置的边框只会改变颜色，而不会改变文字的位置 */
+            border: 1px #e3e4e5 solid;
+            border-bottom: none;
+            /* 盖住下拉菜单的上边缘的一部分 */
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav_list .site_nav .list_text:hover{
+            color: #f10215;
+        }
+
+        .nav_list .site_nav:hover .list_text{
+            background-color: #fff;
+            border: 1px #ccc solid;
+            border-bottom: none;
+        }
+
+        .nav_list .site_nav_list{
+            width: 1190px;
+            height: 180px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            /* 默认隐藏 */
+            display: none;
+            /* 设置绝对定位使其脱离文档流，不占据页面位置，不会挤压其他元素，也不会撑开父元素 */
+            position: absolute;
+            top: 30px;
+            left: -1040px;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+        }
+
+        .nav_list .site_nav:hover .site_nav_list{
+            display: block;
+        }
+
+        /* ---------------------------------------手机京东----------------------------------- */
+        .nav_list .mobile_JD{
+            /* 用于下拉框定位 */
+            position: relative;
+        }
+
+        .nav_list .site_nav .list_text{
+            /* 提前设置一个原色的边框，之后选中时设置的边框只会改变颜色，而不会改变文字的位置 */
+            border: 1px #e3e4e5 solid;
+            border-bottom: none;
+            /* 盖住下拉菜单的上边缘的一部分 */
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav_list .mobile_JD .list_text:hover{
+            color: #f10215;
+        }
+
+        /* .nav_list .mobile_JD:hover .list_text{
+            background-color: #fff;
+            border: 1px #999 solid;
+            border-bottom: none;
+        } */
+
+        .nav_list .mobile_JD_list{
+            width: 192px;
+            height: 506px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            /* 默认隐藏 */
+            display: none;
+            /* 设置绝对定位使其脱离文档流，不占据页面位置，不会挤压其他元素，也不会撑开父元素 */
+            position: absolute;
+            top: 30px;
+            left: -130px;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+        }
+
+        .nav_list .mobile_JD:hover .mobile_JD_list{
+            display: block;
+        }
+        
+        /* 上三角形 */
+        .nav_list .mobile_JD_list::before{
+            content: "";
+            width: 0px;
+            height: 0px;
+            border-bottom: 5px #fff solid;
+            border-left: 5px transparent solid;
+            border-right: 5px transparent solid;
+            /* border-bottom: 5px red solid; */
+            position: absolute;
+            left: 155px;
+            top: -5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+    <!-- 顶部导航条 -->
+    <div class="header_bar">
+        <!-- 左侧定位 -->
+        <div class="location">
+            <a href="javascript:;">
+                <div class="current_city"><i class="fas fa-map-marker-alt"></i>江苏</div>
+            </a>
+            <!-- 城市下拉框 -->
+            <div class="city_list"></div>
+        </div>
+
+        <!-- 右侧导航条 -->
+        <ul class="nav_list">
+            <li class="list_item">
+                <div class="list_text">
+                    <a href="javascript:;">你好，请登录</a>
+                </div>
+            </li>
+            <!-- <li class="separate_line"></li> -->
+            <li class="list_item sign_up">
+                <div class="list_text">
+                    <a href="javascript:;" class="red_text">免费注册</a>
+                </div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item">
+                <div class="list_text">
+                    <a href="javascript:;">我的订单</a>
+                </div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item myJD">
+                <div class="list_text">
+                    <a href="javascript:;">我的京东</a>
+                    <!-- 下拉菜单图标 -->
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <div class="myJDlist"></div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item">
+                <div class="list_text">
+                    <a href="javascript:;">京东会员</a>
+                </div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item company_service">
+                <div class="list_text">
+                    <a href="javascript:;" class="red_text">企业采购</a>
+                    <!-- 下拉菜单图标 -->
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <div class="company_service_list"></div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item seller_service">
+                <div class="list_text">
+                    <span>商家服务</span>
+                    <!-- 下拉菜单图标 -->
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <div class="seller_service_list"></div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item site_nav">
+                <div class="list_text">
+                    <span>网站导航</span>
+                    <!-- 下拉菜单图标 -->
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <div class="site_nav_list"></div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item mobile_JD">
+                <div class="list_text">
+                    <span>手机京东</span>
+                </div>
+                <div class="mobile_JD_list"></div>
+            </li>
+            <li class="separate_line"></li>
+            <li class="list_item">
+                <div class="list_text">
+                    <a href="javascript:;">网站无障碍</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+</body>
+</html>

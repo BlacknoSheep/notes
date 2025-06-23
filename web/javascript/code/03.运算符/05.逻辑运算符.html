@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逻辑运算符</title>
+    <script>
+        /*
+            ! 逻辑非
+                - 对布尔值进行取反
+                - 对于非布尔值，会先转换为布尔值，再取反
+                - 可以用来将其他值转换为布尔值
+        */
+        console.log("逻辑非")
+        let a = "12px";
+        console.log(typeof a, a);
+
+        a = !!a;
+        console.log(typeof a, a);
+
+        /*
+            && 逻辑与
+                - 短路求值
+                - 对于非布尔值，会转换为布尔值，再进行运算，
+                    但是，此时其返回值不再是布尔值，而是原值
+                    - 若第一个值为true，则返回第二个值
+                        若第一个值为false，则返回第一个值
+        */
+       console.log("逻辑与");
+       false && alert("&&");
+       console.log(null && "第二个值");
+       console.log("第一个值" && "第二个值");
+
+        /*
+            || 逻辑或
+                - 短路求值
+                - 对于非布尔值，会转换为布尔值，再进行运算，
+                    但是，此时其返回值不再是布尔值，而是原值
+                    - 若第一个值为true，则返回第一个值
+                        若第一个值为false，则返回第二个值
+        */
+       console.log("逻辑或")
+       true || alert("||");
+       console.log("第一个值" || "第二个值");
+       console.log(null || "第二个值");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

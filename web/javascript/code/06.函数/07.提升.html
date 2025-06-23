@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提升</title>
+    <script>
+        /*
+            变量的提升
+                - 使用var声明的变量，它会在所在作用域内所有代码执行前被声明（不包括赋值）
+                    所以可以在var声明的变量声明前访问它
+                    ！不建议这么写
+
+                - 使用let声明的变量，实际上也会发生提升，只是在赋值先禁止访问
+
+            函数的提升
+                - 使用函数声明创建的函数，会在其作用域内其他代码执行前被创建（声明并赋值）
+                    所以可以在函数声明前调用函数
+        */
+
+        // console.log(a1);  // a is not defined
+        // a1 = 10;  // window.a = 10，不发生提升
+
+        // 不建议这么写
+        console.log(a2);  // undefined
+        var a2 = "我是var声明的a2"; // 发生提升
+
+        // console.log(a3);  // "Cannot access 'a3' before initialization"
+        let a3 = "我是let声明的a3";  // 发生提升，但在赋值前禁止访问
+
+        fun1();  // "我是fun1()"
+        function fun1(){console.log("我是fun1()")};  // 发生提升
+
+        // fun2();  // Cannot access 'fun2' before initialization
+        let fun2 = function(){console.log("我是fun2()")};  // 发生提升，但无法访问
+
+        // fun3();  // fun3 is not a function
+        var fun3 = function(){console.log("我是fun3()")};  // 仅var声明提升
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素节点</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <br />
+    <span class="spans">文本文本&nbsp;</span><span class="spans">文本文本&nbsp;</span><span class="spans">文本文本&nbsp;</span>
+    <form action="#">
+        用户名：<input type="text" name="username"> <br />
+        密码：<input type="password" name="password"> <br />
+        性别：<input type="radio" name="gender" value="male">男
+        <input type="radio" name="gender" value="female">女
+    </form>
+    
+    <script>
+        /*
+            元素节点
+                - 在网页中，每一个标签都是一个元素节点
+                - 如何获取元素节点：
+                    1.通过document对象来获取
+                    2.通过document对象来创建
+
+            获取元素节点：
+                1.直接通过document对象的属性来获取
+                2.document.getElementById()
+                    - 根据id获取一个元素节点对象
+                3.document.getElementsByClassName()
+                    - 根据class获取一组元素节点对象
+                    - 返回一个类数组
+                    - 返回的结果是一个实时更新的集合
+                        当网页中添加元素时，集合也会实时更新（即使添加元素的代码在后面）
+                4.document.getElementsByTagName()
+                    - 根据标签名获取一组元素节点对象
+                    - 返回一个类数组
+                    - 返回的结果是一个实时更新的集合
+                    - document.getElementsByTagName("*")    获取页面中所有的元素
+                5.document.getElementsByName()
+                    - 根据name属性获取一组元素节点对象
+                    - 返回一个类数组
+                    - 返回的结果是一个实时更新的集合
+                    - 主要用于表单项
+                6.document.querySelectorAll()
+                    - 根据选择器去页面中查询元素
+                    - 返回一个类数组
+                    - ！！！不会实时更新
+                7.document.querySelector()
+                    - 根据选择器查询页面中第一个符合条件的元素
+                    - 返回目标元素（而非类数组）
+        */
+        // 直接获取body元素
+        console.log(document.body);
+
+        // 根据id获取元素
+        console.log(document.getElementById("btn"));
+
+        // 根据class获取一组元素
+        const spans = document.getElementsByClassName("spans");
+        console.log(spans);  // [span.spans, span.spans, span.spans]
+        console.log(spans[0]);
+        spans[1].innerText = "修改文本";
+
+        console.log(document.getElementsByTagName("span"));  // [span.spans, span.spans, span.spans]
+        console.log(document.getElementsByTagName("*"));
+
+        console.log(document.getElementsByName("gender"));
+
+        console.log(document.querySelectorAll("#btn"));
+
+        console.log(document.querySelector("#btn"));
+
+        let btn = document.getElementById("btn");
+        btn.innerText = "我改了";
+
+
+        /*
+            创建一个元素节点
+                document.createElement()
+        */
+        const h1 = document.createElement("h1");
+        console.log(h1);
+    </script>
+</body>
+</html>

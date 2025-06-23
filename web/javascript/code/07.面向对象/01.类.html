@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类</title>
+    <script>
+        "use strict";
+        /*
+            面向对象编程（OOP）
+
+            使用Object创建对象的问题：
+                1.无法区分出不同类型的对象
+                2.不方便批量创建对象
+
+            可以通过类（class）来解决这个问题
+                1.类是对象模板，可以将对象中的属性和方法直接定义在类中
+                    定义类后，就可以直接通过类来创建对象
+                2.语法：
+                    class 类名 {}  // 类名推荐使用驼峰命名法
+                        注意：类声明不会被提升
+                    const 类名 = class {}
+                3.通过同一个类创建的对象，成为同类对象
+                    可以使用instanceOf来检查一个对象是否是由某个类创建
+                    若某个对象时由某个类创建的，则称该对象时这个类的实例
+                4.类受块作用域限制（即无法在块外访问）
+        */
+        // const Person = class {}
+        class Person{
+            /*
+                类的代码块中，默认就是严格模式
+            */
+            name = "Person";  // 添加实例属性（只能通过实例来访问）
+            age = 18;
+
+            static test = "test静态属性";  // 使用static声明的属性时静态属性
+                                          //  只能通过类来进行访问
+        }
+
+        const p1 = new Person();  // 调用构造函数创建对象
+        console.log(p1 instanceof Person);  // true
+        console.log(p1);  // Person {name: 'Person', age: 18}
+                          // 不显示静态属性
+
+        console.log(p1.test);  // undefined     无法访问静态属性
+        console.log(Person.test);  // "test静态属性"
+
+        Person.static1 = "添加静态属性";
+        console.log(Person);
+        console.log(p1.static1);  // undefined
+        console.log(Person.static1);  // "添加静态属性"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

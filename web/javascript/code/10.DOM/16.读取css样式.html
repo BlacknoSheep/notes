@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>读取css样式</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+
+        .box1::before {
+            content: "before";
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="btn1">修改</button>
+
+    <hr>
+
+    <div class="box1"></div>
+
+    <script>
+        /*
+            读取元素样式的方式：
+                - 元素.style.样式名 只能读取内联样式
+                    一般只会用它来修改样式，而不会用于读取
+
+                - getComputedStyle()
+                    - 会返回一个对象，该对象包含了当前元素所有生效的样式
+                    - 参数：
+                        1.要获取样式的对象
+                        2.要获取的伪元素（可选）
+                    - 注意：
+                        1.样式值时带单位的字符串，需要用parseInt()处理够才能进行计算
+                        2.因为获取的是计算后的样式，故是只读的，修改应该用上一种方式
+                        3.返回的样式对象的样式值不一定能够直接拿来计算，
+                            有些可能是 "auto" 等，
+                            所以一定要先检查再计算
+        */
+        const btn1 = document.getElementById("btn1");
+        const box1 = document.getElementsByClassName("box1")[0];
+        btn1.onclick = function () {
+            const box1Style = getComputedStyle(box1);
+            // console.log(box1Style);
+            console.log(box1Style.width);
+            console.log(box1Style.backgroundColor);
+
+            // 获取伪元素的样式
+            const beforeStyle = getComputedStyle(box1, "::before");
+            // console.log(beforeStyle);
+            console.log(beforeStyle.color);
+
+            // 修改box1宽度
+            box1.style.width = parseInt(box1Style.width) + 100 + "px";
+        }
+    </script>
+</body>
+
+</html>

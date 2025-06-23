@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高度塌陷和BFC</title>
+    
+    <!-- <link rel="stylesheet" href="../练习/reset.css"> -->
+    <style>
+        .outer{
+            border: 10px red solid;
+            overflow: hidden;
+        }
+
+        /*
+        BFC（Block Formatting Context）块级格式化环境
+            - BFC是css中一个隐含的属性，为一个元素开启BFC后
+                该元素会变成一个独立的布局区域
+            - 元素开启BFC后的特点
+                1.不会被浮动元素覆盖
+                2.子元素和父元素的外边距不会重叠
+                3.可以包含浮动的子元素
+
+            - 可以通过一些特殊方式来开启元素的BFC
+                1.设置元素的浮动（不推荐）
+                2.将元素设置为inline-block（不推荐）
+                3.将overflow设置为一个非visible值
+                    - 常用方式：为元素设置overflow:hidden
+        */
+        .inner{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+
+            /*
+            高度塌陷
+                父元素的高度默认是被子元素撑开，
+                    当子元素浮动后，其会完全脱离文档流
+                    将会无法撑起父元素高度，导致父元素高度塌陷
+            */
+            float: left;
+        }
+
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            /* 开启BFC */
+            overflow: hidden;
+        }
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+            /* 开启BFC */
+            overflow: hidden;
+
+        }
+        .box4{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+
+    <br />
+    <div class="box1"></div>
+   <div class="box2"></div>
+   <br />
+   <div class="box3">
+    <div class="box4"></div>
+   </div>
+</body>
+</html>

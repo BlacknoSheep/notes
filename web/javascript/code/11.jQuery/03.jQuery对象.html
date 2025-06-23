@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery对象</title>
+    <script src="./script/jquery-3.6.2.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li id="swk">孙悟空<span>111</span></li>
+        <li id="zbj">猪八戒</li>
+        <li>沙和尚</li>
+        <li>唐僧</li>
+    </ul>
+
+    <script>
+        /*
+            jQuery对象
+                - 通过jQuery核心函数获取到的对象
+                - jQuery对象时jQuery中定义的对象
+                    可以看作是DOM（过去的DOM）的升级版
+                - jQuery对象的本质上是一个DOM对象的数组（类数组）
+                    - 可以通过索引来获取jQuery对象中的DOM对象
+                    - 当我们修改jQuery对象时，它会自动修改jQuery中的所有元素
+                        - 这一特点称为jQuery的隐式迭代
+                    - 通常情况下，jQuery对象的方法的返回值依然是一个jQuery对象
+                        - 所以可以在调用一个方法后继续调用另一个方法
+                        - 这一特性称为jQuery对象的链式调用
+        */
+
+        console.log(" ------ jQuery对象本质上是DOM对象的数组（类数组） ------ ");
+        var $li = $("li");
+        console.log($li.length);  // 4
+
+        var li2 = $li[2];  // DOM对象
+        console.log(li2);
+        console.log(li2.textContent);  // "沙和尚"
+
+        console.log(" ------ 读取文本，返回所有标签中的文本 ------ ");
+        console.log($li.text());  // "孙悟空111猪八戒沙和尚唐僧"
+        // $li.text("哈哈哈");  // 所有li内的文本均改变
+
+        console.log(" ------ 读取属性时，返回第一个标签的属性 ------ ");
+        console.log($li.attr("id"));  // "swk"
+
+        console.log("----- ------");
+        $li.text("永雏塔菲").css("color", "pink");
+    </script>
+</body>
+
+</html>

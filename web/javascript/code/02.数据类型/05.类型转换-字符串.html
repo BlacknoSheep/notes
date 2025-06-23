@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型转换</title>
+    <script>
+        /*
+            一般是字符串、数值、布尔值之间进行转换
+        */
+        let a = 10;
+        console.log(typeof a, a);
+
+        /*
+            转换为字符串
+                1.调用toString()方法（返回转换后的字符串）
+                    - 调用xxx的yyy方法
+                        xxx.yyy()
+                    - 由于null和undefined没有toString()方法，
+                        所以使用时会报错
+                
+                2.调用String函数
+                    - 调用xxx函数
+                        xxx()
+                    - 原理：
+                        对于拥有toString()方法的值，会去调用toString()方法
+                        对于null，返回"null"
+                        对于undefined，返回"undefined"
+                        对于NaN，返回"NaN"
+        */
+        let str_a = a.toString();
+        console.log(typeof str_a, str_a);
+
+        let b = 111;
+        console.log(String(b));
+        b = null;
+        b = String(b);
+        console.log(typeof b, b);
+
+        let c = String(NaN);
+        console.log(typeof c, c)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

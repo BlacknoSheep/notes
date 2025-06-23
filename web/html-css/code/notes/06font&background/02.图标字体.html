@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图标字体</title>
+
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+    <style>
+        .poem > li{
+            list-style: none;
+        }
+        
+        /*
+        （2）通过伪元素显式引入图标字体
+                content: "图标代码";
+
+                对于fas：
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+
+                对于fab：
+                font-family: 'Font Awesome 6 Brands';
+                font-weight: 400;
+        */
+        .poem > li::before{
+            content: "\f005";
+            font-family: 'Font Awesome 6 Free';
+            /* font-weight改变粗细（实心空心） */
+            /* font-weight: 800; */
+            /* font-family: 'FontAwesome'; */
+            color: blue;
+        }
+        .poem > li::after{
+            content: "\f081";
+            font-family: 'Font Awesome 6 Brands';
+            /* font-weight: 800; */
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        图标字体（iconfont）
+            - 可以通过图片来引入图表
+                但是图片本身较大，且非常不灵活
+            - 还可以将图标直接设置为字体，
+                然后通过font-face进行引入，这样就可以通过使用字体的形式来使用图标
+        
+        fontawesome图标字体库使用步骤
+            1.下载（https://fontawesome.com/download），解压
+            2.将css和webfonts文件夹移动到项目中（二者必须位于同一级目录下）
+            3.将all.css引入网页中
+            4.使用图标字体
+     -->
+     <p>
+        <!-- （1）直接通过类名来使用图标字体 -->
+        <i class="fas fa-bell"></i>
+        <i class="fab fa-accessible-icon"></i>
+        <i class="fas fa-frog" style="font-size: 50px; color: green;"></i>
+     </p>
+
+     <ul class="poem">
+        <li>床前明月光</li>
+        <li>疑是地上霜</li>
+        <li>举头望明月</li>
+        <li>低头思故乡</li>
+     </ul>
+
+     <!-- 
+        通过实体来使用图标字体：
+            &#x图标编码;
+      -->
+      <i class="fas">&#xf005;</i>
+</body>
+</html>

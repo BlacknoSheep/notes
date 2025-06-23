@@ -1,0 +1,750 @@
+/* 09.小米商城的样式表 */
+body{
+    /* 照抄官网参数 */
+    font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+    color: #333;
+    background-color: #fff;
+
+    /* 防止拖动滚动条时出现白边 */
+    min-width: 1226px;
+}
+
+a{
+    /* 去除超链接下划线 */
+    text-decoration: none;
+}
+
+
+/* --------------------------------------------顶部横幅------------------------------------------- */
+.header_container{
+    width: 100%;
+    height: 40px;
+    font-size: 12px;
+    color: #b0b0b0;
+    background-color: #333;
+}
+
+.header{
+    /* 导航条水平居中 */
+    width: 1226px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.header ul{
+    /* 文字垂直居中 */
+    height: 100%;
+   line-height: 40px;
+}
+
+/* 排列选项位置 */
+.header .left_list{
+    float: left;
+}
+
+.header .right_list{
+    float: right;
+}
+
+.header  li,
+.header .sep{
+    float: left;
+}
+
+.header .sep{
+    /* 分隔线 */
+    margin: 0 0.3em;
+    color: #424242;
+}
+
+.header li{
+    margin: 0px 3px;
+}
+
+.header li a{
+    color: inherit;
+}
+
+.header li a:hover{
+    color: #fff;
+}
+
+/* -------购物车-------- */
+.header .shopping_cart{
+    width: 120px;
+    height: 100%;
+    margin-left: 15px;
+    background-color: #424242;
+    /* 用于后续定位 */
+    position: relative;
+}
+
+.header .shopping_cart  a{
+    padding-left: 18px;
+    /* 背景色会延伸至padding，若不设置padding则会默认为margin */
+    padding-right: 14px;
+    /* 层级比弹出框高，保证可以覆盖弹出框的上边框 */
+    position: absolute;
+    z-index: 31;
+}
+
+.header .shopping_cart .fa-shopping-cart{
+    font-size: 15px;
+    vertical-align: -2px;
+    margin-right: 4px;
+}
+
+/* 弹出窗口 */
+.header .shopping_cart .shopping_cart_menu{
+    width: 316px;
+    box-shadow: 0px 1px 5px #aaa;
+    font-size: 12px;
+    color: #424242;
+    /* 不设置背景色会出现透明效果，盖不住下面 */
+    background-color: #fff;
+
+    position: absolute;
+    top: 40px;
+    left: -196px;
+    /* 弹出窗口的显示优先级 */
+    z-index: 30;
+
+    /* 隐藏，通过transition实现过渡效果 */
+    /* display: none; */
+    height: 0px;
+    transition: height 0.3s;
+    overflow: hidden;
+}
+
+.header .shopping_cart .shopping_cart_menu .cart_msg{
+    text-align: center;
+    padding: 20px 0px;
+    margin: 0px 20px 20px 20px;
+}
+
+.header .shopping_cart:hover,
+.header .shopping_cart:hover a{
+    background-color: #fff;
+    color: #ff6700;
+}
+
+/* 显示下拉框 */
+.header .shopping_cart:hover .shopping_cart_menu{
+    /* display: block; */
+    /* 通过transition实现过渡效果 */
+    height: 100px;
+    transition: height 0.3s;
+}
+
+/* --------下载app------- */
+.header .download_app{
+    position: relative;
+}
+
+/* 上三角形 */
+.header_container .download_app a::before{
+    content: "";
+    border-bottom: 8px #fff solid;
+    border-left: 8px transparent solid;
+    border-right: 8px transparent solid;
+    /* 覆盖appcode的上边框阴影 */
+    position: absolute;
+    /* 盖住下拉框的上边框 */
+    z-index: 31;
+    bottom: -1px;
+    left: 14px;
+
+    /* 隐藏 */
+    display: none;
+}
+
+/* 二维码 */
+.header .download_app .appcode{
+    /* 脱离文档流 */
+    position: absolute;
+    top: 40px;
+    left: -38px;
+    /* 弹出窗口的显示优先级 */
+    z-index: 30;
+
+    width: 124px;
+    /* height: 148px; */
+    border-top: 1px #e7e7e7 solid;
+    box-shadow: 0px 1px 5px #aaa;
+
+    /* 文字属性 */
+    /* line-height置为最小 */
+    line-height: 1px;
+    /* 文字水平居中 */
+    text-align: center;
+    /* 文字颜色 */
+    color: #333;
+    font-size: 14px;
+
+    background-color: #fff;
+
+    /* 隐藏 */
+    /* display: none; */
+    height: 0px;
+    transition: height 0.3s;
+    overflow: hidden;
+}
+
+.header_container .download_app .appcode img{
+    width: 90px;
+    height: 90px;
+    display: block;
+    margin: 18px auto 19px auto;
+}
+
+/* 显示小三角形 */
+.header_container .download_app:hover a::before{
+    display: block;
+}
+/* 显示二维码 */
+.header_container .download_app:hover .appcode{
+    /* display: block; */
+    height: 148px;
+    transition: height 0.3s;
+}
+
+
+/* ----------------------------------------------------顶部导航条2----------------------------------------------- */
+.header2_container{
+    height: 100px;
+    position: relative;
+}
+
+.header2{
+    width: 1226px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.header2 *{
+    /* 添加过渡效果 */
+    transition: all 0.2s;
+}
+
+/* -----------logo---------- */
+.header2 .logo_box{
+    /* 留1px给logo移动 */
+    width: 57px;
+    float: left;
+}
+
+.header2 .logo{
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin-top: 22px;
+}
+
+.header2 .logo img{
+    width: 100%;
+    height: 100%;
+}
+
+/* 移入时右移效果 */
+.header2 .logo:hover,
+.header2 .logo:active{
+    margin-left: 1px;
+}
+
+/* 点击时缩小效果 */
+.header2 .logo:active img{
+    width: 90%;
+    height: 90%;
+}
+
+/* ----------header2中间导航栏--------- */
+.header2_nav{
+    width: 800px;
+    height: 80px;
+    padding: 10px 0px 10px 60px;
+    /* border: 1px red solid; */
+    float: left;
+}
+
+.header2_nav .header2_nav_list li{
+    float: left;
+}
+
+.header2_nav .header2_nav_list li a{
+    font-size: 16px;
+    color: #333;
+
+    display: block;
+    padding: 26px 10px 38px 10px;
+}
+
+.header2_nav .header2_nav_list li a:hover{
+    color: #ff6700;
+}
+
+/* 隐藏全部商品分类 */
+.header2_nav_list .all_categories{
+    visibility: hidden;
+}
+
+/* ------header2中间导航栏的弹出菜单------ */
+.header2_nav_list .pop_menu{
+    width: 100%;
+    /* 这些效果在height=0时不会隐藏，所以在菜单弹出后设置 */
+    /* height: 229px;
+    border-top: 1px #e0e0e0 solid;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.2); */
+
+    /* 此时是相对于header2进行定位
+        宽度也会变为离其最近的开启了定位的父元素的100%
+     */
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    z-index: 20;
+    /* 不设置背景色的话下面的会透过来 */
+    background-color: #fff;
+
+    /* 隐藏 */
+    height: 0;
+    transition: height 0.3s;
+    overflow: hidden;
+}
+
+/* 显示弹出菜单 */
+.header2_nav_list .has_pop_menu:hover ~ .pop_menu,
+.header2_nav_list .pop_menu:hover{
+    height: 229px;
+    transition: height 0.3s;
+    border-top: 1px #e0e0e0 solid;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+}
+
+/* 弹出菜单内容 */
+.header2_nav_list .pop_menu_list{
+    width: 1226px;
+    height: 201px;
+    margin: 0px auto;
+    /* background-color: #bfa; */
+}
+
+/* 商品 */
+.header2_nav_list .pop_menu_list .item{
+    width: 202px;
+    height: 100%;
+    padding-top: 35px;
+
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.header2_nav_list .pop_menu_list .item img{
+    width: 160px;
+    height: 110px;
+}
+
+.header2_nav_list .pop_menu_list .item .goods_name{
+    color: #333;
+}
+
+.header2_nav_list .pop_menu_list .item .goods_price{
+    color: #ff6700;
+}
+
+/* 分隔线 */
+.header2_nav_list .pop_menu_list .sep{
+    width: 2px;
+    height: 125px;
+    margin-top: 38px;
+    background-color: #e0e0e0;
+}
+
+/* ----------header2右侧搜索框--------- */
+.header2 .search{
+    width: 296px;
+    margin-top: 25px;
+    /* border: 1px red solid; */
+    float: right;
+}
+
+.header2 .search .text{
+    width: 220px;
+    height: 46px;
+    border: 1px #e0e0e0 solid;
+    padding: 0px 15px 0px 10px;
+    font-size: 14px;
+}
+
+.header2 .search .button{
+    width: 50px;
+    height: 48px;
+    background-color: #fff;
+    border: 1px #e0e0e0 solid;
+    /* 脱离文档流以去除左侧边距 */
+    float: right;
+    /* 边框重叠 */
+    margin-left: -1px;
+    position: relative;
+
+    font-size: 16px;
+    color: #616161;
+}
+
+.header2 .search:hover .text,
+.header2 .search:hover .button{
+    /* border: 1px #b0b0b0 solid; */
+    border-color: #b0b0b0;
+}
+
+/* 获取焦点时的效果 */
+.header2 .search .text:focus,
+.header2 .search .text:focus + button{
+    /* 去除点击文本框时的默认outline */
+    outline: none;
+    /* border: 1px #ff6700 solid; */
+    border-color: #ff6700;
+}
+
+.header2 .search .button:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #ff6700;
+    /* border: 1px #ff6700 solid; */
+    border-color: #ff6700;
+}
+
+
+/* ------------------------------------------------主菜单------------------------------------------------ */
+.main_menu_container{
+    width: 100%;
+    height: 460px;
+}
+
+.main_menu{
+    width: 1226px;
+    height: 100%;
+    margin: 0 auto;
+    /* 用于弹出菜单定位 */
+    position: relative;
+}
+
+/* -------------左侧导航栏------------- */
+.main_menu .left_nav{
+    width: 234px;
+    padding: 20px 0px;
+    /* 背景有透明效果，轮播图的颜色会透过来 */
+    background-color: rgba(105,101,101,0.6);
+    /* 由于右侧轮播图采用绝对定位，所以不需要通过浮动实现横向排列 */
+    /* float: left; */
+    /* 导航条层级比轮播图高 */
+    position: relative;
+    z-index: 10;
+}
+
+/* 菜单行 */
+.main_menu .left_nav_list li{
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 14px;
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    /* 用于给箭头符号定位 */
+    position: relative;
+}
+
+.main_menu .left_nav_list li:hover{
+    background-color: #ff6700;
+}
+
+/* 右侧右箭头符号 */
+.main_menu .left_nav_list .fa-angle-right{
+    color: #e0e0e0;
+    font-size: 16px;
+    position: absolute;
+    top: 14px;
+    right: 22px;
+}
+
+.main_menu .left_nav_list li:hover .fa-angle-right{
+    color: hsla(0,0%,100%,.5);
+}
+
+/* -------弹出菜单------- */
+.main_menu .left_nav .pop_menu{
+    width: 993px;
+    height: 460px;
+    background-color: #fff;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0px;
+    left: 234px;
+    /* .left_nav整体已设置z-index=10，弹出菜单已经可以盖住轮播图了 */
+    /* z-index: 10; */
+
+    /* 隐藏 */
+    display: none;
+}
+
+.main_menu .left_nav:hover .pop_menu{
+    /* 显示弹出菜单 */
+    display: block;
+}
+
+/* -------------右侧轮播图------------- */
+.main_menu .slider{
+    width: 1226px;
+    height: 460px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.main_menu .slider img{
+    width: 100%;
+    height: 100%;
+    /* 让图片重叠在一起 */
+    position: absolute;
+}
+
+/* 未来可以通过js进行调整 */
+.main_menu .slider a:nth-of-type(1) img{
+    z-index: 1;
+}
+
+/* 右下小圆点 */
+.main_menu .slider .points{
+    /* 显示于轮播图上方 */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.main_menu .slider .points a{
+    display: block;
+    float: left;
+
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px rgba(255,255,255,.3) solid;
+    background-color: rgba(0,0,0,.4);
+    margin: 0px 3px
+}
+
+.main_menu .slider .points a:hover{
+    border-color: rgba(0,0,0,.4);
+    background-color: rgba(255,255,255,.4);
+}
+
+/* 左右切换轮播图的箭头 */
+.main_menu .slider .left_arrow,
+.main_menu .slider .right_arrow{
+    width: 41px;
+    height: 69px;
+    /* background-color: red; */
+    background-image: url("../imgs/icon-slides.png");
+    position: absolute;
+    z-index: 2;
+    /* 垂直居中 */
+    top: 0px;
+    bottom: 0px;
+    margin: auto 0px;
+}
+
+.main_menu .slider .left_arrow{
+    left: 234px;
+    background-position: 83px;
+}
+
+.main_menu .slider .right_arrow{
+    right: 0px;
+    background-position: -125px;
+}
+
+.main_menu .slider .left_arrow:hover{
+    background-position: 0px;
+}
+
+.main_menu .slider .right_arrow:hover{
+    background-position: -42px;
+}
+
+
+/* ------------------------------------------------副主菜单------------------------------------------------ */
+.sub_main_menu_container{
+    width: 100%;
+    height: 170px;
+    margin-top: 14px;
+}
+
+.sub_main_menu{
+    width: 1226px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* -------左侧导航------ */
+.sub_main_menu .left_nav{
+    width: 234px;
+    height: 100%;
+    background-color: #5f5750;
+    float: left;
+}
+
+.sub_main_menu .left_nav_list li{
+    width: 78px;
+    height: 65px;
+    float: left;
+    /* 用于分隔线定位 */
+    position: relative;
+    padding-top: 20px;
+
+    /* 文本和图片居中 */
+    text-align: center;
+}
+
+/* 上分隔线 */
+.sub_main_menu .left_nav_list li::before{
+    display: block;
+    content: "";
+    width: 64px;
+    height: 1px;
+    background-color: #665e57;
+
+    /* 定位 */
+    position: absolute;
+    top: 4px;
+    left: 10px;
+}
+
+/* 左分隔线 */
+.sub_main_menu .left_nav_list li::after{
+    display: block;
+    content: "";
+    width: 1px;
+    height: 70px;
+    background-color: #665e57;
+    /* 定位 */
+    position: absolute;
+    top: 12px;
+    left: 3px;
+}
+
+.sub_main_menu .left_nav_list li a{
+    /* 文本样式 */
+    font-size: 12px;
+    line-height: 14px;
+    color: #fff;
+    /* 透明度渐变 */
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+/* hover效果 */
+.sub_main_menu .left_nav_list li:hover a{
+    /* 透明度渐变 */
+    /* color: red; */
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+/* 图标 */
+.sub_main_menu .left_nav_list img{
+    /* 图片会受到text-align影响而居中 */
+    width: 24px;
+    height: 24px;
+}
+/* -------右侧商品图------ */
+.sub_main_menu .goods{
+    width: 978px;
+    height: 100%;
+    margin-left: 14px;
+    /* background-color: #bfa; */
+    float: left;
+}
+
+.sub_main_menu .goods a{
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+
+.sub_main_menu .goods a:hover{
+    box-shadow: 1px 12px 20px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+}
+
+.sub_main_menu .goods img{
+    width: 316px;
+    height: 100%;
+}
+
+
+/* ------------------------------------------------右侧固定工具栏------------------------------------------------ */
+.tool_bar{
+    width: 84px;
+    /* 开启固定定位 */
+    position: fixed;
+    bottom: 70px;
+    right: 0px;
+    /* 始终位于最上层 */
+    z-index: 99;
+}
+
+.tool_bar a{
+    display: block;
+    width: 82px;
+    height: 90px;
+    background-color: #fff;
+    border: 1px #f5f5f5 solid;
+    /* 盖住重叠边框 */
+    margin-top: -1px;
+    /* 文本属性 */
+    font-size: 14px;
+    color: #757575;
+    transition: color 0.3s;
+    text-align: center;
+
+    /* 将手形换为箭头 */
+    cursor: default;
+}
+
+.tool_bar .icon{
+    width: 30px;
+    height: 30px;
+    margin: 18px auto 8px auto;
+    /* 用于图标定位 */
+    position: relative;
+}
+
+/* 图标重叠 */
+.tool_bar .icon img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    transition: opacity 0.3s;
+}
+
+/* hover效果 */
+.tool_bar a:hover{
+    color: #ff6700;
+    transition: color 0.3s;
+}
+
+.tool_bar .icon img:first-child,
+.tool_bar a:hover .icon img:last-child{
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.tool_bar .icon img:last-child,
+.tool_bar a:hover .icon img:first-child{
+    opacity: 0;
+    transition: opacity 0.3s;
+}

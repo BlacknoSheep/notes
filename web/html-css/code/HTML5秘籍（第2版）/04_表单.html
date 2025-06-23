@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <style>
+        input:focus {
+            background-color: #bfa;
+        }
+
+        input:invalid {
+            /* invalid 选中包含错误（不满足验证条件）的控件 */
+            background-color: red;
+        }
+
+        #editableElement {
+            background-color: silver;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        onsubmit事件属性用于指定触发onsubmit事件时运行的脚本，返回值为true时提交。
+        返回值为true时提交成功，false时阻止提交
+    -->
+    <form action="./success.html" onsubmit="return validateForm()">
+        <!-- <form action="./success.html" onsubmit="return validateForm()" novalidate> -->
+        <!-- 
+            为form标签添加novalidate属性可以跳过验证（仅表单内的验证，如required，不包括onsubmit），一般用于测试
+         -->
+        <!--
+            fieldset
+                作用
+                    （1）可以将表单内的相关元素分组；
+                    （2）会在相关表单元素周围绘制边框；
+                disabled
+                    框内表单部分禁止编辑
+                    但是legend标签内的部分允许编辑
+
+            legend 外框的文字
+        -->
+        <fieldset>
+            <legend>外框1</legend>
+            <!-- 对于input标签，若浏览器无法识别type的属性值，则默认生成文本框 -->
+            <label for="name">姓名</label>
+            <input type="text" id="name" title="用户名长度需要>=5">
+            <br>
+            <label for="password">密码</label>
+            <input type="password" id="password">
+            <br>
+            <label for="ema">邮箱</label>
+            <input type="email" name="email" id="email">
+            <br>
+            <label for="url">url</label>
+            <input type="url" name="url" id="url">
+            <br>
+            <!-- 输入文字后会在文本框最右侧生成一个“X”按钮，用于清空输入 -->
+            <label for="search">搜索</label>
+            <input type="search" name="search" id="search">
+            <br>
+            <label for="tel">电话号码</label>
+            <input type="tel" name="tel" id="tel">
+            <br>
+            <!-- step指定允许的步长，默认为1（只允许整数）。文本框内右侧会出现一个微调按钮 -->
+            <label for="number">数值</label>
+            <input type="number" name="number" id="number" min="0" max="100" step="0.5" value="60">
+            <br>
+            <label for="range">滑动条</label>
+            <input type="range" name="range" id="range" min="0" max="100" value="60">
+            <br>
+            <label for="color">颜色</label>
+            <input type="color" name="color" id="color">
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend>日期和时间</legend>
+            <label for="date">date</label>
+            <input type="date" name="date" id="date" min="1990-01-01" max="1999-12-31">
+            <br>
+            <label for="time">time</label>
+            <input type="time" name="time" id="time">
+            <br>
+            <label for="month">month</label>
+            <input type="month" name="month" id="month">
+            <br>
+            <label for="week">week</label>
+            <input type="week" name="week" id="week">
+            <br>
+            <label for="datetime-local">datetime-local</label>
+            <input type="datetime-local" name="datetime-local" id="datetime-local">
+            <br>
+            <!-- 未被浏览器支持，未来可能会被移出 -->
+            <label for="datetime">datetime</label>
+            <input type="datetime" name="datetime" id="datetime">
+        </fieldset>
+
+        <br>
+        <fieldset disabled="disabled">
+            <legend>外框2
+                <input type="text" value="允许编辑">
+            </legend>
+            <input type="text">
+        </fieldset>
+
+        <br>
+        <fieldset>
+            <legend>选择框</legend>
+            复选框：
+            <input type="checkbox" name="cb" id="cb">1
+            <input type="checkbox" name="cb" id="cb">11
+            <input type="checkbox" name="cb" id="cb">111
+            <br>
+            单选框：
+            <input type="radio" name="rd" id="rd">2
+            <input type="radio" name="rd" id="rd">22
+            <input type="radio" name="rd" id="rd">222
+            <br>
+            下拉选框
+            <select name="st" id="st">
+                <option value="3">3</option>
+                <option value="33">33</option>
+                <option value="333">333</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            占位符文本<input type="text" placeholder="占位文本">
+            <br>
+            autofocus<input type="text" autofocus>
+            <br>
+            必填<input type="text" required><span style="color:red">*</span>
+            <br>
+            正则表达式<input type="text" pattern="[a-zA-Z]{3}-[0-9]{3}" placeholder="abc-123">
+        </fieldset>
+
+        <fieldset>
+            <legend>datalist（chrome不支持）</legend>
+            <label for="animal"></label>
+            <input type="text" name="animal" id="animal">
+            <datalist>
+                <option label="Cat" value="cat"></option>
+                <option label="Dog" value="dog"></option>
+                <option label="Human" value="human"></option>
+            </datalist>
+        </fieldset>
+
+        <fieldset>
+            <legend>进度条和计量条</legend>
+            <!-- ！并非所有浏览器都支持 -->
+            <!-- 进度条可以设置最大值，默认最大值为1 -->
+            进度条<progress value="0.25">25%</progress>
+            &nbsp;&nbsp;&nbsp;设置最大值<progress value="100" max="200"></progress>
+            &nbsp;&nbsp;&nbsp;不确定进度条<progress></progress>
+            <br>
+            <!-- 
+                某些浏览器会在 value<low 或 value>high 的时候改变计量条的颜色
+                optimum表示理想值，无显示效果
+             -->
+            计量条<meter value="0.5">50%</meter>
+            &nbsp;&nbsp;&nbsp;<meter min="100" max="200" low="120" high="180" optimum="160" value="150"></meter>
+        </fieldset>
+
+        <fieldset>
+            <legend>可编辑元素</legend>
+
+            Textarea
+            <br>
+            <!-- textarea在内容超出设置的尺寸后会显示滚动条 -->
+            <textarea name="ta" id="ta" cols="20" rows="2">textarea</textarea>
+
+            <br>
+            <br>
+            editableElement
+            <!-- 而div会随内容自动扩展 -->
+            <div id="editableElement" contenteditable="false">这里可编辑</div>
+            <div>
+                <input type="button" value="开启编辑" onclick="startEdit()">
+                <input type="button" value="关闭编辑" onclick="stopEdit()">
+            </div>
+
+            <br>
+            <br>
+            设计者模式
+            <br>
+            <iframe id="pageEditor" src="./test_page1.html"></iframe>
+            <div>
+                <input type="button" value="开启设计者模式" onclick="startDesignMode()">
+                <input type="button" value="关闭设计者模式" onclick="stoptDesignMode()">
+            </div>
+        </fieldset>
+
+        <br>
+        <input type="submit" value="提交">
+    </form>
+
+    <script>
+        "use strict";
+        function validateForm() {
+            const name = document.getElementById("name");
+            if (name.value.length < 5) {
+                alert("用户名长度需要>=5！");
+                return false;
+            }
+            return true;
+        }
+
+        const editableElement = document.getElementById("editableElement");
+        function startEdit() {
+            editableElement.contentEditable = true;
+        }
+        function stopEdit() {
+            editableElement.contentEditable = false;
+        }
+
+        const pageEditor = document.getElementById("pageEditor");
+        function startDesignMode() {
+            pageEditor.contentWindow.document.designMode = "on";
+        }
+        function stoptDesignMode() {
+            pageEditor.contentWindow.document.designMode = "off";
+        }
+    </script>
+</body>
+
+</html>

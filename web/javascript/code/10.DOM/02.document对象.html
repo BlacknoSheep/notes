@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document对象</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    
+    <script>
+        /*
+            document对象
+                - document表示的是整个网页
+                - document的原型
+                    HTMLDocument -> Document -> Node -> EventTarget -> Object -> null
+                - 部分属性
+                    document.documentElement    html根元素
+                    document.head               head元素
+                    document.title              title元素
+                    document.body               body元素
+                    document.links              获取页面中所有超链接
+                    ...
+        */
+        console.log("------document对象的原型------");
+        console.log(document);  // #document
+        console.log(document.__proto__);  // HTMLDocument{...}
+        console.log(document.__proto__.__proto__);  // Document{...}
+        console.log(document.__proto__.__proto__.__proto__);  // Node{...}
+        console.log(document.__proto__.__proto__.__proto__.__proto__);  // EventTarget{...}
+        console.log(document.__proto__.__proto__.__proto__.__proto__.__proto__);  // Object
+        console.log(document.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);  // null
+
+
+        console.log("------document对象的部分属性------");
+        console.log(document.documentElement);
+        console.log(document.head);
+        console.log(document.title);
+        console.log(document.body);
+        console.log(document.links);
+    </script>
+</body>
+</html>

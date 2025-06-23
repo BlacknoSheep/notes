@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外边距</title>
+
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+            border: 10px red solid;
+
+        /*
+        内边距（margin）
+            - 不会影响盒子可见框的大小，但会影响盒子实际占据空间大小
+            - 但是会影响盒子的位置（可以移动出父元素边界）
+            - 同样有四个方向
+                margin-top：正值表示向下移动
+                margin-right：默认情况下不会产生任何效果
+                margin-bottom：正值表示让其下面的元素向下移动
+                margin-left：正值表示向右移动
+            - 负值表示向相反方向移动
+        */
+        margin: 100px 100px 100px 200px;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            border: 10px blue solid;
+
+            margin: -200px 0px 0px 300px
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+// less中的单行注释
+/*
+    css中的注释，会被解析到css文件中
+*/
+
+// 导入其他less文件
+@import "test.less";
+
+.box1{
+    width: 400px;
+    height: 400px;
+    background-color: silver;
+
+    .box2{
+        width: 200px;
+        height: 200px;
+        background-color: #bfa;
+
+        .box3{
+            width: 50%;
+            height: 50%;
+            background-color: pink;
+        }
+    }
+}
+
+// 变量
+// 作为变量：@变量名
+// 作为类名或者一部分值使用时：@{变量名}
+@a:500px;
+@b:red;
+@c:box5;
+.box4{
+    
+    width: @a;
+    height: 10px;
+    background-color: @b;
+}
+
+.@{c}{
+    width: 150px;
+    // height: 20px;
+    // 使用其他属性的值
+    height: $width;
+    background-color: blue;
+    background-image: url("./@{c}/1.png");
+}
+
+
+// &
+.box10{
+    .box11{
+        color: red;
+    }
+
+    >.box12{
+        color: red;
+    }
+
+    // & 表示父元素名，使用&后会取消父元素的嵌套
+    &:hover{
+        color: red;
+    }
+
+    &_sub1box{
+        color: red;
+    }
+}
+
+
+// 扩展 extend
+// 扩展指定选择器的样式
+.e1{
+    width: 100px;
+    height: 100px;
+}
+
+.e2:extend(.e1){
+    // 实际上是进行了选择器分组
+    color: red;
+}
+
+// mixin
+.e3{
+    // 相当于进行了复制
+    .e1();
+    color: blue;
+}
+
+// 创建mixins
+// 类似抽象基类。
+// 不会出现在css文件中
+.e4(){
+    width: 200px;
+    height: 200px;
+    columns: green;
+}
+
+.e5{
+    .e4();
+    background-color: #bfa;
+}
+
+// 混合函数
+// 可以指定默认值
+.efun(@w:100px,@h,@border_color){
+    width: @w;
+    height: @h;
+    border: 1px solid @border_color;
+}
+
+.e6{
+    // 调用混合函数，按顺序传参
+    // .efun(100px,200px,green);
+    // 也可以用键值对进行传参
+    .efun(@border_color:aqua, @w:100px, @h:100px);
+}
+
+
+
+.other1{
+    // 在less中的数值可以直接进行运算
+    width: 100px+50px;
+    height: 100px/2;
+}

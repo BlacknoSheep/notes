@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装</title>
+    <script>
+        "use strict";
+        /*
+            面向对象的特点：
+                封装、继承和多态
+            
+            1.封装
+                - 对象就是一个用来存储不同属性的容器
+                - 直接添加到对象中的属性并不安全，因为它们可以被随意修改
+                - 如何确保数据的安全：
+                    1.私有化数据
+                        - 使用#开头的属性为私有属性，只能在类内部访问
+                        - 提供setter和getter方法来开放对数据的操作
+                            可以设置对象的读写属性
+        */
+        class Person{
+            #name;
+            #age;
+            #gender;
+            
+            constructor(name, age, gender){
+                this.#name = name;
+                this.#age = age;
+                this.#gender = gender;
+            }
+
+            sayHello(){
+                console.log("name: "+this.#name+"\n"+
+                            "age: "+this.#age+"\n"+
+                            "gender: "+this.#gender);
+            }
+
+
+            /* 老式的方式 */
+            // getter方法，读取属性
+            getName(){
+                return this.#name;
+            }
+
+            // setter方法，设置属性
+            setName(name){
+                if(name.length<=3){
+                    alert("用户名需要大于3个字符")
+                }
+                else{
+                    this.#name = name;
+                }
+            }
+
+
+            /*
+                更简单的getter和setter函数的定义方式
+                    设置后可通过 对象名.函数名 进行调用
+            */
+            get age(){
+                console.log("get age()函数被调用！")
+                return this.#age;
+            }
+
+            set age(age){
+                console.log("set age(age)函数被调用！")
+                this.#age = age;
+            }
+
+            // 函数名可任意，但建议与属性名相同
+            get genderTest(){  // 不推荐这种命名
+                return this.#gender;
+            }
+        }
+
+        const p1 = new Person("Taffy", 17, "girl");
+        console.log(p1);
+
+        p1.sayHello();
+
+        // console.log(p1.#name);  // 报错
+
+        // p1.setName("1");  // 提示"用户名需要大于3个字符"
+
+        p1.age = 18;  // set age(age)函数被调用！
+        console.log(p1.age);  // get age()函数被调用！
+                              // 18
+
+        console.log(p1.genderTest);  // girl
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

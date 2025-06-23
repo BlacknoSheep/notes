@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+    <script>
+        /*
+            Date
+                - 在JS中所有和时间相关的数据都由Date对象来表示
+        */
+        let d = new Date();  // 直接创建返回当前时间
+        console.log(d);
+
+        /*
+            可以在Date()的构造函数中，传递一个表示时间的字符串
+            格式：
+                月/日/年[ 时:分:秒]
+                年-月-日[T时:分:秒]
+        */
+        d = new Date("12/25/2022");
+        d = new Date("12/25/2022 12:22:22");
+        console.log(d);
+        d = new Date("2023-01-01");
+        d = new Date("2023-01-01T11:11:11");
+        console.log(d);
+
+        /*
+            通过构造函数创建Date对象
+                new Date(年, 月, 日, 时, 分, 秒, 毫秒)
+                注意月份是0-11
+        */
+        d = new Date(2012, 11, 12, 12);
+        console.log(d)
+
+
+        /*
+            Date对象的方法
+                getFullYear()   获取4位数年份
+                getMOnth()      返回月份的索引(0-11)
+                getDate()       返回几日
+                getDay()        返回周几（0-6）（0表示周日）
+                ...
+
+                getTime()   返回当前日期对象的时间戳
+                    时间戳：自1970年1月1日0时0分0秒到该对象时间所经历的毫秒数
+                        注意是格林威治标准时
+                    可通过时间戳创建Date对象
+                        Date(时间戳)
+
+            静态方法
+                Date.now()  获取当前时间戳
+        */
+        console.log("------Date对象的方法------")
+        d = new Date();
+        console.log(d);
+        console.log(d.getFullYear());
+        console.log(d.getMonth());
+        console.log(d.getDate());
+        console.log(d.getDay());
+        
+        console.log(d.getTime());
+        console.log(new Date(1000));
+        console.log(Date.now());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

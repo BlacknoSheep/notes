@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点的复制</title>
+</head>
+
+<body>
+    <button type="button" id="btn1">剪切</button>
+    <button type="button" id="btn2">复制</button>
+
+    <ul id="list1">
+        <li id="l1">孙悟空</li>
+        <li id="l2">猪八戒</li>
+        <li id="l3">沙和尚</li>
+    </ul>
+
+    <ul id="list2">
+        <li>蜘蛛精</li>
+    </ul>
+
+    <script>
+        const btn1 = document.getElementById("btn1");
+        const btn2 = document.getElementById("btn2");
+        const list1 = document.getElementById("list1");
+        const list2 = document.getElementById("list2");
+        /*
+            直接使用appendChild()会将节点从原位置摘除，然后插入新位置
+        */
+        btn1.onclick = function () {
+            list2.appendChild(list1.children[0]);
+        };
+        /*
+            点击按钮后，将id为l1的元素添加到list2中
+            Node.cloneNode()
+                - 返回调用该方法的节点的一个副本
+                - 默认为浅拷贝，只复制当前节点，不复制子节点
+                - 参数：
+                    false   默认值，浅拷贝
+                    true    深拷贝（同时复制子节点）
+        */
+        btn2.onclick = function () {
+            list2.appendChild(list1.children[0].cloneNode(true));
+        };
+    </script>
+</body>
+
+</html>

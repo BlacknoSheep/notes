@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+<body>
+    <!-- <button id="btn" onclick="alert('被单击了')">按钮</button> -->
+    <!-- <button id="btn" ondblclick="alert('被双击了')">按钮</button> -->
+    <!-- <button id="btn" onmouseenter="alert('鼠标移入了')">按钮</button> -->
+    <button id="btn">按钮</button>
+    <button id="btn2">按钮2</button>
+
+    <script>
+        /*
+            事件（event）
+                - 事件就是用户和页面之间发生的交互行为
+                    如：点击、鼠标移动、双击、松开按键等
+                - 可以通过为事件绑定响应函数（回调函数），来完成和用户之间的交互
+
+                - 绑定响应函数的方式：
+                    1.可以直接在元素的属性中设置
+                    2.可以通过为元素的指定属性设置回调函数的形式来绑定事件
+                        一个事件只能绑定一个函数（因为属性只能有一个值）
+                    3.可通过 元素.addEventListener() 设置
+                        可以绑定多个函数
+        */
+        const btn = document.getElementById("btn");
+        btn.onclick = function(){
+            alert("通过元素的属性设定的函数");
+        }
+
+        const btn2 = document.getElementById("btn2");
+        btn2.addEventListener("click", function(){
+            alert("addEventListener()设置的函数")
+        })
+        btn2.addEventListener("click", function(){
+            alert("addEventListener()设置的第二个函数")
+        })
+    </script>
+</body>
+</html>

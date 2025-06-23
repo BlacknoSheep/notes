@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体的简写属性</title>
+
+    <style>
+        /*
+        font可一次设置字体相关的所有属性
+            font: 字体大小/行高 字体族
+                - 行高可省略不写，此时使用默认值（也会覆盖前面指定的值）
+                - 字体大小和字体族必不可少，且必须依序放在最后面
+                - 前面还可以加上font-weight，font-style等值
+                    不指定这两个值则使用默认值normal（会覆盖前面指定的值）
+        */
+        .text1{
+            line-height: 100px;
+            font-weight: bold;
+            font-style: italic;
+
+            border: 1px red solid;
+            font: 50px "宋体",serif;
+
+            /*
+            font-weight
+                可选值：
+                     normal 默认值，不加粗
+                     bold 加粗
+                     100~900 9个级别（没什么用）
+            
+            font-style
+                可选值：
+                    normal 正常
+                    italic 斜体
+            */
+        }
+    </style>
+</head>
+<body>
+    <div class="text1">床前明月光</div>
+</body>
+</html>

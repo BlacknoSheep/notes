@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            border: 10px red solid;
+        }
+    </style>
+    <script src="./script/jquery-3.6.2.js"></script>
+    <script>
+        /*
+            css()
+                - 用来读取或设置元素的样式
+        */
+        $(function () {
+            console.log($("#box1").css("background-color"));  // rgb(187, 255, 170)
+            console.log($("#box1").css("height"));  // 100px
+
+            $("#btn").click(function () {
+                // $("#box1").css("width", 300);
+                // $("#box1").css("width", "300px");  // 效果同上
+                $("#box1").css({ width: 300, height: "200px" });  // 也可以传入一个对象
+            });
+
+
+            /*
+                innerHeight()
+                    - 内容区+内边距
+                height()
+                offset()
+                    offset().top
+                    offset().left
+                ...
+            */
+            console.log($("#box1").innerHeight());  // 100
+            $("#btn2").click(function () {
+                $("#box1").innerHeight("200px");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <button id="btn2" type="button">按钮2</button>
+    <hr>
+    <div id="box1"></div>
+</body>
+
+</html>

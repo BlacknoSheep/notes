@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赋值运算符</title>
+    <script>
+        /*
+            =
+            +=
+            -=
+            *=
+            /=
+            %=
+            **=
+
+            空赋值 ??=
+                只有当变量的值为null或undefined时才会赋值
+                （注意变量为NaN时也不会赋值）
+        */
+        let a = 1;
+        a ??= 100;  // 1
+
+        a = null;
+        a ??= 100;  //100
+
+        a = undefined;
+        a ??= 100;  //100
+
+        a = NaN;
+        a ??= 100;  //NaN
+        console.log(typeof a, a);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

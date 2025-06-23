@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件循环</title>
+</head>
+
+<body>
+    <button id="btn" type="button">按钮</button>
+    <br>
+    <br>
+    <button id="btn2" type="button">卡3秒</button>
+    <button id="btn3" type="button">不卡</button>
+
+    <script>
+        /*
+            事件循环（event loop）
+                - 函数在每次执行时，都会产生一个执行环境
+                - 执行环境负责存储函数执行时产生的所有数据
+                - 函数的执行环境存储在 调用栈 中
+
+            调用栈（call stack）
+                - 调用栈负责存储函数的执行环境
+                - 当一个函数被调用时，它的执行环境会作为一个栈帧插入到调用栈栈顶
+                    函数执行完毕，其栈帧会自动从栈中弹出
+            
+            消息队列
+                - 消息队列复制存储将要执行的函数
+                - 当我们触发一个事件时，其响应函数并不是直接就添加到栈中，
+                    因为调用栈中可能存在未执行完毕的函数
+                - 事件触发后，JS引擎会将事件响应函数插入到消息队列中排队
+        */
+        function fn() {
+            let a = 10;
+
+            function fn2() {
+                console.log("fn2");
+            }
+
+            fn2();
+
+            console.log("fn");
+        }
+
+        fn();
+        console.log("111");
+
+        const btn = document.getElementById("btn");
+        btn.onclick = () => {
+            console.log("onclick");
+        };
+        btn.addEventListener("click", () => {
+            console.log("addEventListener");
+        });
+
+
+        const btn2 = document.getElementById("btn2");
+        const btn3 = document.getElementById("btn3");
+        btn2.addEventListener("click", () => {
+            start = Date.now();
+            alert("卡3秒");
+            while (Date.now() - start < 3000) { };
+        });
+        btn3.addEventListener("click", () => {
+            alert("不卡");
+        });
+    </script>
+</body>
+
+</html>

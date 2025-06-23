@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象</title>
+    <script>
+        /*
+            - 通常属性名是字符串，通常可以使任意值
+                但如果属性名太特殊，不能直接使用，而应用[]
+                建议还是按照命名规范来确定属性名
+
+                使用[]去操作属性时，也可以使用变量
+            
+            - 也可以使用符号（Symbol）作为属性名
+
+            属性值可以使任何类型，包括对象
+        */
+        let obj = Object();
+        obj.if = "if";  // 不建议
+        // []内的属性名要用""包住，明确表示是字符串
+        obj["name"] = "藤丸立香";   
+        obj["123hhh"] = "哈哈哈"
+        console.log(obj["if"]);  // "if"
+
+        // 使用符号作为属性名
+        let mySymbol = Symbol();
+        obj[mySymbol] = "myS";
+        console.log(obj);
+        console.log(obj[mySymbol]);  // "mySymbol"
+
+        // Symbol()每次创建的符号都是唯一的
+        let mySymbol2 = Symbol();
+        // mySymbol2和mySymbol是不同的符号
+        console.log(obj[mySymbol2]);  // undefined
+
+        obj[mySymbol2] = "myS2";
+        console.log(obj);
+        console.log(obj[mySymbol2]);  // "myS2"
+
+        let obj2 = Object();
+        obj2[null] = "10";  // null: "10"
+        obj2[false] = false;  // false: false
+        obj2[10] = 100;  // 10: 100
+        obj2["child"] = obj;  // child: {...}
+        console.log(obj2);
+
+
+        /*
+            in运算符
+                可以检查一个对象里是否有某个属性
+        */
+        console.log("father" in obj2);  // false
+        console.log("child" in obj2);  // true
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

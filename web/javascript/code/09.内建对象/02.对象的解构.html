@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的结构</title>
+    <script>
+        /*
+            对象的解构
+                注意：数组是按序解构，但对象是按属性名解构
+        */
+        const obj = {name: "Taffy", age: 17, gender: "girl"};
+        console.log(obj);
+
+        let {name, age, gender} = obj;  // 以let开头，{}不会被误认为是代码块，
+                                        // 可以正常赋值
+        console.log("name:", name,
+                    "age:", age,
+                    "gender:",gender);  // name: Taffy age: 17 gender: girl
+        
+        // {name, age, gender} = obj;  // {}被认为是代码块，报错
+        ({name, age, gender} = obj);  //  以()开头，不报错
+        console.log("name:", name,
+                    "age:", age,
+                    "gender:",gender);  // name: Taffy age: 17 gender: girl
+        
+        // 没有的属性为undefined
+        console.log("------没有的属性为undefined------")
+        let address;
+        ({name, age, gender, address} = obj);
+        console.log("name:", name,
+                    "age:", age,
+                    "gender:",gender,
+                    "address:",address);  // name: Taffy age: 17 gender: girl address: undefined
+        
+        // 接收时可以为属性指定别名
+        console.log("------接收时为属性指定别名------");
+        let {name:a, age:b, gender:c} = obj;  // 注意此时声明的变量为a,b,c
+                                              // name等变量并未被重新声明
+        console.log(a,b,c);  // Taffy 17 girl
+
+        // 可以指定默认值
+        ({name="永雏塔菲", age, gender, address="保密"} = obj);
+        console.log(name, age, gender, address);  // Taffy 17 girl 保密
+        // 可以同时指定别名可默认值
+        ({name:a, age:b, gender:c, address:d="保密"} = obj);
+        console.log(a,b,c,d);  // Taffy 17 girl 保密
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

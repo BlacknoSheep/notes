@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+    <script>
+        "use strict";
+        /*
+            继承
+                - 可通过extends关键字来设置继承
+                - 当一个类继承另一个类时，就相当于将另一个类中的代码赋值到了当前类中
+                - 被继承的类成为父类（超类），继承的类称为子类
+                - 可通过继承减少重复代码
+
+                - 通过继承可以在不修改一个类的情况下对其进行扩展
+                - OCP开闭原则
+                    - 程序应该对修改关闭，对扩展开放
+        */
+        class Animal{
+            name;
+            
+            constructor(name){
+                this.name = name;
+            }
+
+            sayHello(content){
+                console.log("动物叫");
+            }
+        }
+
+        class Dog extends Animal{
+            
+        }
+
+        class Cat extends Animal{
+            // 在子类中，可以通过创建同名方法来重写父类的方法
+            sayHello(){
+                console.log("喵喵喵");
+            }
+        }
+
+        const dog = new Dog("旺财");
+        const cat = new Cat("汤姆");
+
+        dog.sayHello();  // "动物叫"
+        cat.sayHello();  // "喵喵喵"
+
+        class Pig extends Animal{
+            nickname;
+            
+            // 重写构造函数
+            constructor(name, nickname){
+                // 必须在第一行调用父类的构造函数
+                super(name);  // 调用父类的构造函数
+                this.nickname = nickname;
+            }
+
+            sayHello(){
+                super.sayHello();  // 可以使用 super.父类方法 来调用父类的方法
+                console.log("噗噗噗");
+            }
+        }
+
+        const pig = new Pig("波奇", "popy");
+        console.log(pig);  // Pig {name: '波奇', nickname: 'popy'}
+        pig.sayHello();  // "动物叫"
+                         // "噗噗噗"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

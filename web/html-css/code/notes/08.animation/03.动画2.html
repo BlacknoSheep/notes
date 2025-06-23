@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画2</title>
+
+    <style>
+        .outer{
+            height: 500px;
+            border-top: 10px black solid;
+            border-bottom: 10px black solid;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .box1{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: orange;
+            animation: ball 0.5s ease-in infinite alternate;
+        }
+
+        @keyframes ball {
+            from{
+                margin-top: 0px;
+                animation-timing-function: ease-in;
+            }
+
+            /* 33%{
+                margin-top: 400px;
+                animation-timing-function: ease-out;
+            }
+            
+            66%{
+                margin-top: 0px;
+                animation-timing-function: ease-in;
+            } */
+
+            to{
+                margin-top: 400px;
+                animation-timing-function: ease-out;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="box1"></div>
+    </div>
+</body>
+</html>

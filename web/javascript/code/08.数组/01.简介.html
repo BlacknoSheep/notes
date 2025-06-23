@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组简介</title>
+    <script>
+        /*
+            数组（Array）
+                - 数组也是一种符合数据类型，在数组中可以存储多个不同类型的数据
+                - 数组中存储的是有序的数据，数组中的每个数据都有一个唯一的索引
+                    可以通过索引来访问数组的数据
+                - 数组中可以存储任意数据类型（原始值、对象、函数等）
+                - 创建数组
+                    1.通过Array()来创建数组
+                
+                - 向数组中添加元素
+                    语法：
+                        数组[索引] = 元素
+                            如果读取一个数组中不存在的元素，返回undefined
+                        
+                        - length属性
+                            - 获取数组的长度
+                            - 获取的实际值是数组的最大索引+1
+                            - 向数组的最后添加元素
+                                arr[arr.length] = xxx;
+                            - length可以修改
+                
+                typeof 数组  返回 'object'
+        */
+        console.log("---------创建数组---------");
+        const arr1 = Array();
+        const arr2 = [];  // 字面量形式
+        console.log("arr1:",arr1);  // []
+        console.log("arr2:",arr2);  // []
+        console.log(arr1===arr2);  // false
+
+        // 往数组中添加元素
+        console.log("---------向数组中添加元素---------");
+        arr1[0] = 1;
+        arr1[1] = "xx";
+        console.log("arr1:",arr1);  // [1, 'xx']
+
+        // 不连续数组
+        // ！！！应该避免使用不连续数组，性能很差！！！
+        arr1[10] = "111";
+        console.log("arr1:",arr1);  // [1, 'xx', 空属性 × 8, '111']
+        console.log("arr1[9]:",arr1[9]);  // undefined     未定义的位置都是undefined
+
+
+        // 直接用字面量形式添加元素
+        const arr3 = [1,2,3,"4","五"];
+        console.log("arr3:",arr3);  // [1, 2, 3, '4', '五']
+
+        console.log("---------length---------");
+        console.log(arr1.length);  // 11
+        console.log(arr3.length);  // 5
+
+        arr3[arr3.length] = 6;
+        console.log("向末尾添加元素：")
+        console.log("arr3:",arr3);  // [1, 2, 3, '4', '五', 6]
+
+        console.log("减小length");
+        --arr3.length;
+        console.log("arr3:",arr3);  // [1, 2, 3, '4', '五']
+
+        console.log("增大length");
+        ++arr3.length;
+        console.log("arr3:",arr3);  // [1, 2, 3, '4', '五', 空白]
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

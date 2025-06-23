@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            color: red;
+            background-color: #bfa;
+            /* border: 5px pink solid; */
+            position: relative;
+        }
+
+        #box2 {
+            width: 150px;
+            height: 150px;
+            background-color: pink;
+            position: absolute;
+            left: 25px;
+            top: 25px;
+        }
+
+        #box3 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+            left: 25px;
+            top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <span></span>
+        <div id="box2">
+            <div id="box3"></div>
+        </div>
+    </div>
+
+    <a href="http://www.baidu.com" id="baidu">超链接</a>
+
+    <script>
+        const box1 = document.getElementById("box1");
+        const box1_text = box1.querySelector("span");
+        const box2 = document.getElementById("box2");
+        const box3 = document.getElementById("box3");
+        const baidu = document.getElementById("baidu");
+
+        /*
+            在DOM中有着多种类型的事件对象
+                - 事件对象有一个共同的祖先（原型） —— Event
+                - 事件的冒泡（bubble）
+                    - 事件的冒泡就是指事件的向上传递
+                    - 当元素上的某个事件被触发后，其祖先元素上相同事件也会同时触发
+                    - 冒泡的存在大大简化了代码的编写，
+                        但是一些场景下我们并不希望冒泡存在。
+                        可以通过事件对象取消冒泡
+                            event.stopPropagation()
+        */
+        box1.addEventListener("click", function (event) {
+            box1_text.textContent = event.clientX + ", " + event.clientY;
+
+            /*
+                在事件的响应函数中：
+                    event.target 表示的是触发事件的对象（对象可能由子元素触发）
+                    this 绑定事件的对象
+                    event.currentTarget 绑定事件的对象，同this
+                        箭头函数无自己的this，所以可以使用 event.currentTarget 来获取绑定事件的对象
+            */
+            console.log("event.target", event.target);
+            console.log("this:", this);
+            console.log("event.currentTarget:", event.currentTarget);
+
+            alert("box1被点击！");
+        });
+
+        box2.addEventListener("click", function (event) {
+            alert("box2被点击！");
+        });
+
+        box3.addEventListener("click", function (event) {
+            // 取消事件向上传递
+            event.stopPropagation();
+
+            alert("box3被点击！");
+        });
+
+
+        /*
+            取消默认行为
+                event.preventDefault()
+        */
+        baidu.addEventListener("click", event => {
+            alert("超链接被点击！");
+
+            event.preventDefault();
+
+            // return false;  // 只在 元素.事件=函数 的形式中才能取消默认行为
+        });
+    </script>
+</body>
+
+</html>

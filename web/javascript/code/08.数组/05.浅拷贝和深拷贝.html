@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浅拷贝和深拷贝</title>
+    <script>
+        /*
+            浅拷贝（shallow copy）
+                - 通常对对象的拷贝都是浅拷贝
+                - 浅拷贝顾名思义，就是只对对象的浅层进行复制（只复制一层）
+                - 如果对象中存储的数据是原始值，那么浅拷贝和深拷贝效果相同（因为只有一层）
+                
+            深拷贝（deep copy）
+                - 深拷贝对对象和其属性均进行复制
+                - 通常不会使用深拷贝（可能会有很多层，性能差）
+                - JS提供的structuredClone()方法
+        */
+        console.log("------浅拷贝------");
+        const arr1 = [{name:"赵"}, {name:"钱"}];
+        const arr2 = arr1.slice();  // 浅拷贝
+        console.log(arr1===arr2);  // false
+        console.log(arr1[0]===arr2[0]);  // true
+        arr2[0].name = "孙";
+        console.log("arr1[0])",arr1[0]);  // {name: '孙'}   arr1[0]也变了
+        console.log("arr2[0]",arr2[0]);  // {name: '孙'}
+
+        console.log("------深拷贝------");
+        const arr3 = structuredClone(arr1);  // 深拷贝
+        console.log("arr1:",arr1);
+        arr3[0].name = "吕";
+        console.log("arr1[0])",arr1[0]);  // {name: '孙'}
+        console.log("arr3[0]",arr3[0]);  // {name: '吕'}
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

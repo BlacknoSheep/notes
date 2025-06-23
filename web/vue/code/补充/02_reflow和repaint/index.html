@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>重排和重绘</title>
+    <style>
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: #bfa;
+      }
+
+      .red_bg {
+        background-color: red;
+      }
+
+      .big {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn1">变色</button>
+    <button id="btn2">变大小</button>
+    <hr />
+    <div id="box1" class="box1"></div>
+
+    <script>
+      const btn1 = document.getElementById("btn1");
+      const box1 = document.getElementById("box1");
+      btn1.onclick = function () {
+        box1.classList.add("red_bg");
+      };
+      btn2.onclick = function () {
+        // box1.style.width = "200px"; // 重排一次
+        // box1.style.height = "200px"; // 又重排一次
+
+        // 通过修改class来减少重排次数
+        // box1.classList.add("big"); // 重排一次
+
+        // 或者通过display:none来减少重排次数
+        box1.style.display = "none"; // 重排一次
+        box1.style.width = "200px"; // 不会触发重排
+        box1.style.height = "200px"; // 不会触发重排
+        box1.style.display = "block"; // 重排一次
+      };
+    </script>
+  </body>
+</html>
