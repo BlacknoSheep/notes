@@ -1,0 +1,37 @@
+/*
+ * fdopen一个已打开的文件描述时，不会截断文件
+ */
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+  char filename[] = "test.txt";
+  FILE* fp = fopen(filename, "w+"); // 以读写模式打开文件，不存在则创建
+  for (int i = 0; i < 1024; ++i) {
+    fputs("12345678", fp);
+  } // 共8192字节
+  fclose(fp); // 冲洗流并关闭文件
+
+  FILE* fp1 = fopen(filename, "r+"); // 以读写模式打开文件，截断文件至0（即覆盖写）
+  fputs("taffy!", fp1); // 向流中写入一个以null字节结尾的字符串
+  fclose(fp); // 冲洗流并关闭文件
+
+  char buf[128];
+  int fd = open(filename, O_RDWR); // offset=0
+  read(fd, buf, 5);
+  printf("after read, offset=%ld\n", lseek(fd, 0, SEEK_CUR)); // 5
+  write(STDOUT_FILENO, buf, 5);
+  printf("\n");
+
+  FILE* fp2 = fdopen(fd, "r+"); // 以读写模式打开文件
+  printf("after fdopen, offset=%ld\n", ftell(fp2)); // 5，fdopen不会改变文件偏移量
+  rewind(fp2); // offset=0
+  fgets(buf, 6, fp2); // 从流中读取5个字符进buf，并自动在末尾添加'\0'（null）
+  printf("after fgets, offset=%ld\n", lseek(fd, 0, SEEK_CUR)); // 取决于fp2流的缓冲区大小
+  printf("buf size of fp2: %ld\n", fp2->_IO_buf_end - fp->_IO_buf_base); // fp2流的缓冲区大小
+  fputs(buf, stdout);
+  printf("\n");
+  fclose(fp2);
+  return 0;
+}
